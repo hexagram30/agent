@@ -83,16 +83,36 @@ def getProperOrder(type_abbr):
     return new
     
 def getTemperamentList(type_abbr):
+    '''
+    This accepts a myers-briggs type (4 character string) as input,
+    and returns a list of 1s and -1s representing the type components.
+    '''
     return [ eval(i.upper()) for i in getProperOrder(type_abbr) ]
 
 def getTemperamentArray(type_abbr):
+    '''
+    This is the same thing as getTemperamentList(), except that it
+    returns the result as an numarray array type for linear algebra
+    calculations, etc.
+    '''
     return array(getTemperamentList(type_abbr))
 
 def getTemperamentString(type_list):
+    '''
+    Process a list (or numeric array) and return the personality type
+    as a standard 4 character myers-briggs string.
+    '''
     return ''.join([ getLetterForValue(x[0], x[1]) for x in zip(type_list, range(0,len(type_list))) ])
 
 def checkTemperament(type_abbr):
-    return getTemperamentString(getTemperamentList(type_abbr))
+    '''
+    This is a way of standardizing a string value for personality
+    type. The called functions perform proper ordering and capitalization.
+    '''
+    try:
+        return getTemperamentString(getTemperamentList(type_abbr))
+    except:
+        raise "PersonalityError: invalid myers-briggs string representation '%s'." % type_abbr
 
 def getDominantFunction(type_list):
     '''
@@ -127,7 +147,7 @@ def getMatchTypes(type_list):
         the remaining index.
     '''
     match1 = type_list
-    # if extrovert, make introver, and vice versa
+    # if extrovert, make introvert, and vice versa
     match1[0] *= -1
 
     # flip world-dealing bit (last bit)
@@ -172,8 +192,8 @@ def getCompleteTemperamentStrings():
 def getGeneticTemperament(parent1, parent2):
     '''
     The basic jist of this function is this: I wanted some way to produce semi-
-    random "off-spring" that were the result of combinations of type types. This
-    is not meant to realistically model personality types of children based on
+    random "off-spring" that were the result of combinations of temperament types. 
+    This is not meant to realistically model personality types of children based on
     the types of their parents. However, it does offer a nice way of auto-generating
     family trees/generations of temperaments.
     '''
@@ -194,6 +214,3 @@ def getGeneticTemperament(parent1, parent2):
 
     return [ checkit(x) for x in combo ]
 
-
-    def getType(self, type_abbr):
-        pass

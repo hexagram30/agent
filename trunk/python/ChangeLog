@@ -1,3 +1,8 @@
+2004.09.12
+
+* Added more docstrings.
+* Added try/except to checkTemperament().
+
 2004.09.11
 
 * Renamed getTemperment* functions.
@@ -10,6 +15,7 @@
 * Created a new generator.BasePerson class.
 * Added an empty place-holder for interfaces.
 * Added package place-holders for behavior patterns and environments.
+
 
 2004.09.04
 
