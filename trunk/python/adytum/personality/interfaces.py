@@ -210,3 +210,24 @@ class IMyersBriggs(IQuadComponentPersonality):
 class IOkCupid(IQuadComponentPersonality):
     '''
     '''
+
+class IAlignment(Interface):
+    '''
+
+    '''
+    def setMorality(moral_type):
+        '''
+        '''
+    def getMorality():
+        '''
+        '''
+    def setEthics(ethical_type):
+        '''
+        '''
+    def getEthics():
+        '''
+        '''
+    def getOCEANMap():
+        '''
+        '''
+    

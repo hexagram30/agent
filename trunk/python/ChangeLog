@@ -7,6 +7,7 @@
 * updated Glossary.
 * Added getOCEANMap to MyersBriggs class; the numbers are pretty arbitrary,
 but they are something to work with, at least.
+* Added IAlignment interface and stubbed out alignment.Alignment.
 
 2004.09.15
 
