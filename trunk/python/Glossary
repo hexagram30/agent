@@ -1,7 +1,41 @@
+= A =
+
 Agent = 
-Utility = 
+
+= C =
+
+Coping Style = 
+
+= E =
+
 Emotion = 
-Percept = 
+
+= G =
+
+Goals = active goals are goals which the agent can directly plan to make happen; interest goals are desired states of the World; replenish goals are goals based on time since last fulfillment.
+
+= M =
+
+Memories = 
 Metric = 
-World = 
+
+= P =
+
+Percept = a single unit of perceptual report, such as one of the responses to an inkblot in the Rorschach test
+Perception = Recognition and interpretation of sensory stimuli based chiefly on memory.
+
+= S =
+
+Standards = Ideas about how people/agents should act.
+Stressor = An agent, condition, or other stimulus that causes stress to an organism.
+
+= U =
+
 Universe = 
+Utility = The quality or state of being useful
+Utility Values = 
+
+= W =
+
+World = 
+

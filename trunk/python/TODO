@@ -5,10 +5,11 @@ Emotional Modeling
 At each tick of the simulation clock, each agent must be able to process the
 following information: 
 
-* current state name or ID * stress-based coping mode (Omega_i where i = 1,5) 
+* current state name or ID 
+* stress-based coping mode (Omega_i where i = 1,5) 
 * currently afforded transitions and what actions might cause those state
 transitions (a_nm in A(Omega))
-* subjective desires for each state based on 11 pairs of emmotional scales
+* subjective desires for each state based on 11 pairs of emotional scales
 summed into an overall utility score, U
 
 Using all of this information, the agent must select a decision style Phi and
@@ -21,9 +22,9 @@ emotions for an action leading to a state.
 After emotional intensity is obtained for each emotion, they need to be summed
 and averaged over the 11 ranges.
 
-========== 
-Components 
-==========
+================= 
+Python Components 
+=================
 
 emotion module receives input from the perception module
 

@@ -1,5 +1,19 @@
-# Initial input and advice supplied by Dr. Douglass McGreggor, D.O.
 from protocols import Interface
+'''
+General body interfaces. Body as in car body, robot body, human body.
+'''
+
+class IBody(Interface):
+    '''
+    
+    '''
+
+
+'''
+Human aspects.
+'''
+
+# Initial input and advice supplied by Dr. Douglass McGreggor, D.O.
 
 class IHeartRate(Interface):
     '''

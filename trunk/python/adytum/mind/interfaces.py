@@ -1,3 +1,8 @@
+class IMind:
+    '''
+
+    '''
+
 class IPerception:
     '''
     The perception module needs to integrate several components:
