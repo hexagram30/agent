@@ -1,3 +1,11 @@
+2004.09.16
+
+* Added agents stubs.
+* Added a place for archetypes (not Jungian, but PMFs)
+* Made very significant changes to personality files.
+* Updated emotion and action interfaces.
+* updated Glossary.
+
 2004.09.15
 
 * Updated TODO file.
