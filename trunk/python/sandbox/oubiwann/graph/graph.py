@@ -1,4 +1,37 @@
-from basetypes import priorityDictionary, unionFind
+from basetypes import PriorityDictionary, UnionFind
+from pydot import Dot, Edge
+
+def graphFromList(edge_list, node_prefix='', directed=True):
+    """Creates a basic graph out of an edge list.
+    
+    The edge list has to be a list of tuples representing
+    the nodes connected by the edge.
+    The values can be anything: bool, int, float, str.
+    
+    If the graph is undirected by default, it is only
+    calculated from one of the symmetric halves of the matrix.
+
+    If the graph has weighted edges, edge_list will be of the 
+    form:
+        [ (vert1, vert2, weight), ... ]
+    else:
+        [ (vert1, vert2), ... ]
+    
+    """
+    weighted = len(edge_list[0]) % 2
+    if directed:
+            graph = Dot(graph_type='digraph')
+    else:
+            graph = Dot(graph_type='graph')
+    for edge in edge_list:
+            e = Edge(node_prefix+str(edge[0]), node_prefix+str(edge[1]))
+            if weighted:
+                e.label = e.weight = edge[2]
+            graph.add_edge(e)
+    return graph
+
+class GraphError(Exception):
+    pass
 
 class Graph(dict):
     '''
@@ -11,17 +44,63 @@ class Graph(dict):
     
 
     '''
-    def countNodes(self):
-        pass
-
-    def countEdges(self):
-        pass
-
     def countConnectedComponents(self):
         pass
 
-    def shortestPath(self, method='dijkstra', start=None, end=None):
-        return eval('self.%s(%s, end=%s)' % (method, start, end)
+    def fastGetEdges(self):
+        '''
+        This method can only be used if the connecting vertices type
+        is a dict.
+        '''
+        flattened = []
+        try:
+            [ [ flattened.append((vert, edge, weight)) for edge, weight in self[vert].items() ] for vert in self.keys() ]
+        except AttributeError:
+            raise GraphError, "You can only use fastGetEdges() when the connecting vertices are represented as dicts."
+        return flattened
+
+    def getEdges(self):
+        '''
+        This is a safe (but slow) way to get the Edges.
+
+        G = self
+        '''
+        flattened = []
+        for vert, connecting_verts in self.items():
+            conn_vert_type = type(connecting_verts).__name__
+            edges = self[vert]
+            if conn_vert_type == 'dict':
+                [ flattened.append((vert, edge)) for edge in connecting_verts.keys() ]            
+            elif conn_vert_type == 'list' or conn_vert_type == 'tuple':
+                pass
+            elif conn_vert_type == 'str':
+                pass
+            else:
+                raise GraphError, "Unable to handle data type '%s' for connecting vertices." % conn_vert_type
+        return flattened
+
+    getPaths = getBridges = getEdges
+  
+    def getVertices(self):
+        return self.keys()
+    getNodes = getPoints = getJunctions = getVertices
+
+    def fastGetEdgeCount(self):
+        return len(self.fastGetEdges)
+
+    def getEdgeCount(self):
+        return len(self.getEdges)
+    edgeNumber = getEdgeCount
+
+    def getGraphOrder(self):
+        return len(self.getVertices())
+    vertexNumber = getVertexCount = getGraphOrder
+
+    def getEdgeWeights(self):
+        pass
+
+    def getVertexWeights(self):
+        pass
 
     # Dijkstra's algorithm for shortest paths
     # David Eppstein, UC Irvine, 4 April 2002
@@ -70,7 +149,7 @@ class Graph(dict):
         G = self
         D = {}	# dictionary of final distances
         P = {}	# dictionary of predecessors
-        Q = priorityDictionary()   # est.dist. of non-final vert.
+        Q = PriorityDictionary()   # est.dist. of non-final vert.
         Q[start] = 0
         
         for v in Q:
@@ -96,8 +175,7 @@ class Graph(dict):
         The output is a list of the vertices in order along
         the shortest path.
         """
-        G = self
-        D,P = dijkstra(G,start,end)
+        D,P = self.dijkstra(start,end)
         Path = []
         while 1:
             Path.append(end)
@@ -164,7 +242,7 @@ class Graph(dict):
             # base[t] will be the pair (v,w) at the base of the blossom, where v and t
             # are on the same side of the blossom and w is on the other side.
 
-            leader = unionFind()
+            leader = UnionFind()
             S = {}
             T = {}
             unexplored = []
@@ -329,4 +407,9 @@ class Graph(dict):
 
         return matching
 
+    def fastGetDot(self):
+        return graphFromList(self.fastGetEdges())
+
+    def getDot(self):
+        return graphFromdList(self.getEdges())
 
