@@ -1,3 +1,16 @@
+2004.09.11
+
+* Renamed getTemperment* functions.
+* Created a temperment master list generator.
+* Added getGeneticTemperment.
+* Removed the flipIndex() function since it wasn't being used.
+* Rewrote getMatchTypes(); it actually works now.
+* Clarified the methodology behind getMatchType() with an extensive docstring.
+* Added getDominantFunction().
+* Created a new generator.BasePerson class.
+* Added an empty place-holder for interfaces.
+* Added package place-holders for behavior patterns and environments.
+
 2004.09.04
 
 * Added some code to manipulate Myers-Briggs types.
