@@ -25,6 +25,26 @@ class IEmotionalAppraisal:
     2) standards that people should follow, and
     3) preferences for objects
 
+    Sample usage:
+
+    world_state = getWorldState()
+    sum1 = 0
+    for agent in set_of_agents:
+        sets_of_concerns = getAgentConcerns(agent)
+        sum2 = 0
+        for concern_set in sets_of_concerns:
+            w = getWieghtedImportanceOfSuccessFail(agent, concern_set)
+            r = getRelationship(agent, world_state)
+            f1 = getRelationshipStrength(r)
+            o = XXX
+            n = XXX
+            f2 = XXX(o,n)
+            sum2 += w * f1 * f2
+        sum1 += sum2
+            
+            
+
+
     '''
     self_agent = property("")
 
@@ -38,10 +58,63 @@ class IEmotionalAppraisal:
         '''
     def getRelationshipStrength(relationship):
         '''
-        Calculates the strength of the passed relationship, positive 
+        Calculate the strength of the passed relationship, positive 
         or negative.
+        '''
+    def getWeightedImportanceOfSuccessFail(agent, set_of_concerns):
+        '''
+        Calculate the weighted importance of agent's values that succeed
+        or fail
+        '''
+    def getTemporalWorldStateFactors(XXX):
+        '''
+        '''
+    def mergeOrDiscountTemportalEmotions(XXX):
+        '''
+        '''
+    def getXXX(XXX):
+        '''
+        This method captures temportal factors of the state and captures
+        how to discount and merge emotions from the past, in the present,
+        and for the future.
+        '''
+    def sumConcernSets(agent, world_state, sets_of_concerns):
+        '''
+        This method loops over the list of ontology paths (sets_of_concerns).
+         
+        set_of_concerns is a set of sets.
         '''
     def getIntensity(emotion, world_state, set_of_agents, set_of_ontology_paths):
         '''
+        Return the intensity of passed emotion based on the world state for
+        a given set of agents and a given set of ontology paths.
 
+        This method loops over the set_of_agents, calling sumOntologyPaths
+        for each agent.
         '''
+
+class OCCModel:
+    '''
+    '''
+    def evaluateSituation(XXX):
+        '''
+        '''
+    def getReactionToEvent(XXX):
+        '''
+        To get a reaction to an event, an agent must have access to goals
+        in relation to that event as well as 
+        
+        '''
+class OCCEventConsequence:
+    '''
+    '''
+
+class OCCAgentAction:
+    '''
+    '''
+
+class OCCObjectAspect:
+    '''
+    '''
+
+
