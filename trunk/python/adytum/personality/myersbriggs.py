@@ -37,6 +37,7 @@ PG = ['ISTP', 'ESTP', 'ESFP', 'ISFP']
 TG = ['ENTJ', 'INTJ', 'ENTP', 'INTP']
 # idealists
 FG = ['ENFJ', 'INFJ', 'ENFP', 'INFP']
+TYPE_GROUPS = {'JG':JG,'PG':PG,'TG':TG,'FG':FG}
 
 # Dominant Functions
 NDF = ['ENTP', 'ENFP', 'INTJ', 'INFJ']
@@ -86,6 +87,12 @@ class MyersBriggs(Component):
     ''' 
 
     protocols.advise(instancesProvide=[IMyersBriggs])
+
+    def __init__(self, type_abbr=None):
+        self.type_abbr = type_abbr
+        if type_abbr:
+            self.type_abbr = self.checkTemperament(type_abbr)
+            self.type_list = self.getTemperamentList(type_abbr)
 
     def getIndexForLetter(self, letter):
         return [ letter.upper() in pair for pair in RP ].index(True)
@@ -187,6 +194,51 @@ class MyersBriggs(Component):
             return part[2]
 
         return [ checkit(x) for x in combo ]
+
+    def getOCEANMap(self):
+        import numarray 
+        from ocean import OCEAN
+        oc = OCEAN()
+        total_list = []
+
+        E_OCEAN = (0.5, 0.5, 0.8, 0.5, 0.5)
+        I_OCEAN = (0.5, 0.5, 0.2, 0.5, 0.5)
+        N_OCEAN = (0.5, 0.4, 0.5, 0.4, 0.5)
+        S_OCEAN = (0.5, 0.6, 0.5, 0.6, 0.5)
+        F_OCEAN = (0.8, 0.5, 0.5, 0.5, 0.5)
+        T_OCEAN = (0.8, 0.5, 0.5, 0.5, 0.5)
+        J_OCEAN = (0.3, 0.6, 0.5, 0.5, 0.5)
+        P_OCEAN = (0.6, 0.3, 0.5, 0.5, 0.5)
+
+        letter_list = self.getProperOrder(self.type_abbr)
+        type_ocean = [ eval('%s_OCEAN' % x) for x in letter_list ]
+
+        weight = 3
+        for i in range(0,weight):
+            total_list.extend(total_list)
+
+        # guardians
+        JG_OCEAN = (0.5, 0.7, 0.5, 0.7, 0.4)
+        # artisans
+        PG_OCEAN = (0.7, 0.5, 0.6, 0.5, 0.4)
+        # rationals
+        TG_OCEAN = (0.7, 0.6, 0.6, 0.4, 0.6)
+        # idealists
+        FG_OCEAN = (0.7, 0.6, 0.5, 0.4, 0.7)
+
+        group_letter = [ x for x in TYPE_GROUPS.keys() if self.type_abbr in TYPE_GROUPS[x] ][0]
+        total_list.append(eval('%s_OCEAN' % group_letter))
+
+        # Dominant Functions
+        NDF_OCEAN = (0.5, 0.4, 0.5, 0.4, 0.5)
+        SDF_OCEAN = (0.5, 0.6, 0.5, 0.6, 0.5)
+        FDF_OCEAN = (0.8, 0.5, 0.5, 0.5, 0.5)
+        TDF_OCEAN = (0.8, 0.5, 0.5, 0.5, 0.5)
+
+        dom_letter = [ x for x in DOM_FUNC.keys() if self.type_abbr in DOM_FUNC[x]][0]
+        total_list.append(eval('%sDF_OCEAN' % dom_letter))
+
+        return tuple([ x/len(total_list) for x in numarray.sum(total_list) ])
 
 def _test():
 

@@ -5,6 +5,8 @@
 * Made very significant changes to personality files.
 * Updated emotion and action interfaces.
 * updated Glossary.
+* Added getOCEANMap to MyersBriggs class; the numbers are pretty arbitrary,
+but they are something to work with, at least.
 
 2004.09.15
 
