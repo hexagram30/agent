@@ -1,0 +1,5 @@
+* Get info on Brill method in NLTK; Tagger is taking tons of MB of memory
+* Research chunking rules
+* Finish Chunker
+* Finish wrapper
+* Add exceptions
