@@ -2,6 +2,9 @@
 
 * Moved graph module out of sandbox/oubiwann and into adytum.math.
 * Added a missing __init__.py to adytum/math.
+* Moved agraph out of adytum.math.graph andd into a graphics package where it
+belongs.
+* Reduced the hierachy inside math so that graph.py sits in math/ directly.
 
 2004.09.12
 
