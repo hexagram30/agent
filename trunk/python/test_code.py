@@ -1,5 +1,5 @@
-from numarray import *
-import myersbriggs as mb
+from numarray import outerproduct, outerproduct
+from adytum.personality import myersbriggs as mb
 
 rp = mb.REFERENCE_PAIRS
 me = mb.getTempermentType('INTP')

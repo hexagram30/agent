@@ -11,22 +11,28 @@ J = 1
 P = -1
 
 # Introvery/Extrovert
-WOLRD_INTERACTION = [i for i in 'EI']
+WOLRD_INTERACTION = ['E', 'I']
 WI = ATTITUDE = DIRECTION = WOLRD_INTERACTION
 # Senesation/Perception
-INTERNAL_VIEW = [i for i in 'NS']
+INTERNAL_VIEW = ['N', 'S']
 IV = INTERNAL_VIEW
 # Thinking/Feeling
-INTERNAL_EXPERIENCE = [i for i in 'FT']
+INTERNAL_EXPERIENCE = ['F', 'T']
 IE = DM = DECISION_MAKING = INTERNAL_EXPERIENCE
 # Judgement/Perception
-WORLD_VIEW = [i for i in 'JP']
+WORLD_VIEW = ['J', 'P']
 WV = WORLD_VIEW
 
-# thinkers
+REFERENCE_PAIRS = [WI, IV, IE, WV]
+RP = REFERENCE_PAIRS
+
+# guardians
 JG = ['ISTJ', 'ESTJ', 'ISFJ', 'ESFJ']
+# artisans
 PG = ['ISTP', 'ESTP', 'ESFP', 'ISFP']
+# rationals
 TG = ['ENTJ', 'INTJ', 'ENTP', 'INTP']
+# idealists
 FG = ['ENFJ', 'INFJ', 'ENFP', 'INFP']
 
 # Dominant Functions
@@ -38,9 +44,6 @@ IN = ['INTJ', 'INFJ']
 IS = ['ISTJ', 'ISFJ']    
 IF = ['ISFP', 'INFP']
 IT = ['ISTP', 'INTP']
-
-REFERENCE_PAIRS = [WI, IV, IE, WV]
-RP = REFERENCE_PAIRS
 
 POPULATION_MATRIX = array()
 
@@ -70,7 +73,7 @@ def getProperOrder(type_abbr):
     new = range(0,len(RP))
     # for every item we inert, it extends the list length by one.
     # the item that was at the index that was just inserted is now
-    # at index + 1, so if we pop tht index, we're back the the 
+    # at index + 1, so if we pop that index, we're back the the 
     # proper length.
     [ (new.insert(getIndexForLetter(letter), letter), new.pop(getIndexForLetter(letter) + 1)) for letter in type_abbr ]
     return new
@@ -113,10 +116,13 @@ def getMatchTypes(type_abbr):
 
     return (getTempermentString(match1), getTempermentString(match2), getTempermentString(match3))
     
-
+# XXX no sure is this class is really needed, yet. This module may just end up
+# being a set of functional/procedural utilities with no need for a class.
 class Temperment(object):
-    def __init__(self):
+    '''
+    '''
+    def __init__(self, type_abbr):
         pass
 
     def getType(self, type_abbr):
-        return array([ eval(i) for i in type_abbr ])
+        pass
