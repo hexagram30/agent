@@ -9,6 +9,9 @@ belongs.
 * Edited adytum.math.graph to import basetypes from an absolute path.
 * Updated README and INSTALL.
 * Added LICENSE file.
+* Added a new directory for physiology and stubbed out an initial interface
+guess.
+* Added a directory for perception.
 
 2004.09.12
 
