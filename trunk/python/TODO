@@ -14,3 +14,6 @@ Using all of this information, the agent must select a decision style Phi and pr
 
 Utility may be thought of as the simple summation of all positive and negative emotions for an action leading to a state.
 
+After emotional intensity is obtained for each emotion, they need to be summed and averaged over the 11 ranges.
+
+
