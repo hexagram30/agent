@@ -2,6 +2,8 @@
 
 * Added more docstrings.
 * Added try/except to checkTemperament().
+* Added sandboxes for everyone.
+* Moved research up one level and added other higher level dirs.
 
 2004.09.11
 
