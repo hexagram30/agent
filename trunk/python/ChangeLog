@@ -1,6 +1,7 @@
 2004.09.14
 
 * Moved graph module out of sandbox/oubiwann and into adytum.math.
+* Added a missing __init__.py to adytum/math.
 
 2004.09.12
 
