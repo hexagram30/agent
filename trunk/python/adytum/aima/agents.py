@@ -51,7 +51,7 @@ class Agent(Object):
     It's not supposed to do that: the program can only look at the
     percepts.  An agent program that needs a model of the world (and of
     the agent itself) will have to build and maintain its own model.
-    There is an optional slots, .performance, which is a number giving
+    There is an optional slot, .performance, which is a number giving
     the performance measure of the agent in its environment."""
 
     def __init__(self):
@@ -90,13 +90,11 @@ class TableDrivenAgent(Agent):
             return action
         self.program = program
 
-
 class RandomAgent(Agent):
     "An agent that chooses an action at random, ignoring all percepts."
     def __init__(self, actions):
         Agent.__init__(self)
         self.program = lambda percept: random.choice(actions)
-
 
 #______________________________________________________________________________
 
@@ -169,7 +167,7 @@ class Environment:
     object_classes = [] ## List of classes that can go into environment
 
     def percept(self, agent):
-	"Return the percept that the agent sees at this point. Override this."
+        "Return the percept that the agent sees at this point. Override this."
         abstract()
 
     def execute_action(self, agent, action):
@@ -177,12 +175,12 @@ class Environment:
         abstract()
 
     def default_location(self, object):
-	"Default location to place a new object with unspecified location."
+        "Default location to place a new object with unspecified location."
         return None
 
     def exogenous_change(self):
-	"If there is spontaneous change in the world, override this."
-	pass
+        "If there is spontaneous change in the world, override this."
+        pass
 
     def is_done(self):
         "By default, we're done when we can't find a live agent."
@@ -191,32 +189,32 @@ class Environment:
         return True
 
     def step(self):
-	"""Run the environment for one time step. If the
-	actions and exogenous changes are independent, this method will
-	do.  If there are interactions between them, you'll need to
-	override this method."""
-	if not self.is_done():
-            actions = [agent.program(self.percept(agent))
-                       for agent in self.agents]
+        """Run the environment for one time step. If the
+        actions and exogenous changes are independent, this method will
+        do.  If there are interactions between them, you'll need to
+        override this method."""
+        if not self.is_done():
+            actions = [agent.program(self.percept(agent)) for agent in self.agents]
             for (agent, action) in zip(self.agents, actions):
-		self.execute_action(agent, action)
+                self.execute_action(agent, action)
             self.exogenous_change()
 
     def run(self, steps=1000):
-	"""Run the Environment for given number of time steps."""
-	for step in range(steps):
-            if self.is_done(): return
-            self.step()
+        """Run the Environment for given number of time steps."""
+        for step in range(steps):
+                if self.is_done(): return
+                self.step()
 
     def add_object(self, object, location=None):
-	"""Add an object to the environment, setting its location. Also keep
-	track of objects that are agents.  Shouldn't need to override this."""
-	object.location = location or self.default_location(object)
-	self.objects.append(object)
-	if isinstance(object, Agent):
-            object.performance = 0
-            self.agents.append(object)
-	return self
+        """Add an object to the environment, setting its location. Also keep
+        track of objects that are agents.  Shouldn't need to override this."""
+        object.location = location or self.default_location(object)
+        object.heading = 0
+        self.objects.append(object)
+        if isinstance(object, Agent):
+                object.performance = 0
+                self.agents.append(object)
+        return self
     
 
 class XYEnvironment(Environment):
@@ -229,27 +227,29 @@ class XYEnvironment(Environment):
 
     def __init__(self, width=10, height=10):
         update(self, objects=[], agents=[], width=width, height=height)
+        self.perception_radius = 1
 
     def objects_at(self, location):
         "Return all objects exactly at a given location."
         return [obj for obj in self.objects if obj.location == location]
 
-    def objects_near(self, location, radius):
+    #def objects_near(self, location, radius):
+    def objects_near(self, agent):
         "Return all objects within radius of location."
+        location = agent.location
+        radius = self.perception_radius
         radius2 = radius * radius
-        return [obj for obj in self.objects
-                if distance2(location, obj.location) <= radius2]
+        return [obj for obj in self.objects if distance2(location, obj.location) <= radius2]
 
     def percept(self, agent):
         "By default, agent perceives objects within radius r."
-        return [self.object_percept(obj, agent)
-                for obj in self.objects_near(agent)]
+        return [self.object_percept(obj, agent) for obj in self.objects_near(agent)]
 
     def execute_action(self, agent, action):
         if action == 'TurnRight':
-            agent.heading = turn_heading(agent.heading, -1)
+            agent.heading = self.turn_heading(agent.heading, -1)
         elif action == 'TurnLeft':
-            agent.heading = turn_heading(agent.heading, +1)
+            agent.heading = self.turn_heading(agent.heading, +1)
         elif action == 'Forward':
             self.move_to(agent, vector_add(agent.heading, agent.location))
         elif action == 'Grab':
@@ -271,7 +271,8 @@ class XYEnvironment(Environment):
 
     def move_to(object, destination):
         "Move an object to a new location."
-        
+        object.location = destination
+
     def add_object(self, object, location=(1, 1)):
         Environment.add_object(self, object, location)
         object.holding = []

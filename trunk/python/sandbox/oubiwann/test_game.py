@@ -1,4 +1,4 @@
-from adytum.aima import Object, Agent, XYEnvironment
+from adytum.aima.agents import Object, Agent, XYEnvironment
 
 # objects
 class BarTop(Object): pass
@@ -46,3 +46,12 @@ class Pub(XYEnvironment):
     object_classes = [BarTop, BarMop, Glass, Bottle, Bartender, Patron]
 
     
+if __name__ == '__main__':
+    sam = Bartender()
+    norm = Patron()
+    cheers = Pub()
+    cheers.add_object(sam)
+    cheers.add_object(norm)
+
+    print cheers.agents
+    cheers.run(steps=10)
