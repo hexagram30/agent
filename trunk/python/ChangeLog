@@ -5,6 +5,8 @@
 * Moved agraph out of adytum.math.graph andd into a graphics package where it
 belongs.
 * Reduced the hierachy inside math so that graph.py sits in math/ directly.
+* Moved basetypes out of sandbox/oubiwann and into adytum.
+* Edited adytum.math.graph to import basetypes from an absolute path.
 
 2004.09.12
 

@@ -1,4 +1,4 @@
-from basetypes import PriorityDictionary, UnionFind
+from adytum.basetypes import PriorityDictionary, UnionFind
 from pydot import Dot, Edge
 
 def graphFromList(edge_list, node_prefix='', directed=True):
