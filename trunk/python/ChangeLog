@@ -1,3 +1,7 @@
+2004.09.14
+
+* Moved graph module out of sandbox/oubiwann and into adytum.math.
+
 2004.09.12
 
 * Added more docstrings.
