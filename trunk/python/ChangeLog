@@ -1,3 +1,9 @@
+2004.09.17
+
+* Added a shell script to get a list of dirs that should be in setup.py.
+* Updated setup.py to reflect the latest changes; thanks to Greg for the catch
+on that one.
+
 2004.09.16
 
 * Added agents stubs.
