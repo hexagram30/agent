@@ -1,0 +1,9 @@
+BUGS
+====
+* Fix ghosting when moving to the right
+
+FEATURES
+========
+* Add projectile firing
+* Add stationary objects
+* Make stationary objects destructable
