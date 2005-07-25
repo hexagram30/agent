@@ -1,0 +1,9 @@
+2005.07.25
+
+* Created initial space for Rook-based games.
+* Added game "Curses The Rookses".
+* Added customized version of urwid 0.8.8 for curses development.
+* Added curses test code for navigation.
+* Added Twisted Imagination code, revision 182.
+* Added imagination simplemap files.
+* Added imagination TRDemo files.
