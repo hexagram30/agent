@@ -7,3 +7,7 @@ FEATURES
 * Add projectile firing
 * Add stationary objects
 * Make stationary objects destructable
+
+IMPROVEMENTS
+============
+* separate key strokes out into UI events
