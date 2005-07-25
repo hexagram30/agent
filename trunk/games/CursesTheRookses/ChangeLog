@@ -7,3 +7,8 @@
 * Added Twisted Imagination code, revision 182.
 * Added imagination simplemap files.
 * Added imagination TRDemo files.
+* Updated INSTALL, DEPENDENCIES.
+* Added LICENSE.
+* Updated the setup.py file.
+* Added test harness.
+* Updated test03.py to conform to coding standards.

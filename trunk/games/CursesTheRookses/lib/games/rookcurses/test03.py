@@ -1,9 +1,8 @@
-import urwid.curses_display
-import urwid
+from adytum import urwid
+from adytum.urwid import curses_display
 import time
-from copy import copy
 
-ui = urwid.curses_display.Screen()
+ui = curses_display.Screen()
 
 AFTER_IMAGE_DELAY = 0.075
 VERT_SCALE_COMPENSATION = 0.1
@@ -36,37 +35,37 @@ class Person(object):
         msg += 'New y: %s\n' % self.y
         #self.screen.fast_put(0, 0, msg)
 
-    def change_direction(self):
+    def changeDirection(self):
         self.screen.delete(self.x, self.y)
         time.sleep(AFTER_IMAGE_DELAY)
         self.screen.fast_put(self.x, self.y, self.rep)
 
-    def move_or_turn(self, point=(), this_dir=None):
+    def moveOrTurn(self, point=(), this_dir=None):
         if self.last_direction != this_dir:
-            self.change_direction()
+            self.changeDirection()
         else:
             if this_dir in ['up', 'down']:
-                self.move_vert(point=point)
+                self.moveVert(point=point)
             else:
                 self.move(point=point)
         self.last_direction = this_dir
         
-    def move_vert(self, point=()):
+    def moveVert(self, point=()):
         self.move(point=point)
         time.sleep(VERT_SCALE_COMPENSATION)
     
-    def move_left(self, point=()):
-        self.move_or_turn(point=point, this_dir='left')
+    def moveLeft(self, point=()):
+        self.moveOrTurn(point=point, this_dir='left')
  
-    def move_up(self, point=()):
-        self.move_or_turn(point=point, this_dir='up')
+    def moveUp(self, point=()):
+        self.moveOrTurn(point=point, this_dir='up')
     
-    def move_down(self, point=()):
-        self.move_or_turn(point=point, this_dir='down')
+    def moveDown(self, point=()):
+        self.moveOrTurn(point=point, this_dir='down')
 
-    def move_right(self, point=()):
+    def moveRight(self, point=()):
         if self.last_direction != 'right':
-            self.change_direction()
+            self.changeDirection()
         else:
             self.oldx, self.oldy = (self.x, self.y)
             if point:
@@ -116,22 +115,22 @@ def run():
                 newy = me.y + 1
                 newx = me.x
                 me.rep = 'b'
-                me.move_down((newx, newy))                
+                me.moveDown((newx, newy))                
             elif key == 'up':
                 newy = me.y - 1
                 newx = me.x
                 me.rep = 'p'
-                me.move_up((newx, newy))                
+                me.moveUp((newx, newy))                
             elif key == 'left':
                 newx = me.x - 1
                 newy = me.y
                 me.rep = 'q'
-                me.move_left((newx, newy))                
+                me.moveLeft((newx, newy))                
             elif key == 'right':
                 newx = me.x + 1
                 newy = me.y
                 me.rep = 'p'
-                me.move_right((newx, newy))                
+                me.moveRight((newx, newy))                
             elif key in ['q', 'Q']:
                 return
             elif key == ' ':
