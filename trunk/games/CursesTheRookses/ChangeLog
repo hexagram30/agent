@@ -1,3 +1,18 @@
+2005.07.28
+
+* Created IMovable interface.
+
+2005.07.27
+
+* Started writing interfaces.
+* Started landforms.py.
+* Created map.Map and map.Grid and AsciiCellParser classes.
+
+2005.07.26
+
+* Implemented primitive boundaries with lookAhead(), passesRules() and
+cellTraversable().
+
 2005.07.25
 
 * Created initial space for Rook-based games.
@@ -13,3 +28,6 @@
 * Added test harness.
 * Updated test03.py to conform to coding standards.
 * Updated TODO file.
+* Added loadMap() for populating a canvas with ASCII characters (landforms,
+buildings, etc.).
+* Added a "next coordinates" to Person to assist in navigation.

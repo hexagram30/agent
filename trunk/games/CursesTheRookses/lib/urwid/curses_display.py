@@ -181,6 +181,7 @@ class Screen:
         self.cursor_state = None
         self._keyqueue = []
         self.prev_input_resize = 0
+        self.delay_output = curses.delay_output
 
     def register_palette( self, l ):
         """Register a list of palette entries.
@@ -270,7 +271,7 @@ class Screen:
             return fn()
         finally:
             curses.echo()
-            self._curs_set(1)
+            self._curs_set(0)
             try:
                 curses.endwin()
             except:
@@ -536,8 +537,9 @@ class Screen:
             raise "You must enter a string."
         #raise str((x,y,string))
         #self.s.addstr(x,y,string)
+        #self._curs_set(0)
         self.s.addstr(y,x,string)
-        self.s.move(0,0)
+        #self.s.move(0,0)
 
     def finish_put(self):
         self.s.refresh()

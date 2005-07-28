@@ -7,7 +7,7 @@ try:
 except:
     from distutils.core import setup
 
-setup(name="PyMonitor",
+setup(name="CursesTheRookses",
     version=open('VERSION').read(),
     description="A curses MMPORG game based on the Rook Saga universe",
     author="Duncan McGreggor",

@@ -1,11 +1,50 @@
 from adytum import urwid
 from adytum.urwid import curses_display
+from map import Map, Grid
 import time
 
 ui = curses_display.Screen()
 
 AFTER_IMAGE_DELAY = 0.075
 VERT_SCALE_COMPENSATION = 0.1
+
+PERMEABLE = r' n'
+IMPERMEABLE = r'/\^.#~'
+START_CHAR = 'X'
+
+def loadMap(filename):
+    cols, rows = ui.get_cols_rows()
+    map = urwid.Text(open(filename).read())
+    map = urwid.Filler(map, valign="top")
+    map = map.render((cols, rows))
+    ui.draw_screen((cols, rows), map)
+    return Map(filename=filename, start_char=START_CHAR)
+
+def lookAhead(coords=()):
+    x, y = coords
+    cell_contents = ui.s.inch(y, x)
+    #raise str(cell_contents)
+    if cell_contents not in range(255):
+        #found = str(cell_contents)
+        raise "Non ASCII character found on map..."
+    else:
+        found = chr(cell_contents)
+    #ui.fast_put(0, 0, found)
+    return found
+
+def passesRules(char):
+    if char in PERMEABLE:
+        return True
+    elif char in IMPERMEABLE:
+        return False
+    else:
+        return False
+
+def cellTraversable(coords=()):
+    found = lookAhead(coords)
+    if not passesRules(found):
+        return False
+    return True
 
 class Person(object):
     def __init__(self, xstart, ystart, screen, rep='p'):
@@ -14,21 +53,15 @@ class Person(object):
         self.screen = screen
         self.screen.fast_put(xstart, ystart, rep)
         self.last_direction = None
+        self.next_coords = (0,0)
+        self.cell_contents = None
 
-    def move(self, point=()):
+    def move(self):
         self.oldx, self.oldy = (self.x, self.y)
-        if point:
-            self.x, self.y = point
+        self.x, self.y = self.next_coords
         self.screen.fast_put(self.x, self.y, self.rep)
-        #self.screen.fast_put(0, 4, 'Put new x & y (%s, %s)' % (self.x, self.y))
-        #self.screen.s.move(0,0)
-        #self.screen.fast_put(0, 5, 'Put cursor at origin')
         time.sleep(AFTER_IMAGE_DELAY)
-        #self.screen.fast_put(0, 6, 'Added delay')
         self.screen.delete(self.oldx, self.oldy)
-        #self.screen.fast_put(0, 7, 'Deleted point (%s, %s)' % (self.oldx, self.oldy))
-        #self.screen.s.move(0,0)
-        #self.screen.fast_put(0, 8, 'Put cursor at origin')
         msg = 'Old x: %s\n' % self.oldx
         msg += 'Old y: %s\n' % self.oldy
         msg += 'New x: %s\n' % self.x
@@ -40,46 +73,50 @@ class Person(object):
         time.sleep(AFTER_IMAGE_DELAY)
         self.screen.fast_put(self.x, self.y, self.rep)
 
-    def moveOrTurn(self, point=(), this_dir=None):
+    def moveOrTurn(self, this_dir=None):
+        if not cellTraversable(coords=self.next_coords):
+            return
         if self.last_direction != this_dir:
             self.changeDirection()
         else:
             if this_dir in ['up', 'down']:
-                self.moveVert(point=point)
+                self.moveVert()
+            elif this_dir == 'right':
+                self.moveRight()
             else:
-                self.move(point=point)
+                self.move()
         self.last_direction = this_dir
         
-    def moveVert(self, point=()):
-        self.move(point=point)
+    def moveVert(self):
+        self.move()
         time.sleep(VERT_SCALE_COMPENSATION)
     
     def moveLeft(self, point=()):
-        self.moveOrTurn(point=point, this_dir='left')
+        self.next_coords = point
+        self.moveOrTurn(this_dir='left')
  
     def moveUp(self, point=()):
-        self.moveOrTurn(point=point, this_dir='up')
+        self.next_coords = point
+        self.moveOrTurn(this_dir='up')
     
     def moveDown(self, point=()):
-        self.moveOrTurn(point=point, this_dir='down')
+        self.next_coords = point
+        self.moveOrTurn(this_dir='down')
 
     def moveRight(self, point=()):
-        if self.last_direction != 'right':
-            self.changeDirection()
-        else:
-            self.oldx, self.oldy = (self.x, self.y)
-            if point:
-                self.x, self.y = point
-            self.screen.s.move(0,0)
-            self.screen.fast_put(self.x, self.y, self.rep)
-            self.screen.s.move(0,0)
-            time.sleep(AFTER_IMAGE_DELAY)
-            self.screen.s.move(0,0)
-            self.screen.fast_delete(self.oldx, self.oldy)
-            self.screen.s.move(0,0)
-            self.screen.fast_put(self.x, self.y, self.rep)
-            self.screen.s.move(0,0)
-        self.last_direction = 'right'
+        self.next_coords = point
+        self.oldx, self.oldy = (self.x, self.y)
+        if point:
+            self.x, self.y = point
+        #self.screen.s.move(0,0)
+        self.screen.fast_put(self.x, self.y, self.rep)
+        #self.screen.s.move(0,0)
+        time.sleep(AFTER_IMAGE_DELAY)
+        self.screen.s.move(self.oldy, self.oldx-1)
+        self.screen.fast_delete(self.oldx, self.oldy)
+        #self.screen.s.move(0,0)
+        self.screen.fast_put(self.x, self.y, self.rep)
+        #self.screen.s.move(0,0)
 
     def jump(self, multiplier=1):
         jumppath = range(multiplier)
@@ -87,17 +124,19 @@ class Person(object):
         # jump up
         for alt in jumppath:
             self.y -= 1
-            self.move((self.x, self.y))
+            self.next_coords = (self.x, self.y)
+            self.move()
         # descend
         for alt in jumppath:
             self.y += 1
-            self.move((self.x, self.y))
+            self.next_coords = (self.x, self.y)
+            self.move()
         self.screen.fast_put(self.x, self.y, self.rep)
         self.screen.s.move(0,0)
 
 def run():
     cols, rows = ui.get_cols_rows()
-
+    map = loadMap('testmap.ascii')
     x = int(cols/2)
     y = int(rows/2)
     me = Person(xstart=x, ystart=y, screen=ui)

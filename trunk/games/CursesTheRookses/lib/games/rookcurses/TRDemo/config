@@ -9,6 +9,6 @@ manholePort = 4010
 manholeUser = 'admin'
 manholePassword = 'password'
 
-import trmap
+#import trmap
 
-actorTemplate = trmap.ActorTemplate
+#actorTemplate = trmap.ActorTemplate
