@@ -1,3 +1,8 @@
+2006.02.02
+
+* Setup EmotionalModeling code in its own svn repos and project space.
+* Removed sanboxen for people not contributing.
+
 2004.09.17
 
 * Added a shell script to get a list of dirs that should be in setup.py.
