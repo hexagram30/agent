@@ -2,6 +2,7 @@
 
 * Setup EmotionalModeling code in its own svn repos and project space.
 * Removed sanboxen for people not contributing.
+* Renamed the lib dir from "adytum" to "lib".
 
 2004.09.17
 
