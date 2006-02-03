@@ -2,12 +2,12 @@
 
 from distutils.core import setup
 
-setup(name="PyRookSaga",
+setup(name="EmotionalModeling",
     version="1.0",
-    description="RookSaga Python Libraries",
+    description="Python Libraries for Behavioral and Emotional Modeling",
     author="Duncan McGreggor",
-    author_email="duncan@adytumsolutions.com",
-    url="http://rooksaga.net",
+    author_email="duncan@adytum.us",
+    url="http://projects.adytum.us/tracs/EmotionalModeling",
     packages=[
         'adytum',
         'adytum/action',

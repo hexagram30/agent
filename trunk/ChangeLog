@@ -3,6 +3,8 @@
 * Setup EmotionalModeling code in its own svn repos and project space.
 * Removed sanboxen for people not contributing.
 * Renamed the lib dir from "adytum" to "lib".
+* Added placeholders for tests and a test harness.
+* Removed some unnecessary lib dirs.
 
 2004.09.17
 
