@@ -111,7 +111,7 @@ class Place(object):
             if o == obj:
                 oldLoc = loc
                 break
-        print "Leaving old location %s for %s..." % (oldLoc, location)
+        print "Leaving %s for %s..." % (oldLoc, location)
         self.map[oldLoc] = None
         self.map[location] = obj
         obj.location = location
@@ -199,7 +199,7 @@ class Person(Object):
 
 
 def runTest():
-    print "Unrequited love..."
+    print "Testing mildly unrequited love..."
     room = Room(w=10, l=20, h=2)
     alice = Person('alice')
     bob = Person('bob')
@@ -209,8 +209,8 @@ def runTest():
     bobToAlice = Relationship(bob, alice, 1)
     bob.addRelationship(bobToAlice)
     # alice is ambivalent to bob
-    alliceToBob = Relationship(alice, bob, 0)
-    alice.addRelationship(alliceToBob)
+    aliceToBob = Relationship(alice, bob, 0)
+    alice.addRelationship(aliceToBob)
     print "Alice: ", alice.location
     print "Bob: ", bob.location
     print "Distance: ", bob.relationships[alice].getObjectDistance()
