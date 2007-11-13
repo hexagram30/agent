@@ -221,3 +221,4 @@ def runTest():
     print "Alice: ", alice.location
     print "Bob: ", bob.location
     print "Distance: ", bob.relationships[alice].getObjectDistance()
+
