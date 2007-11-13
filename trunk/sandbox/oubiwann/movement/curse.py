@@ -11,8 +11,8 @@ def addch(win, y, x, char):
     except:
         pass
 
-beginX = 5
-beginY = 5
+beginX = 0
+beginY = 0
 width = 20
 length = 10
 win = curses.newwin(length+2, width+3, beginY, beginX)

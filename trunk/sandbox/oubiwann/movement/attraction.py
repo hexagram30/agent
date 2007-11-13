@@ -1,4 +1,6 @@
+import curses
 from math import sqrt
+from time import sleep
 
 class Location(object):
     """
@@ -111,7 +113,7 @@ class Place(object):
             if o == obj:
                 oldLoc = loc
                 break
-        print "Leaving %s for %s..." % (oldLoc, location)
+        #print "Leaving %s for %s..." % (oldLoc, location)
         self.map[oldLoc] = None
         self.map[location] = obj
         obj.location = location
@@ -121,6 +123,43 @@ class Room(Place):
     pass
 
 
+class CursesRoom(Room):
+    """
+
+    """
+    def __init__(self, *args, **kwds):
+        super(CursesRoom, self).__init__(*args, **kwds)
+        stdscr = curses.initscr()
+        curses.noecho()
+        curses.cbreak()
+        padX = 5
+        padY = 3
+        self.canvas = curses.newwin(self.length+2, self.width+3, padY, padX)
+
+    def addChar(self, x, y, char):
+        try:
+            self.canvas.addch(y, x, ord(char))
+            self.canvas.refresh()
+        except:
+            pass
+
+    def clearChar(self, x, y):
+        self.addChar(x, y, ' ')
+
+    def drawBorder(self):
+        for x in xrange(self.width+2):
+            for y in xrange(self.length+2):
+                if (y == 0 or y == self.length+1):
+                    self.addChar(x, y, '=')
+                elif (x == 0 or x == self.width+1):
+                    self.addChar(x, y, '|')
+
+    def destroy(self):
+        curses.nocbreak()
+        curses.echo()
+        curses.endwin()
+        
+        
 class Relationship(dict):
     """
 
@@ -200,11 +239,11 @@ class Person(Object):
 
 def runTest():
     print "Testing mildly unrequited love..."
-    room = Room(w=10, l=20, h=2)
+    room = Room(w=20, l=10, h=2)
     alice = Person('alice')
     bob = Person('bob')
     room.addObject(alice, (1,1,1))
-    room.addObject(bob, (10,20,1))
+    room.addObject(bob, (20,10,1))
     # bob is interested in being closer to alice
     bobToAlice = Relationship(bob, alice, 1)
     bob.addRelationship(bobToAlice)
@@ -222,3 +261,31 @@ def runTest():
     print "Bob: ", bob.location
     print "Distance: ", bob.relationships[alice].getObjectDistance()
 
+def runCursesTest():
+    print "Running curses test ..."
+    room = CursesRoom(w=20, l=10, h=2)
+    room.drawBorder()
+    alice = Person('alice')
+    room.addObject(alice, (1,1,1))
+    room.addChar(1, 1, 'A')
+    bob = Person('bob')
+    room.addObject(bob, (20,10,1))
+    room.addChar(20, 10, 'B')
+    # bob is interested in being closer to alice
+    bobToAlice = Relationship(bob, alice, 1)
+    bob.addRelationship(bobToAlice)
+    # alice is ambivalent to bob
+    aliceToBob = Relationship(alice, bob, 0)
+    alice.addRelationship(aliceToBob)
+    # let's get bob moving
+    while bob.location not in alice.getNeighboringLocations():
+        sleep(0.25)
+        loc = bob.relationships[alice].getNearestAdjacentLocation()
+        room.addChar(bob.location.x, bob.location.y, '.')
+        bob.step(loc)
+        room.addChar(loc.x, loc.y, 'B')
+        
+    room.destroy()
+
+if __name__ == '__main__':
+    runCursesTest()
