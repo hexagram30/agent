@@ -2,6 +2,9 @@ import curses
 from math import sqrt
 from time import sleep
 
+class ObjectPlacementError(Exception):
+    pass
+
 class Location(object):
     """
 
@@ -108,7 +111,7 @@ class Place(object):
             raise Exception, msg
         if location in self.map.keys():
             msg = "Something's already there!"
-            raise Exception, msg
+            raise ObjectPlacementError, msg
         for loc, o in self.map.items():
             if o == obj:
                 oldLoc = loc
@@ -177,16 +180,21 @@ class Relationship(dict):
             location = self.owner.location
         return location - self.object.location
 
+    def getDistances(self):
+        possibilities = self.owner.getNeighboringLocations()
+        distances = [(self.getObjectDistance(x), x) for x in possibilities]
+        distances.sort()
+        return distances
 
     def getNearestAdjacentLocation(self):
         """
         Examine all neighboring locations and find the one that is closest to
         the object in this relationship.
         """
-        possibilities = self.owner.getNeighboringLocations()
-        distances = [(self.getObjectDistance(x), x) for x in possibilities]
-        distances.sort()
-        return distances[0][1]
+        return self.getDistances()[0][1]
+
+    def getFurthestAdjacentLocation(self):
+        return self.getDistances()[-1][1]
 
 class Object(object):
     pass
@@ -218,7 +226,11 @@ class Person(Object):
         self.relationships[relationship.object] = relationship
 
     def step(self, location):
-        self.container.moveObject(self, location)
+        try:
+            self.container.moveObject(self, location)
+            return True
+        except ObjectPlacementError:
+            return False
 
     def getNeighboringLocations(self):
         """
@@ -261,8 +273,7 @@ def runTest():
     print "Bob: ", bob.location
     print "Distance: ", bob.relationships[alice].getObjectDistance()
 
-def runCursesTest():
-    print "Running curses test ..."
+def setupRoom():
     room = CursesRoom(w=20, l=10, h=2)
     room.drawBorder()
     alice = Person('alice')
@@ -271,6 +282,10 @@ def runCursesTest():
     bob = Person('bob')
     room.addObject(bob, (20,10,1))
     room.addChar(20, 10, 'B')
+    return room, alice, bob
+
+def bobSeeksAlice():
+    room, alice, bob = setupRoom()
     # bob is interested in being closer to alice
     bobToAlice = Relationship(bob, alice, 1)
     bob.addRelationship(bobToAlice)
@@ -284,8 +299,104 @@ def runCursesTest():
         room.addChar(bob.location.x, bob.location.y, '.')
         bob.step(loc)
         room.addChar(loc.x, loc.y, 'B')
-        
     room.destroy()
+
+def bobAndAliceSeek():
+    room, alice, bob = setupRoom()
+    # bob is interested in being closer to alice
+    bobToAlice = Relationship(bob, alice, 1)
+    bob.addRelationship(bobToAlice)
+    # alice is ambivalent to bob
+    aliceToBob = Relationship(alice, bob, 1)
+    alice.addRelationship(aliceToBob)
+    # let's get bob moving
+    while bob.location not in alice.getNeighboringLocations():
+        sleep(0.25)
+        # walk bob
+        bobLoc = bob.relationships[alice].getNearestAdjacentLocation()
+        room.addChar(bob.location.x, bob.location.y, 'b')
+        if bob.step(bobLoc):
+            room.addChar(bobLoc.x, bobLoc.y, 'B')
+        else:
+            room.addChar(bob.location.x, bob.location.y, 'B')
+        # walk alice
+        aliceLoc = alice.relationships[bob].getNearestAdjacentLocation()
+        room.addChar(alice.location.x, alice.location.y, 'a')
+        if alice.step(aliceLoc):
+            room.addChar(aliceLoc.x, aliceLoc.y, 'A')
+        else:
+            room.addChar(alice.location.x, alice.location.y, 'A')
+    room.destroy()
+
+def aliceSeeksBobHarder():
+    room, alice, bob = setupRoom()
+    # bob is interested in being closer to alice
+    bobToAlice = Relationship(bob, alice, 1)
+    bob.addRelationship(bobToAlice)
+    # alice is ambivalent to bob
+    aliceToBob = Relationship(alice, bob, 2)
+    alice.addRelationship(aliceToBob)
+    # let's get bob moving
+    while alice.location not in bob.getNeighboringLocations():
+        sleep(0.25)
+        for t in xrange(aliceToBob.attraction):
+            # walk alice
+            aliceLoc = alice.relationships[bob].getNearestAdjacentLocation()
+            room.addChar(alice.location.x, alice.location.y, 'a')
+            if alice.step(aliceLoc):
+                room.addChar(aliceLoc.x, aliceLoc.y, 'A')
+            else:
+                room.addChar(alice.location.x, alice.location.y, 'A')
+        # walk bob
+        bobLoc = bob.relationships[alice].getNearestAdjacentLocation()
+        room.addChar(bob.location.x, bob.location.y, 'b')
+        if bob.step(bobLoc):
+            room.addChar(bobLoc.x, bobLoc.y, 'B')
+        else:
+            room.addChar(bob.location.x, bob.location.y, 'B')
+
+    room.destroy()
+
+def bobAvoidsAlice():
+    room, alice, bob = setupRoom()
+    # bob is interested in being closer to alice
+    bobToAlice = Relationship(bob, alice, -1)
+    bob.addRelationship(bobToAlice)
+    # alice is ambivalent to bob
+    aliceToBob = Relationship(alice, bob, 1)
+    alice.addRelationship(aliceToBob)
+    # let's get bob moving
+    counter = 0
+    while alice.location not in bob.getNeighboringLocations():
+        sleep(0.25)
+        # walk alice
+        aliceLoc = alice.relationships[bob].getNearestAdjacentLocation()
+        room.addChar(alice.location.x, alice.location.y, 'a')
+        if alice.step(aliceLoc):
+            room.addChar(aliceLoc.x, aliceLoc.y, 'A')
+        else:
+            room.addChar(alice.location.x, alice.location.y, 'A')
+        # walk bob
+        bobLoc = bob.relationships[alice].getFurthestAdjacentLocation()
+        room.addChar(bob.location.x, bob.location.y, 'b')
+        if bob.step(bobLoc):
+            room.addChar(bobLoc.x, bobLoc.y, 'B')
+        else:
+            room.addChar(bob.location.x, bob.location.y, 'B')
+        counter += 1
+        if counter > 100:
+            break
+
+    room.destroy()
+
+def runCursesTest():
+    bobSeeksAlice()
+    sleep(1)
+    bobAndAliceSeek()
+    sleep(1)
+    aliceSeeksBobHarder()
+    sleep(1)
+    bobAvoidsAlice()
 
 if __name__ == '__main__':
     runCursesTest()
