@@ -306,10 +306,10 @@ def bobAndAliceSeek():
     # bob is interested in being closer to alice
     bobToAlice = Relationship(bob, alice, 1)
     bob.addRelationship(bobToAlice)
-    # alice is ambivalent to bob
+    # alice likes bob just as much as he likes her
     aliceToBob = Relationship(alice, bob, 1)
     alice.addRelationship(aliceToBob)
-    # let's get bob moving
+    # let's get them moving
     while bob.location not in alice.getNeighboringLocations():
         sleep(0.25)
         # walk bob
@@ -333,10 +333,10 @@ def aliceSeeksBobHarder():
     # bob is interested in being closer to alice
     bobToAlice = Relationship(bob, alice, 1)
     bob.addRelationship(bobToAlice)
-    # alice is ambivalent to bob
+    # alice likes bob twice as much as he likes her
     aliceToBob = Relationship(alice, bob, 2)
     alice.addRelationship(aliceToBob)
-    # let's get bob moving
+    # let's get them moving
     while alice.location not in bob.getNeighboringLocations():
         sleep(0.25)
         for t in xrange(aliceToBob.attraction):
@@ -359,13 +359,13 @@ def aliceSeeksBobHarder():
 
 def bobAvoidsAlice():
     room, alice, bob = setupRoom()
-    # bob is interested in being closer to alice
+    # bob doesn't really like alice
     bobToAlice = Relationship(bob, alice, -1)
     bob.addRelationship(bobToAlice)
-    # alice is ambivalent to bob
+    # alice likes bob
     aliceToBob = Relationship(alice, bob, 1)
     alice.addRelationship(aliceToBob)
-    # let's get bob moving
+    # let's get them moving
     counter = 0
     while alice.location not in bob.getNeighboringLocations():
         sleep(0.25)
@@ -399,4 +399,5 @@ def runCursesTest():
     bobAvoidsAlice()
 
 if __name__ == '__main__':
+    #runTest()
     runCursesTest()
