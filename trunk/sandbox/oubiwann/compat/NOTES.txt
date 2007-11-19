@@ -1,0 +1,45 @@
+In this code, I want to explore aribtrary means of establshing "compatibility"
+between objects (two personalities, in this context, but could just as easily
+be compatibility between a personality and a conversation topic).
+
+ * I'll be using the OCEAN/Big Five approach.
+ * Initially, I'll stay in 5-space.
+ * Later I will use the contributing factors (30-space).
+ * Initially compatibility will be crude where "same" is compatible and
+   "different" is not.
+ * Next, the naive compatibility that is defined in personality.interfaces will
+   be used.
+ * Finally, a compatibility that takes not only its respective value in the
+   partner into account, but all other component values as well will be used.
+
+A personality will be represented by a linear equation in 5 variables:
+  .5o .7c .4e .8a .3n = p
+
+For the degree to which two personalities are compatibile, the distances
+between the two personalities (4d plane in 5-space) needs to be calculated. So
+given several personalities, 
+  .5o .7c .4e .8a .3n = p1
+  .3o .6c .6e .7a .1n = p2
+  .8o .9c .7e .2a .6n = p3
+we can determine "closeness" of the planes in the following manner:
+ * determine the distance between the surfaces, and
+ * determine the angle between the surfaces.
+
+From linear algebra, we know that if two lines are orthogonal, their dot
+product (or inner product, if you prefer) will be 0. We also know the
+following:
+  cos(theta) = transpose(a) * b / (legth(a) * length(b))
+or
+  cos(theta) = inner(a, b) / (inner(a, a) * inner(b, b))
+  theta = arccos(inner(a, b) / (inner(a, a) * inner(b, b))
+
+p1 = array([.5, .7, .4, .8, .3])
+p2 = array([.3, .6, .6, .7, .3])
+p3 = array([.8, .9, .7, .2, .6])
+p4 = array([.8, .9, .7, .3, .6])
+# for p1 & p2
+theta12 = arccos(dot(p1, p2) / (dot(p1, p1) * dot(p2, p2)))
+# for p2 & p3
+theta23 = arccos(dot(p2, p3) / (dot(p2, p2) * dot(p3, p3)))
+# for p3 & p4
+theta34 = arccos(dot(p3, p4) / (dot(p3, p3) * dot(p4, p4)))
