@@ -26,6 +26,9 @@ class IOCEAN(Interface):
 
     Contributing factors: Imagination, Adventurousness, Artistic Interests, 
     Intellect, Emotions, Liberalism
+
+    Naive compatibility: same attracts.
+    Contribution to overall attractions/compatibilty: medium.
     ''')
 
     conscientiousness = property( ''' Measures the degree to which agents
@@ -38,7 +41,10 @@ class IOCEAN(Interface):
     pride, shame, admiration, and reproach.  
 
     Contributing factors: Resourcefulness, Orderliness, Sense of Duty, 
-    Achievement Striving, Self-Discipline, Cautiousness
+    Achievement-Striving, Self-Discipline, Cautiousness
+
+    Naive compatibility: extreme ends repel, medium levels attract.
+    Contribution to overall attractions/compatibilty: medium.
     ''')
 
     surgency = property( ''' The term surgency refers to the degree to which
@@ -52,6 +58,9 @@ class IOCEAN(Interface):
  
     Contributing factors: Friendliness, Activity Level, Gregariousness, Excitement 
     Seeking, Assertiveness, Cheerfulness
+
+    Naive compatibility: same attracts (including medium levels), opposites repel.
+    Contribution to overall attractions/compatibilty: very high.
     ''')
 
     agreeableness = property( ''' Agreeable individuals are strongly concerned
@@ -62,6 +71,10 @@ class IOCEAN(Interface):
 
     Contributing factors: Trust, Morality, Altruism, Co-operation, Modesty, 
     Sympathy
+
+    Naive compatibility: opposites attracts, same highs attract, same lows
+        repel.
+    Contribution to overall attractions/compatibilty: low.
     ''')
 
     emotionalstability = property( ''' For decision-making purposes, governs the
@@ -74,6 +87,12 @@ class IOCEAN(Interface):
 
     Contributing factors: Anxiety, Anger, Depression, Vulnerability, 
     Immoderation, Self-Consciousness
+
+    Naive compatibility: the same attracts (justification: given a person who
+        acts out and one who "receives" such behavior, we have a co-dependent
+        situation; the receiver is no more emotionally stable than the one who
+        acts out).
+    Contribution to overall attractions/compatibilty: high.
     ''')
 
     def setFactors():
