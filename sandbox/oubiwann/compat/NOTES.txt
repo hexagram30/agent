@@ -12,16 +12,93 @@ be compatibility between a personality and a conversation topic).
  * Finally, a compatibility that takes not only its respective value in the
    partner into account, but all other component values as well will be used.
 
-A personality will be represented by a linear equation in 5 variables:
-  .5o .7c .4e .8a .3n = p
+
+Personalities as Equations
+--------------------------
+
+A personality will be represented by a linear equation in 5 variables, limited
+to a unit basis:
+  .5o + .7c + .4e + .8a + .3n = 0
+
+As such, each personality will be represented by a 4-dimentional surface in a
+5-dimensioanl vector space.
+
+
+Example in 3-space
+------------------
+
+Four planes:
+0 = .5x + .7y + .1z
+0 = .4x + .7y + .1z
+0 = .4x + .8y + .1z
+0 = .9x + .1y + .1z
+
+z1 = array([.5, .7, .1])
+z2 = array([.4, .7, .1])
+z3 = array([.4, .8, .1])
+z4 = array([.9, .1, .1])
+
+# z1 & z2
+theta12 = arccos(dot(z1, z2) / (sqrt(dot(z1, z1)) * sqrt(dot(z2, z2))))
+# z1 & z3
+theta13 = arccos(dot(z1, z3) / (sqrt(dot(z1, z1)) * sqrt(dot(z3, z3))))
+# z2 & z3
+theta23 = arccos(dot(z2, z3) / (sqrt(dot(z2, z2)) * sqrt(dot(z3, z3))))
+# z3 & z4
+theta34 = arccos(dot(z3, z4) / (sqrt(dot(z3, z3)) * sqrt(dot(z4, z4))))
+
+
+Compatibility
+-------------
+
+For two 4-surfaces, the compatibility is determined by their intersection (a
+3-surface). The angle between the two 4-surfaces will (for now) determine the
+compatibility between the two 4-surfaces (personalities): the smaller the
+angle, the creater the compatibility.
+
+p1 = array([.5, .7, .4, .8, .3])
+p2 = array([.3, .6, .6, .7, .3])
+p3 = array([.8, .9, .7, .2, .6])
+p4 = array([.8, .9, .7, .3, .6])
+# for p1 & p2
+theta12 = arccos(dot(p1, p2) / (sqrt(dot(p1, p1)) * sqrt(dot(p2, p2))))
+# for p2 & p3
+theta23 = arccos(dot(p2, p3) / (sqrt(dot(p2, p2)) * sqrt(dot(p3, p3))))
+# for p3 & p4
+theta34 = arccos(dot(p3, p4) / (sqrt(dot(p3, p3)) * sqrt(dot(p4, p4))))
+
+The intersection of two personalities is the 3-space solution where those two
+personalities are equal.
+
+
+
+
+
+
+
+
+Old Notes
+=========
+
+Much of this is either no longer applicable or is just wrong. Kept here for
+reference.
+
+Notes on the dimension choice:
+ * If a 5-dimentional space was chosen, 
+
+In n dimensions, an n-2 surface is not as simple as an n-1 surface. An n-2
+surface needs two equations. Each equation gives an n-1 surface and the n-2
+surface is the intersection of the two n-1 surfaces.
+
+where ax represents the xth scalar and vx represents the 
 
 For the degree to which two personalities are compatibile, the distances
-between the two personalities (4d plane in 5-space) needs to be calculated. So
-given several personalities, 
+between the two personalities (4d surface in 5-space) needs to be calculated.
+So given several personalities,
   .5o .7c .4e .8a .3n = p1
   .3o .6c .6e .7a .1n = p2
   .8o .9c .7e .2a .6n = p3
-we can determine "closeness" of the planes in the following manner:
+we can determine "closeness" of the surfaces in the following manner:
  * determine the distance between the surfaces, and
  * determine the angle between the surfaces.
 
@@ -32,14 +109,3 @@ following:
 or
   cos(theta) = inner(a, b) / (inner(a, a) * inner(b, b))
   theta = arccos(inner(a, b) / (inner(a, a) * inner(b, b))
-
-p1 = array([.5, .7, .4, .8, .3])
-p2 = array([.3, .6, .6, .7, .3])
-p3 = array([.8, .9, .7, .2, .6])
-p4 = array([.8, .9, .7, .3, .6])
-# for p1 & p2
-theta12 = arccos(dot(p1, p2) / (dot(p1, p1) * dot(p2, p2)))
-# for p2 & p3
-theta23 = arccos(dot(p2, p3) / (dot(p2, p2) * dot(p3, p3)))
-# for p3 & p4
-theta34 = arccos(dot(p3, p4) / (dot(p3, p3) * dot(p4, p4)))
