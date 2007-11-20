@@ -23,6 +23,8 @@ to a unit basis:
 As such, each personality will be represented by a 4-dimentional surface in a
 5-dimensioanl vector space.
 
+The five variables used correspond to the first letter of the personality
+component in the OCEAN Big Five model.
 
 Example in 3-space
 ------------------
