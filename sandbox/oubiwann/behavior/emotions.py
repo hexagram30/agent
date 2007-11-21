@@ -11,5 +11,6 @@ class ObjectPreference(ConcernTree):
     pass
 
 class EmotionalAppraisal:
+    pass
     
 
