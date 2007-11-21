@@ -31,8 +31,9 @@ class Location(object):
         return sqrt(abs(x + y + z))
 
     def __repr__(self):
-        return "<%s: x=%s, y=%s, z=%s>" % (
-            self.__class__.__name__, self.x, self.y, self.z)
+        #return "<%s: x=%s, y=%s, z=%s>" % (
+        #    self.__class__.__name__, self.x, self.y, self.z)
+        return "<%s, %s>" % (self.x, self.y)
 
     def __call__(self):
         return (self.x, self.y, self.z)
@@ -137,7 +138,10 @@ class CursesRoom(Room):
         curses.cbreak()
         padX = 5
         padY = 3
-        self.canvas = curses.newwin(self.length+2, self.width+3, padY, padX)
+        messageAreaX = 100
+        messageAreaY = 4
+        self.canvas = curses.newwin(self.length+2+messageAreaY,
+            self.width+3+messageAreaX, padY, padX)
 
     def addChar(self, x, y, char):
         try:
@@ -156,6 +160,14 @@ class CursesRoom(Room):
                     self.addChar(x, y, '=')
                 elif (x == 0 or x == self.width+1):
                     self.addChar(x, y, '|')
+
+    def sendMessage(self, text):
+        x = 0
+        y = self.length + 3
+        self.canvas.addstr(y, x, 98 * ' ')
+        self.canvas.refresh()
+        self.canvas.addstr(y, x, text[:98])
+        self.canvas.refresh()
 
     def destroy(self):
         curses.nocbreak()
@@ -230,6 +242,8 @@ class Person(Object):
             self.container.moveObject(self, location)
             return True
         except ObjectPlacementError:
+            self.container.sendMessage('Could not place object! (%s)' % location)
+            sleep(.5)
             return False
 
     def getNeighboringLocations(self):
@@ -246,6 +260,7 @@ class Person(Object):
                 newLoc = Location(*coords)
                 if newLoc in self.container:
                     locations.append(Location(*coords))
+        self.container.sendMessage('Locations: %s' % locations)
         return locations
 
 
@@ -389,14 +404,48 @@ def bobAvoidsAlice():
 
     room.destroy()
 
+def bobAvoidsAliceHarder():
+    room, alice, bob = setupRoom()
+    # bob doesn't really like alice
+    bobToAlice = Relationship(bob, alice, -2)
+    bob.addRelationship(bobToAlice)
+    # alice likes bob
+    aliceToBob = Relationship(alice, bob, 1)
+    alice.addRelationship(aliceToBob)
+    # let's get them moving
+    counter = 0
+    while alice.location not in bob.getNeighboringLocations():
+        sleep(0.25)
+        # walk alice
+        aliceLoc = alice.relationships[bob].getNearestAdjacentLocation()
+        room.addChar(alice.location.x, alice.location.y, ' ')
+        if alice.step(aliceLoc):
+            room.addChar(aliceLoc.x, aliceLoc.y, 'A')
+        else:
+            room.addChar(alice.location.x, alice.location.y, 'A')
+        # walk bob
+        bobLoc = bob.relationships[alice].getFurthestAdjacentLocation()
+        room.addChar(bob.location.x, bob.location.y, ' ')
+        if bob.step(bobLoc):
+            room.addChar(bobLoc.x, bobLoc.y, 'B')
+        else:
+            room.addChar(bob.location.x, bob.location.y, 'B')
+        counter += 1
+        if counter > 100:
+            break
+
+    room.destroy()
+
 def runCursesTest():
-    bobSeeksAlice()
-    sleep(1)
-    bobAndAliceSeek()
-    sleep(1)
-    aliceSeeksBobHarder()
-    sleep(1)
-    bobAvoidsAlice()
+    #bobSeeksAlice()
+    #sleep(1)
+    #bobAndAliceSeek()
+    #sleep(1)
+    #aliceSeeksBobHarder()
+    #sleep(1)
+    #bobAvoidsAlice()
+    #sleep(1)
+    bobAvoidsAliceHarder()
 
 if __name__ == '__main__':
     #runTest()
