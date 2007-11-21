@@ -2,6 +2,7 @@ Behavior will need to take into account the following:
  * the agent's state of mind (including emotional state)
  * the agent's personalty
  * the state of the world
- * the agent's decision, with those taken into account
+ * the agent's decision, with those taken into account (e.g., moevement,
+   conversation, etc.)
 
 
