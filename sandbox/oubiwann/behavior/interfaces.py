@@ -1,3 +1,75 @@
+class IEmotionalIntensity:
+    '''
+    Intensity of emotion. See the paper "How Emotion and Personality Effect the
+    Utility of Alternate Decisions."
+    '''
+    def iHappyFor():
+        '''
+        '''
+    def iGloating():
+        '''
+        '''
+    def iResentment():
+        '''
+        '''
+    def iPity():
+        '''
+        '''
+    def iHope():
+        '''
+        '''
+    def iFear():
+        '''
+        '''
+    def iSatisfaction():
+        '''
+        '''
+    def iFearsConfirmed():
+        '''
+        '''
+    def iRelief():
+        '''
+        '''
+    def iDisappointment():
+        '''
+        '''
+    def iJoy():
+        '''
+        '''
+    def iDistress():
+        '''
+        '''
+    def iPride():
+        '''
+        '''
+    def iShame():
+        '''
+        '''
+    def iAdmiration():
+        '''
+        '''
+    def iReproach():
+        '''
+        '''
+    def iGratification():
+        '''
+        '''
+    def iRemorse():
+        '''
+        '''
+    def iAnger():
+        '''
+        '''
+    def iGratitude():
+        '''
+        '''
+    def iLiking():
+        '''
+        '''
+    def iDisliking():
+        '''
+        '''
+
 class IPhysioStressSubsystem:
     '''
 
@@ -101,7 +173,7 @@ class IEmotionalAppraisal:
         for each agent.
         '''
 
-class OCCModel:
+class IOCCModel:
     '''
     '''
     def evaluateSituation(XXX):
@@ -113,16 +185,21 @@ class OCCModel:
         in relation to that event as well as 
         
         '''
-class OCCEventConsequence:
+class IOCCEventConsequence:
     '''
     '''
 
-class OCCAgentAction:
+class IOCCAgentAction:
     '''
     '''
 
-class OCCObjectAspect:
+class IOCCObjectAspect:
     '''
     '''
 
+class IPhysioStressSubsystem:
+    '''
+
+    '''
+    pass
 
