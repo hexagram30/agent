@@ -55,6 +55,8 @@ class IOCEAN(Interface):
     individual will not think twice given an opportunity to wade through raw
     sewage for a chance to surprise an unprepared enemy.  As implemented, this
     trait weights the importance of and joy, satisfaction, relief, and liking.
+
+    In the literature, this is often called "extraversion".
  
     Contributing factors: Friendliness, Activity Level, Gregariousness, Excitement 
     Seeking, Assertiveness, Cheerfulness
@@ -87,6 +89,8 @@ class IOCEAN(Interface):
 
     Contributing factors: Anxiety, Anger, Depression, Vulnerability, 
     Immoderation, Self-Consciousness
+
+    In the literature, this is usually called "neuroticism".
 
     Naive compatibility: the same attracts (justification: given a person who
         acts out and one who "receives" such behavior, we have a co-dependent
