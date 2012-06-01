@@ -1,7 +1,9 @@
-import protocols
-from peak.binding.components import Component
-from interfaces import IMyersBriggs
-from numarray import array
+from zope import interface
+
+from numpy.numarray import array
+
+from innoth.personality.interfaces import IMyersBriggs
+
 
 # Setup personality components
 E = 1
@@ -48,7 +50,7 @@ DOM_FUNC = {'N':NDF, 'S':SDF, 'F':FDF, 'T':TDF}
 
 POPULATION_MATRIX = array()
 
-class MyersBriggs(Component):
+class MyersBriggs(object):
     '''
     >>> from myersbriggs import MyersBriggs
     >>> mb = MyersBriggs()
@@ -85,8 +87,7 @@ class MyersBriggs(Component):
     >>> mb.getCompleteTemperamentStrings()
     ['ENFJ', 'ENFP', 'ENTJ', 'ENTP', 'ESFJ', 'ESFP', 'ESTJ', 'ESTP', 'INFJ', 'INFP', 'INTJ', 'INTP', 'ISFJ', 'ISFP', 'ISTJ', 'ISTP']
     ''' 
-
-    protocols.advise(instancesProvide=[IMyersBriggs])
+    interface.implements(IMyersBriggs)
 
     def __init__(self, type_abbr=None):
         self.type_abbr = type_abbr
@@ -94,18 +95,21 @@ class MyersBriggs(Component):
             self.type_abbr = self.checkTemperament(type_abbr)
             self.type_list = self.getTemperamentList(type_abbr)
 
-    def getIndexForLetter(self, letter):
+    @staticmethod
+    def getIndexForLetter(letter):
         return [ letter.upper() in pair for pair in RP ].index(True)
 
     def getValueForLetter(self, letter):
         return eval(letter)
 
-    def getLetterForValue(self, letter_value, pair_index):
+    @staticmethod
+    def getLetterForValue(letter_value, pair_index):
         values = RP[pair_index]
         keys = [ eval(x) for x in values ]
         return values[keys.index(letter_value)]
         
-    def getProperOrder(self, type_abbr):
+    @staticmethod
+    def getProperOrder(type_abbr):
         # setup a list with the proper length so that indices get
         # inserted into the proper place
         new = range(0,len(RP))
@@ -113,28 +117,35 @@ class MyersBriggs(Component):
         # the item that was at the index that was just inserted is now
         # at index + 1, so if we pop that index, we're back the the 
         # proper length.
-        [ (new.insert(self.getIndexForLetter(letter), letter), 
-            new.pop(self.getIndexForLetter(letter) + 1)) for letter in type_abbr ]
+        [(new.insert(MyersBriggs.getIndexForLetter(letter), letter), 
+            new.pop(MyersBriggs.getIndexForLetter(letter) + 1))
+            for letter in type_abbr ]
         return new
         
-    def getTemperamentList(self, type_abbr):
-        return [ eval(i.upper()) for i in self.getProperOrder(type_abbr) ]
+    @staticmethod
+    def getTemperamentList(type_abbr):
+        return [eval(i.upper()) for i in MyersBriggs.getProperOrder(type_abbr)]
 
-    def getTemperamentArray(self, type_abbr):
-        return array(self.getTemperamentList(type_abbr))
+    @staticmethod
+    def getTemperamentArray(type_abbr):
+        return array(MyersBriggs.getTemperamentList(type_abbr))
 
-    def getTemperamentString(self, type_list):
-        return ''.join([ self.getLetterForValue(x[0], x[1]) for x 
+    @staticmethod
+    def getTemperamentString(type_list):
+        return ''.join([ MyersBriggs.getLetterForValue(x[0], x[1]) for x 
             in zip(type_list, range(0,len(type_list))) ])
 
-    def checkTemperament(self, type_abbr):
+    @staticmethod
+    def checkTemperament(type_abbr):
         try:
-            return self.getTemperamentString(self.getTemperamentList(type_abbr))
+            return MyersBriggs.getTemperamentString(
+                MyersBriggs.getTemperamentList(type_abbr))
         except:
             raise "PersonalityError: invalid myers-briggs string representation '%s'." % type_abbr
 
-    def getDominantFunction(self, type_list):
-        temperm = self.getTemperamentString(type_list)
+    @staticmethod
+    def getDominantFunction(type_list):
+        temperm = MyersBriggs.getTemperamentString(type_list)
         for func, temperm_list in DOM_FUNC.items():
             if temperm in temperm_list: return func
 
