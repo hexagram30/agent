@@ -1,34 +1,15 @@
-#!/usr/bin/env python
+from setuptools import setup, find_packages
 
-from distutils.core import setup
 
-setup(name="EmotionalModeling",
-    version="1.0",
-    description="Python Libraries for Behavioral and Emotional Modeling",
+setup(i
+    name="innoþ",
+    version="0.1",
+    description="Python libraries for behavioral and emotional modeling",
     author="Duncan McGreggor",
     author_email="duncan@adytum.us",
-    url="http://projects.adytum.us/tracs/EmotionalModeling",
-    packages=[
-        'adytum',
-        'adytum/action',
-        'adytum/agent',
-        'adytum/aima',
-        'adytum/archetypes',
-        'adytum/behavior',
-        'adytum/body',
-        'adytum/decision',
-        'adytum/emotion',
-        'adytum/environment',
-        'adytum/event',
-        'adytum/graphics',
-        'adytum/graphics/agraph',
-        'adytum/math',
-        'adytum/mind',
-        'adytum/personality',
-        'adytum/personality/astrology',
-        'adytum/personality/biorhythms',
-        'adytum/planner',
-        'adytum/relationship',
-        'adytum/world',
-    ],
+    url="git@github.com:oubiwann/innoth.git",
+    install_requires=[
+        "numpy",
+        ],
+    packages=find_packages(),
 )
