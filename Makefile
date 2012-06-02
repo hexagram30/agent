@@ -6,7 +6,7 @@ push-force: push
 
 push:
 	git push --all $(FORCE) git@github.com:oubiwann/innoth.git
-	git push --all $(FORCE) ssh://oubiwann@emotionalmodels.git.sourceforge.net/gitroot/emotionalmodels/emotionalmodels
+	#git push --all $(FORCE) ssh://oubiwann@emotionalmodels.git.sourceforge.net/gitroot/emotionalmodels/emotionalmodels
 
 clean-repo:
 	rm -rf .git/refs/original/
