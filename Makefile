@@ -15,4 +15,4 @@ remove-matching:
 	'git rm -r --cached --ignore-unmatch $(REMOVE_PATTERN)'\
 	--prune-empty -- --all
 
-remove-and-clean: remote-matching clean-repo
+remove-and-clean: remove-matching clean-repo
