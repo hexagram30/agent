@@ -13,6 +13,8 @@ Simple Tasks
 
 * Convert the top-level test_code.py into appropriate unit tests.
 
+* Create a meta module and move data in setup.py there.
+
 
 Emotional Modeling
 ==================
