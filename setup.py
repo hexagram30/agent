@@ -10,6 +10,7 @@ setup(i
     url="git@github.com:oubiwann/innoth.git",
     install_requires=[
         "numpy",
+        "zope.interface",
         ],
     packages=find_packages(),
 )
