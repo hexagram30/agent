@@ -1,3 +1,4 @@
+# XXX convert this whole file to unit tests
 from numpy.numarray import outerproduct, outerproduct, diagonal
 
 from innoth.personality.myersbriggs import MyersBriggs as mb, REFERENCE_PAIRS

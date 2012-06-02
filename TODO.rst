@@ -2,6 +2,17 @@
 TODO
 ~~~~
 
+Bugs
+====
+
+TBD
+
+
+Simple Tasks
+============
+
+* Convert the top-level test_code.py into appropriate unit tests.
+
 
 Emotional Modeling
 ==================
