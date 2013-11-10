@@ -99,6 +99,6 @@ language.
 .. Links
 .. =====
 
-.. _Clojars: https://clojars.org/clj-rackspace
+.. _Clojars: https://clojars.org/clj-simulacrum
 .. _Parallel Universe: http://paralleluniverse.co/
 .. _Pulsar open source project: https://github.com/puniverse/pulsar
