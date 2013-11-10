@@ -1,4 +1,4 @@
-(defproject clj-simulacrum "0.5.0-SNAPSHOT"
+(defproject clj-simulacrum "0.5.1-SNAPSHOT"
   :description "A Clojure library for exploring personality modeling in
                 simulated populations"
   :url "https://github.com/oubiwann/clj-simulacrum"
