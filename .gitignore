@@ -19,7 +19,7 @@ pip-log.txt
 .coverage
 .tox
 
-#Translations
+# Translations
 *.mo
 
 # Vim
@@ -32,3 +32,14 @@ _trial_temp
 
 # Virtual Environment
 .venv*
+
+# Clojure
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
