@@ -18,7 +18,7 @@ After creating the "cweþan" project whose ultimate intended use is for NPCs in
 text-based games, another Old English name seemed in order. After some poking
 around in dictionaries, "innoþ" was chosen.
 
-innoþ can mean "the inner part of the body", "the inside", "breat, heart,
+innoþ can mean "the inner part of the body", "the inside", "breast, heart,
 stomach, womb, belly", or in reference to feeling, emotion, etc. It is cognate
 to Old High and Low German words for viscera: "innethron" and "innod,"
 respectively.
