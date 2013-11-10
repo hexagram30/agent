@@ -9,8 +9,40 @@ agents in simulated populations.
 Installation
 ============
 
+`clj-simulacrum` is up on `Clojars`_. You can add it to your `project.clj` for
+automatic download with the following:
+
+.. code:: clojure
+
+    (defproject your-project "1.2.3"
+      ...
+      :dependencies [[org.clojure/clojure "1.5.1"]
+                      ...
+                      [clj-simulacrum "0.1.0"]]
+      ...)
+
+You can then use it in your project like so:
+
+.. code:: clojure
+
+    (ns your-project.client
+      (:require [simulacrum :as sim]))
+
+Or from the REPL:
+
+.. code:: clojure
+
+    (require '[simulacrum :as sim])
+
+
 Usage
 =====
+
+TBD
+
+.. code:: clojure
+
+    TBD
 
 
 Project History
@@ -18,13 +50,16 @@ Project History
 
 This project was originally started in 2004 as "Emotional Modeling" or
 "Emotional Models" (depending on which names were already taken in which hosted
-code repository service).  Recent work on other code bases (game-related ones 
-such as Myriad Worlds, Peloid Server) caused interest to be resumed in this
-particular code base. However, there is a long legacy of code in this project 
-and a fresh start was in order, although still using the Python programming
+code repository service). The purpose of that code was to attempt simulation
+of agents with minimal personality definitions.
+
+Later work on other code bases (game-related ones, such as Myriad Worlds, 
+Peloid Server) caused interest to be resumed in this particular code base.
+However, there is a long legacy of code in this project and a fresh start was 
+in order. This was started, although it continued to use the Python programming
 language.
 
-After creating the "cweþan" project whose ultimate intended use is for NPCs in
+After creating the "cweþan" project whose ultimate intended use was for NPCs in
 text-based games, another Old English name seemed appropriate. After some poking
 around in dictionaries, "innoþ" was chosen.
 
@@ -33,7 +68,7 @@ stomach, womb, belly", or in reference to feeling, emotion, etc. It is cognate
 to Old High and Low German words for viscera: "innethron" and "innod,"
 respectively.
 
-This is appropriate enough, at two levels:
+This was appropriate enough, at two levels:
 
 #. The obvious application of this term is for what the library is trying to
    model rudimentarily: emotional states (which can then be used to inform
@@ -44,7 +79,7 @@ This is appropriate enough, at two levels:
    task is rather encompassing and is at the heart of any code that might be
    written to simulate what this inward-looking process might reveal.
 
-Not much progress was made for meany reasons, not the least of which was the
+Not much progress was made for many reasons, not the least of which was the
 relative difficulty to run massively parallel simulations efficiently in
 Python. This, however, was just the sort of which the Actor model (e.g., the
 Erlang programming language) has proved quite adept at.
@@ -56,9 +91,14 @@ As such, now seems like a perfect opportunity to update this library, switch
 to Clojure, and take advantage of these features for personality simulation
 in the large.
 
+Finally, the project was renamed clj-simulacrum, the Python code was moved into 
+the sandbox directory, and a fresh start was made in the Clojure programming
+language.
+
 
 .. Links
 .. =====
 
+.. _Clojars: https://clojars.org/clj-rackspace
 .. _Parallel Universe: http://paralleluniverse.co/
 .. _Pulsar open source project: https://github.com/puniverse/pulsar
