@@ -8,3 +8,6 @@
 
 (defn param-error [message]
   (exception message :type :parameter-error))
+
+(defn range-error [message]
+  (exception message :type :range-error))

@@ -13,8 +13,14 @@
         #"oops"
         (throw (exceptions/exception "oops" :type :wassup)))))
 
-(deftest test-exception
+(deftest test-param-error
   (is (thrown-with-msg?
         clojure.lang.ExceptionInfo
         #"bad parameter"
         (throw (exceptions/param-error "bad parameter")))))
+
+(deftest test-range-error
+  (is (thrown-with-msg?
+        clojure.lang.ExceptionInfo
+        #"bad range"
+        (throw (exceptions/param-error "bad range")))))
