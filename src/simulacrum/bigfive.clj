@@ -25,7 +25,8 @@
 (def questions-short
   (conj
     questions-base
-    {:questions [{:question "is reserved"
+    {:title "Five Factor Model (Big Five) Short Inventory"
+     :questions [{:question "is reserved"
                   :type :E
                   :reversed? true}
                  {:question "is generally trusting"

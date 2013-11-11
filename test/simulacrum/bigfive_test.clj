@@ -15,6 +15,6 @@
          (sort (keys bigfive/questions-base)))))
 
 (deftest test-questions-short
-  (is (= [:instructions :prefix :questions]
+  (is (= [:instructions :prefix :questions :title]
          (sort (keys bigfive/questions-short))))
   (is (= 10 (count (bigfive/questions-short :questions)))))
