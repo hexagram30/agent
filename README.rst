@@ -59,7 +59,7 @@ Big Five Short Inventory
 ------------------------
 
 The Big Five short inventory test displays 10 questions for the user to answer
-and then tallies the results.
+and then tallies the results, displaying the five-trait break-down at the end.
 
 To run:
 
@@ -71,7 +71,14 @@ To run:
 Big Five Long Inventory
 -----------------------
 
-TBD
+The Big Five long inventory test displays 44 questions for the user to answer
+and then tallies the results, displaying the five-trait break-down at the end.
+
+To run:
+
+.. code:: bash
+
+  $ ./scripts/bigfive-long.clj
 
 
 History
