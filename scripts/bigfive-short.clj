@@ -5,5 +5,6 @@
            [simulacrum.util :as util]))
 
 
+(util/clear-screen)
 (inventory/run-inventory :bigfive :short true)
 (util/exit)
