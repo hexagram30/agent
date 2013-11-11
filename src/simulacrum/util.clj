@@ -32,7 +32,8 @@
         sequence))))
 
 (defn check-input [input]
-  (let [valid-range (range 1 6)]
+  (let [valid-range (range 1 6)
+        input (Integer. input)]
     (cond
       (in? valid-range input)
         input
