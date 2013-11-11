@@ -19,6 +19,9 @@
   (display (char 7))
   (clear-screen))
 
+(defn mult-str [string amount]
+  (string/join (repeat amount string)))
+
 (defn in?
   "Given a sequence and a potential element of that sequence, determine if it
   is, in fact, part of that sequence."

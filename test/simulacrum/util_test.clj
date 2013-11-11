@@ -10,6 +10,9 @@
                   Enjoy!"]
     (is (= "Enjoy!" (util/get-last-line test-data)))))
 
+(deftest test-mult-str
+  (is (= "ab-ab-ab-ab-" (util/mult-str "ab-" 4))))
+
 (deftest test-in?
   (is (= true (util/in? [1 2] 1)))
   (is (= true (util/in? [1 2] 2)))
