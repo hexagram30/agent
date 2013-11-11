@@ -55,14 +55,21 @@ This project provides a small set of scripts that may be useful for you. They
 are described below.
 
 
-Big Five Short Test
--------------------
+Big Five Short Inventory
+------------------------
 
-TBD
+The Big Five short inventory test displays 10 questions for the user to answer
+and then tallies the results.
+
+To run:
+
+.. code:: bash
+
+  $ ./scripts/bigfive-short.clj
 
 
-Big Five Long Test
-------------------
+Big Five Long Inventory
+-----------------------
 
 TBD
 
