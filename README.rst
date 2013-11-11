@@ -2,6 +2,9 @@
 clj-simulacrum
 ~~~~~~~~~~~~~~
 
+.. contents:: Table of Contents
+
+
 A Clojure library for exploring perosnality and emotional modeling via software 
 agents in simulated populations.
 
@@ -9,7 +12,7 @@ agents in simulated populations.
 Installation
 ============
 
-`clj-simulacrum` is up on `Clojars`_. You can add it to your `project.clj` for
+`clj-simulacrum` is up on `Clojars`_. You can add it to your ``project.clj`` for
 automatic download with the following:
 
 .. code:: clojure
@@ -17,8 +20,8 @@ automatic download with the following:
     (defproject your-project "1.2.3"
       ...
       :dependencies [[org.clojure/clojure "1.5.1"]
-                      ...
-                      [clj-simulacrum "0.1.0"]]
+                     [...]
+                     [clj-simulacrum "0.1.0"]]
       ...)
 
 You can then use it in your project like so:
@@ -35,8 +38,8 @@ Or from the REPL:
     (require '[simulacrum :as sim])
 
 
-Usage
-=====
+Library Usage
+=============
 
 TBD
 
@@ -45,8 +48,37 @@ TBD
     TBD
 
 
-Project History
-===============
+Running the Scripts
+===================
+
+This project provides a small set of scripts that may be useful for you. They
+are described below.
+
+
+Big Five Short Test
+-------------------
+
+TBD
+
+
+Big Five Long Test
+------------------
+
+TBD
+
+
+History
+=======
+
+
+Versions
+--------
+
+* 0.1 - Dummy release, containing only versioning info and no real code.
+
+
+Project Background
+------------------
 
 This project was originally started in 2004 as "Emotional Modeling" or
 "Emotional Models" (depending on which names were already taken in which hosted
