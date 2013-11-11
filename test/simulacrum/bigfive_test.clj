@@ -11,10 +11,10 @@
   (is (= "Neuroticism" (bigfive/attributes :N))))
 
 (deftest test-questions-base
-  (is (= [:instruction :prefix]
+  (is (= [:instructions :prefix]
          (sort (keys bigfive/questions-base)))))
 
 (deftest test-questions-short
-  (is (= [:instruction :prefix :questions]
+  (is (= [:instructions :prefix :questions]
          (sort (keys bigfive/questions-short))))
   (is (= 10 (count (bigfive/questions-short :questions)))))
