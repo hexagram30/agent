@@ -7,9 +7,9 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/data.json "0.2.3"]
                  [co.paralleluniverse/pulsar "0.3.0"]
-                 [leiningen "2.3.3"]
-                 [lein-exec "0.3.1"]]
-  :java-agents [[co.paralleluniverse/quasar-core "0.3.0"]]
+                 [clj-http "0.7.7"]
+                 [enlive "1.1.4"]]
+  ;:java-agents [[co.paralleluniverse/quasar-core "0.3.0"]]
   :plugins [[lein-exec "0.3.1"]]
   :profiles {
     :dev {
