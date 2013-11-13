@@ -1,6 +1,10 @@
 (ns simulacrum.util
-  (:require [clojure.string :as string]
-            [simulacrum.exceptions :as exceptions]))
+  (:require [clojure.java.io :as io]
+            [clojure.string :as string]
+            [clj-http.client :as client]
+            [net.cgrand.enlive-html :as html]
+            [simulacrum.exceptions :as exceptions]
+            [simulacrum.version :as version]))
 
 
 (defn display [data]
@@ -53,4 +57,33 @@
   (string/trim
     (last
       (string/split text #"\n"))))
+
+(defn make-dirs [path]
+  (io/make-parents
+    (str path "null")))
+
+(def user-agent
+  (str
+    "clj-simulacrum "
+    version/version-str
+    " (https://github.com/oubiwann/clj-simulacrum)"))
+
+(def headers {:headers {"User-Agent" user-agent}})
+
+(defn fetch-url [url & {:keys [headers] :or {headers headers}}]
+  (html/html-snippet
+    ((client/get url headers) :body)))
+
+(defn remove-spaces-and-newlines [text]
+  (string/replace text #"\s+\n\s+" " "))
+
+(defn remove-trailing-non-ascii [text]
+  (string/replace text (str (char 65533)) ""))
+
+(defn clean-string [text]
+  (remove-trailing-non-ascii
+    (remove-spaces-and-newlines text)))
+
+
+
 
