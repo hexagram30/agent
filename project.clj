@@ -5,7 +5,10 @@
   :license {:name "The BSD 3-Clause License"
             :url "http://opensource.org/licenses/BSD-3-Clause"}
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [co.paralleluniverse/pulsar "0.3.0"]]
+                 [org.clojure/data.json "0.2.3"]
+                 [co.paralleluniverse/pulsar "0.3.0"]
+                 [leiningen "2.3.3"]
+                 [lein-exec "0.3.1"]]
   :java-agents [[co.paralleluniverse/quasar-core "0.3.0"]]
   :plugins [[lein-exec "0.3.1"]]
   :profiles {
