@@ -104,8 +104,7 @@
           #(hash-map :id (inc (+ (count positives) %1))
                      :question %2
                      :reversed? true)
-          negatives)))
-  ))
+          negatives)))))
 
 (defn get-data [url]
   (let [tables-data (get-tables-data (util/fetch-url url))
