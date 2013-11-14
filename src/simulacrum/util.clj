@@ -78,7 +78,13 @@
   (string/replace text #"\s+\n\s+" " "))
 
 (defn remove-trailing-non-ascii [text]
-  (string/replace text (str (char 65533)) ""))
+  (string/replace
+    (string/replace
+      (string/replace
+        text
+        #"^\n\s+$" "")
+      (str (char 160)) "")
+    (str (char 65533)) ""))
 
 (defn clean-string [text]
   (remove-trailing-non-ascii
