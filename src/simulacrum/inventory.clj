@@ -47,8 +47,8 @@
   [(first group) (average-tuple (gather-subgroups group))])
 
 (defn process-results [results]
-  (into {} 
-        (map 
+  (into {}
+        (map
           group-average
           (get-groups results))))
 
@@ -76,11 +76,11 @@
   be a keyword that maps to a defined module for personality traits. For
   instance, if simulacrum.bigfive is defined (and it is) and you wanted to run
   the inventory for it, you'd pass :bigfive.
-  
+
   Right now, the list of supported personality trait frameworks are the
   following:
     * :bigfive
-  
+
   One of ':short true' or ':long true' must be passed to this function."
   [type-keyword & {:keys [short long]}]
   (let [type (name type-keyword)]
@@ -90,5 +90,5 @@
         (not (nil? long))
           (-run-inventory (eval (symbol type "questions-long")))
         :else (throw
-                (exceptions/param-error 
+                (exceptions/param-error
                   (util/get-last-line ((meta #'run-inventory) :doc)))))))

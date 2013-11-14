@@ -5,7 +5,7 @@ clj-simulacrum
 .. contents:: Table of Contents
 
 
-A Clojure library for exploring perosnality and emotional modeling via software 
+A Clojure library for exploring perosnality and emotional modeling via software
 agents in simulated populations.
 
 
@@ -99,9 +99,9 @@ This project was originally started in 2004 as "Emotional Modeling" or
 code repository service). The purpose of that code was to attempt simulation
 of agents with minimal personality definitions.
 
-Later work on other code bases (game-related ones, such as Myriad Worlds, 
+Later work on other code bases (game-related ones, such as Myriad Worlds,
 Peloid Server) caused interest to be resumed in this particular code base.
-However, there is a long legacy of code in this project and a fresh start was 
+However, there is a long legacy of code in this project and a fresh start was
 in order. This was started, although it continued to use the Python programming
 language.
 
@@ -137,7 +137,7 @@ As such, now seems like a perfect opportunity to update this library, switch
 to Clojure, and take advantage of these features for personality simulation
 in the large.
 
-Finally, the project was renamed clj-simulacrum, the Python code was moved into 
+Finally, the project was renamed clj-simulacrum, the Python code was moved into
 the sandbox directory, and a fresh start was made in the Clojure programming
 language.
 
