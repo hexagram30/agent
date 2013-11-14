@@ -7,7 +7,7 @@
 
 (def url "http://ipip.ori.org/new2413Items.htm")
 (def export-dir "target/json/")
-(def export-file (str export-dir "data.json"))
+(def export-file (str export-dir "ipip-neo-2413.json"))
 
 (util/make-dirs export-dir)
 
