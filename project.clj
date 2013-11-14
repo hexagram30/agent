@@ -11,6 +11,8 @@
                  [enlive "1.1.4"]]
   ;:java-agents [[co.paralleluniverse/quasar-core "0.3.0"]]
   :plugins [[lein-exec "0.3.1"]]
+  :repl-options {
+    :init-ns simulacrum.api}
   :profiles {
     :dev {
       :dependencies [[org.clojure/tools.namespace "0.2.3"]
