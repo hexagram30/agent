@@ -69,7 +69,7 @@
      :facet-name (get-facet table-data)
      :cronbach-alpha (Float. (string/replace cleaned #"[()]" "0"))
      :domain-key domain-key
-     :domain (bigfive/attributes domain-key)}))
+     :domain (bigfive/domains domain-key)}))
 
 (defn get-facet-id
   [table-data]
@@ -110,6 +110,16 @@
   (let [tables-data (get-tables-data (util/fetch-url url))
         facet-names (get-facet-names tables-data)]
     (flatten (map #(get-facet-questions % tables-data) facet-names))))
+
+(defn get-facets-map [url]
+  "This returns a data structure like what is in simulacrum.ipip/facets."
+  (let [tables-data (get-tables-data (util/fetch-url url))]
+    (into
+      (sorted-map)
+      (map (fn[x] [(keyword (x :facet-id)) (x :facet-name)])
+           (map get-facet-data
+                (map #(get-table % tables-data)
+                     (get-facet-names tables-data)))))))
 
 (spit export-file
       (json/write-str
