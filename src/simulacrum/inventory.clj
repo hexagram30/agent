@@ -60,7 +60,7 @@
     (util/display (str heading \newline \newline))
     (doseq [[key value] averages]
       (util/display
-        (str \tab (bigfive/attributes key) ": " value \newline)))))
+        (str \tab (bigfive/domains key) ": " value \newline)))))
 
 (defn -run-inventory [questions]
   (let [prefix (questions :prefix)]
@@ -80,6 +80,7 @@
   Right now, the list of supported personality trait frameworks are the
   following:
     * :bigfive
+    * :ipip
 
   One of ':short true' or ':long true' must be passed to this function."
   [type-keyword & {:keys [short long]}]

@@ -3,12 +3,12 @@
             [simulacrum.bigfive :as bigfive]))
 
 
-(deftest test-attributes
-  (is (= "Openness" (bigfive/attributes :O)))
-  (is (= "Conscientiousness" (bigfive/attributes :C)))
-  (is (= "Extraversion" (bigfive/attributes :E)))
-  (is (= "Agreeableness" (bigfive/attributes :A)))
-  (is (= "Neuroticism" (bigfive/attributes :N))))
+(deftest test-domains
+  (is (= "Openness" (bigfive/domains :O)))
+  (is (= "Conscientiousness" (bigfive/domains :C)))
+  (is (= "Extraversion" (bigfive/domains :E)))
+  (is (= "Agreeableness" (bigfive/domains :A)))
+  (is (= "Neuroticism" (bigfive/domains :N))))
 
 (deftest test-questions-base
   (is (= [:instructions :prefix]

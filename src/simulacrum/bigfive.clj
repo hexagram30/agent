@@ -1,7 +1,7 @@
 (ns simulacrum.bigfive)
 
 
-(def attributes
+(def domains
   {:O "Openness"
    :C "Conscientiousness"
    :E "Extraversion"
