@@ -1,5 +1,5 @@
 (ns simulacrum.ipip
-  (:require [simulacrum.bigfive :refer [attributes questions-base]]))
+  (:require [simulacrum.bigfive :refer [domains questions-base]]))
 
 
 (def facets
@@ -39,5 +39,6 @@
     questions-base
     {:title "IPIP NEO-PI-R Facet Scales Short Inventory"
      :questions
+      [
 
-    }))
+       ]}))
