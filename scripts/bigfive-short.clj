@@ -6,5 +6,5 @@
 
 
 (util/clear-screen)
-(inventory/run-inventory :bigfive :short true)
+(inventory/run :bigfive :short true)
 (util/exit)
