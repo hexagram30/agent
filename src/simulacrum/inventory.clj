@@ -22,9 +22,9 @@
     (util/display \newline)
     (cond
       (question :reversed?)
-        [(question :type) (- 6 answer)]
+        [(question :domain-key) (- 6 answer)]
       :else
-        [(question :type) answer])))
+        [(question :domain-key) answer])))
 
 (defn get-groups
   "This is used when processing the results."
@@ -42,7 +42,7 @@
   (/ (reduce + tuple) (float (count tuple))))
 
 (defn group-average
-  "Given a group, determine the average and associate it with its type."
+  "Given a group, determine the average and associate it with its domain."
   [group]
   [(first group) (average-tuple (gather-subgroups group))])
 
@@ -71,7 +71,7 @@
       (process-results
         (map #(get-answer prefix %) (questions :questions))))))
 
-(defn run-inventory
+(defn run
   "The required positional parameter (not one of the named parameters) needs to
   be a keyword that maps to a defined module for personality traits. For
   instance, if simulacrum.bigfive is defined (and it is) and you wanted to run
@@ -92,4 +92,4 @@
           (-run-inventory (eval (symbol type "questions-long")))
         :else (throw
                 (exceptions/param-error
-                  (util/get-last-line ((meta #'run-inventory) :doc)))))))
+                  (util/get-last-line ((meta #'run) :doc)))))))
