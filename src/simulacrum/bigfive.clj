@@ -21,12 +21,8 @@
    :N "Neuroticism"})
 
 (def five-point-compatibility-matrix-model-1
-  "The columns in this matrix follow the OCEAN acronym:
-    1) Openness, 2) Conscientiousness, 3) Extraversion, 4) Agreeableness,
-    5) Neuroticism.
-  Similarly, the rows number the same.
-
-  For more informtaion, see docs/compat.rst."
+  "The problems observed with this model were:
+    * "
   (m/matrix [[5 3 4 4 2]
              [3 5 2 4 3]
              [4 2 5 3 2]
@@ -34,6 +30,8 @@
              [3 2 1 3 5]]))
 
 (def five-point-compatibility-matrix-model-2
+  "This model exhibits the following properties:
+    * "
   (m/matrix [[5 3 4 4 2]
              [2 5 3 4 1]
              [4 2 5 3 2]
@@ -41,6 +39,15 @@
              [3 2 1 3 5]]))
 
 (def five-point-compatibility-matrix
+  "The columns of the compatibilty matrices follow the order of the OCEAN
+  acronym:
+    1) Openness, 2) Conscientiousness, 3) Extraversion, 4) Agreeableness,
+    5) Neuroticism.
+  Similarly, the rows number in the same order.
+
+  This function simply points to the matrix that provides the best default
+  model for compatibilty.
+  For more informtaion, see docs/compat.rst."
   five-point-compatibility-matrix-model-2)
 
 (def signed-compatibility-matrix
@@ -53,6 +60,67 @@
   (m/emap
     float
     (div five-point-compatibility-matrix max-value)))
+
+(defn get-scalar-distance
+  [pers-matrix-1 pers-matrix-2]
+  "Get the scalar value for the distance between the two personality matrices.
+
+  Note that the personality matrices are 1x5."
+  (apply m/distance
+         (map first [pers-matrix-1 pers-matrix-2])))
+
+(defn get-matrix-difference
+  [pers-matrix-1 pers-matrix-2]
+  "Get the matrix for the difference between the two given matrices.
+
+  Note that the personality matrices are 1x5 matrices and the resultant matrix
+  is the same shape (1x5)."
+  (m/emap abs
+          (sub pers-matrix-1
+               pers-matrix-2)))
+
+(defn get-inverted-matrix-difference
+  [pers-matrix-1 pers-matrix-2]
+  "Get the matrix for the difference between the two given matrices.
+
+  Note that the personality matrices are 1x5 matrices and the resultant matrix
+  is the same shape (1x5)."
+  (sub 1
+       (get-matrix-difference
+         pers-matrix-1
+         pers-matrix-2)))
+
+(defn -normalize-matrix
+  [matrix normal-mode]
+  (cond
+    (= normal-mode :dimension)
+      (div matrix (last (m/shape matrix)))
+    (= normal-mode :largest)
+      (div matrix (apply max (flatten matrix)))))
+
+(defn get-normalized-matrix
+  ""
+  ([matrix-1 matrix-2]
+   (get-normalized-matrix matrix-1 matrix-2 :dimension))
+  ([matrix-1 matrix-2 normal-mode]
+    (let [matrix (m/mmul matrix-1 matrix-2)]
+      (-normalize-matrix matrix normal-mode))))
+
+(defn compute-compatibility-matrix
+  "Multiply the personality matrices by each other and then the result by the
+  compatibilty matrix (the given model).
+
+  'normal-mode' is the method used to select the normalization value. If the
+  value of 'normal-mode' is :rank, the matrix rank is used to normalize the
+  values in the matrix. If it is :largest, the largest value of the matrix is
+  given as the rank."
+  ([pers-matrix-1 pers-matrix-2 model]
+   (compute-compatibility-matrix
+     pers-matrix-1 pers-matrix-2 model :dimension))
+  ([pers-matrix-1 pers-matrix-2 model normal-mode]
+    (let [pers-combo (m/mmul (m/transpose pers-matrix-1) pers-matrix-2)
+          compat-combo (m/mmul pers-combo model)]
+      (-normalize-matrix compat-combo normal-mode))))
 
 (def questions-base
   {:instructions (str "Answer each question below by providing a number "
