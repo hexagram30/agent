@@ -4,11 +4,11 @@
             [simulacrum.inventory :as inventory]))
 
 
-(deftest test-run-inventory-no-short-no-long
+(deftest test-run-no-short-no-long
   (is (thrown-with-msg?
         clojure.lang.ExceptionInfo
         #"One of ':short true' or ':long true' must be passed to this function"
-        (inventory/run-inventory :bigfive))))
+        (inventory/run :bigfive))))
 
 (deftest test-get-groups
   (let [data [[:E 5] [:A 2] [:C 3] [:N 2] [:O 1]
