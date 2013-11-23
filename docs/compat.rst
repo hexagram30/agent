@@ -43,44 +43,75 @@ IPIP Compatibility Matrix
 =========================
 
 Openness to experience
-    Fantasy
-    Aesthetics
-    Feelings
-    Actions
-    Ideas
-    Values
+    Imagination / Fantasy
+    Artistic-Interests / Aesthetics
+    Emotionality / Feelings
+    Adventurousness / Actions
+    Intellect / Ideas
+    Liberalism / Values
 
 Conscientiousness
-    Competence
-    Order
+    Self-Efficacy / Competence
+    Orderliness
     Dutifulness
-    Achievement Striving
+    Achievement-Striving
     Self-Discipline
-    Deliberation
+    Cautiousness / Deliberation
 
 Extraversion
-    Warmth
+    Friendliness / Warmth
     Gregariousness
     Assertiveness
-    Activity
-    Excitement Seeking
-    Positive Emotion
+    Activity-Level
+    Excitement-Seeking
+    Cheerfulness / Positive Emotion
 
 Agreeableness
     Trust
-    Straightforwardness
+    Morality / Straightforwardness
     Altruism
-    Compliance
+    Cooperation / Compliance
     Modesty
-    Tendermindedness
+    Sympathy / Tendermindedness
 
 Neuroticism
     Anxiety
-    Hostility
+    Anger / Hostility
     Depression
     Self-Consciousness
-    Impulsiveness
+    Immoderation / Impulsiveness
     Vulnerability to Stress
 
-
+       Imagi Aesth Emoti Adven Intel Liber Compe Order Dutif Achie Disci Delib Warmt Grega Asser Activ Excit Cheer Trust Moral Altru Coope Modes Sympa Anxie Anger Depre Consc Impul Vulne
+       -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Imagi    5     4     3     4     5     3     3     2     3     3     3     2     3     3     3     3     4     3     3     3     3     3     3     3     3     3     3     3     4     3
+Aesth    4     5     3     3     4     4     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+Emoti    4     3     5     3     3     3     3     3     3     3     3     3     4     4     3     3     3     4     3     3     3     3     3     4     4     4     4     3     3     4
+Adven    4     3     3     5     4     3     3     3     3     4     3     2     3     3     4     5     5     3     3     3     3     3     3     3     3     3     3     2     4     2
+Intel    5     4     3     4     5     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+Liber    3     4     3     3     4     5     3     3     3     3     3     2     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3     3
+Compe                                        5
+Order                                              5
+Dutif                                                    5
+Achie                                                          5
+Disci                                                                5
+Delib                                                                      5
+Warmt                                                                            5
+Grega                                                                                  5
+Asser                                                                                        5
+Activ                                                                                              5
+Excit                                                                                                    5
+Cheer                                                                                                          5
+Trust
+Moral
+Altru
+Coope
+Modes
+Sympa
+Anxie
+Anger
+Depre
+Consc
+Impul
+Vulne
 
