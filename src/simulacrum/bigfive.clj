@@ -56,7 +56,7 @@
 (def normalized-compatibility-matrix
   "Convert the compatibilty matrix to one whose values have been normalized."
   (matrix/emap
-    float
+    bigdec
     (div five-point-compatibility-matrix const/max-value)))
 
 (def questions-base
