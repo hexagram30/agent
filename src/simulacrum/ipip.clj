@@ -1,7 +1,15 @@
 (ns simulacrum.ipip
-  (:require [simulacrum.bigfive :refer [domains questions-base]]
-            [simulacrum.const :as const]))
-
+  (:require [clojure.core.matrix :as matrix]
+            [clojure.core.matrix.operators]
+            [simulacrum.bigfive :refer [domains questions-base]]
+            [simulacrum.const :as const])
+  (:refer clojure.core.matrix.operators :rename
+          {/ div
+           * mult
+           ** pow
+           + add
+           - sub
+           == eql}))
 
 (def facets
   {:O1 "Imagination"
