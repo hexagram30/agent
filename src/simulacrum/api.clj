@@ -5,6 +5,8 @@
             [clj-http.client :as client]
             [net.cgrand.enlive-html :as html]
             [simulacrum.bigfive :as bigfive]
+            [simulacrum.const :as const]
             [simulacrum.ipip :as ipip]
+            [simulacrum.math :as math]
             [simulacrum.util :as util]
             [simulacrum.version :as version]))
