@@ -69,11 +69,11 @@
     version/version-str
     " (https://github.com/oubiwann/clj-simulacrum)"))
 
-(def headers {:headers {"User-Agent" user-agent}})
+(def ua-headers {:headers {"User-Agent" user-agent}})
 
-(defn fetch-url [url & {:keys [headers] :or {headers headers}}]
+(defn fetch-url [url & {:keys [headers]}]
   (html/html-snippet
-    ((client/get url headers) :body)))
+    ((client/get url (conj ua-headers headers)) :body)))
 
 (defn remove-spaces-and-newlines [text]
   (string/replace text #"\s+\n\s+" " "))
