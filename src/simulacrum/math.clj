@@ -1,4 +1,4 @@
-(ns simulacrum.bigfive
+(ns simulacrum.math
   (:require [clojure.core.matrix :as matrix]
             [clojure.core.matrix.operators]
             [clojure.math.numeric-tower :refer [abs]])
@@ -41,8 +41,15 @@
          pers-matrix-2)))
 
 (defn normalize-matrix
+  "Given a matrix, normalize it either by its dimension or by the largest
+  element.
+
+  'normal-mode' is the method used to select the normalization value. If the
+  value of 'normal-mode' is :rank, the matrix rank is used to normalize the
+  values in the matrix. If it is :largest, the largest value of the matrix is
+  given as the rank."
   ([matrix-data]
-   (normalize-matrix matrix :dimension))
+   (normalize-matrix matrix-data :dimension))
   ([matrix-data normal-mode]
     (cond
       (= normal-mode :dimension)
@@ -51,7 +58,12 @@
         (div matrix-data (apply max (flatten matrix-data))))))
 
 (defn get-normalized-matrix
-  ""
+  "Given two matrices, multiply them and normaize the result.
+
+  'normal-mode' is the method used to select the normalization value. If the
+  value of 'normal-mode' is :rank, the matrix rank is used to normalize the
+  values in the matrix. If it is :largest, the largest value of the matrix is
+  given as the rank."
   ([matrix-1 matrix-2]
    (get-normalized-matrix matrix-1 matrix-2 :dimension))
   ([matrix-1 matrix-2 normal-mode]
