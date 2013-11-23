@@ -5,6 +5,7 @@
   :license {:name "The BSD 3-Clause License"
             :url "http://opensource.org/licenses/BSD-3-Clause"}
   :dependencies [[org.clojure/clojure "1.5.1"]
+                 [org.clojure/data.csv "0.1.2"]
                  [org.clojure/data.json "0.2.3"]
                  [org.clojure/math.numeric-tower "0.0.2"]
                  [co.paralleluniverse/pulsar "0.3.0"]
