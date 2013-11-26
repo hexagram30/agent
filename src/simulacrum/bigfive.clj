@@ -1,7 +1,8 @@
 (ns simulacrum.bigfive
   (:require [clojure.core.matrix :as matrix]
             [clojure.core.matrix.operators]
-            [simulacrum.const :as const])
+            [simulacrum.const :as const]
+            [simulacrum.math :as math])
   (:refer clojure.core.matrix.operators :rename
           {/ div
            * mult
@@ -19,8 +20,7 @@
    :N "Neuroticism"})
 
 (def five-point-compatibility-matrix-model-1
-  "The problems observed with this model were:
-    * "
+  "An exploratory model using OCEAN."
   (matrix/matrix [[5 3 4 4 2]
                   [3 5 2 4 3]
                   [4 2 5 3 2]
@@ -28,13 +28,20 @@
                   [3 2 1 3 5]]))
 
 (def five-point-compatibility-matrix-model-2
-  "This model exhibits the following properties:
-    * "
+  "An exploratory model using OCEAN."
   (matrix/matrix [[5 3 4 4 2]
                   [2 5 3 4 1]
                   [4 2 5 3 2]
                   [3 4 4 5 3]
                   [3 2 1 3 5]]))
+
+(def five-point-compatibility-matrix-model-3
+  "An exploratory model using OCEAS."
+  (matrix/matrix [[5 3 4 4 4]
+                  [2 5 3 4 4]
+                  [4 2 5 3 3]
+                  [3 4 4 5 4]
+                  [3 4 3 4 5]]))
 
 (def five-point-compatibility-matrix
   "The columns of the compatibilty matrices follow the order of the OCEAN
@@ -46,7 +53,7 @@
   This function simply points to the matrix that provides the best default
   model for compatibilty.
   For more informtaion, see docs/compat.rst."
-  five-point-compatibility-matrix-model-2)
+  five-point-compatibility-matrix-model-3)
 
 (def signed-compatibility-matrix
   "Convert the compatibilty matrix to one whose values range from -2 to 2, with
