@@ -2,9 +2,14 @@
 Compatibility Models
 ~~~~~~~~~~~~~~~~~~~~
 
-The following describe two possible models for personality coponent
-compatibility: one for the Big Five (FFM) and the other for the IPIP (extended
-Big Five, including facets).
+The following are based upon related models for personality coponent
+compatibility: the Big Five (FFM) and the IPIP (which extends the Big Five to
+including 30 facets).
+
+We make a departure from both of these models, however: Neuroticism and its
+six facets (in IPIP) have been replaced with their opposites. This was done to
+simplify the numeric models; with a positive category used instead, the fifth
+personality component can be treated just like the other four.
 
 For all models below, a compatibility level of 5 is the highest, and a level of
 1 is the lowest.
@@ -16,14 +21,14 @@ The chart below explores a possible general model for how each domain in one
 personality might be affected, to a lesser or greater extent, by every other
 domain in a different personality.
 
-          Openness  Conscien  Extraver  Agreeabl  Neurotic
-          --------  --------  --------  --------  --------
-Openness  |   5        3         4         4         2   |
-Conscien  |   3        5         2         4         1   |
-Extraver  |   4        2         5         3         2   |
-Agreeabl  |   3        4         4         5         3   |
-Neurotic  |   3        2         1         3         5   |
-          ------------------------------------------------
+         Openn  Consc  Extra  Agree  Stabi
+         -----  -----  -----  -----  -----
+Openn  |   5      3      4      4      4   |
+Consc  |   3      5      2      4      4   |
+Extra  |   4      2      5      3      3   |
+Agree  |   3      4      4      5      4   |
+Stabi  |   3      4      3      4      5   |
+         ----------------------------------
 
 
  [OO OC OE OA ON]   [O]   [OO*O + OC*C + OE*E + OA*A + ON*N]
@@ -81,6 +86,17 @@ Neuroticism
     Self-Consciousness
     Immoderation / Impulsiveness
     Vulnerability to Stress
+
+- OR -
+
+Stability
+    Serenity
+    Happiness / Good Will
+    Contentment
+    Confidence
+    Moderation / Self-Control
+    Indefatigability
+
 
        Imagi Aesth Emoti Adven Intel Liber Compe Order Dutif Achie Disci Delib Warmt Grega Asser Activ Excit Cheer Trust Moral Altru Coope Modes Sympa Anxie Anger Depre Consc Impul Vulne
        -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
