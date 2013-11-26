@@ -26,18 +26,21 @@ $(BIN_DIR)/lein-exec-p:
 
 script-setup: $(BIN_DIR)/lein-exec $(BIN_DIR)/lein-exec-p
 
+deps:
+	@lein deps
+
 build: clean
-	@lein compile
-	@lein uberjar
+	@lein -o compile
+	@lein -o uberjar
 
 shell:
-	@lein repl
+	@lein -o repl
 
 dev:
-	@lein run --development
+	@lein -o run --development
 
 run:
-	@lein run
+	@lein -o run
 
 run-jar: build
 	java -jar $(JAR)
@@ -46,13 +49,13 @@ run-jar-standalone: build
 	java -jar $(STANDALONE_JAR)
 
 kibit-only:
-	@lein with-profile testing kibit
+	@lein -o with-profile testing kibit
 
 test-only:
-	@lein with-profile testing test
+	@lein -o with-profile testing test
 
 coverage-only:
-	@lein with-profile testing cloverage --text --html
+	@lein -o with-profile testing cloverage --text --html
 	@cat target/coverage/coverage.txt
 	@echo "body {background-color: #000; color: #fff;} \
 	a {color: #A5C0F0;}" >> target/coverage/coverage.css
@@ -64,9 +67,9 @@ check-versions:
 	@echo "Makefile:"
 	@echo "\t$(VERSION)"
 	@echo "project.clj:"
-	@lein exec -e '(println (str "\t" (last (clojure.string/split (first (clojure.string/split-lines (slurp "project.clj"))) #"\s+"))))'|sed -e 's/"//g'
+	@lein -o exec -e '(println (str "\t" (last (clojure.string/split (first (clojure.string/split-lines (slurp "project.clj"))) #"\s+"))))'|sed -e 's/"//g'
 	@echo "$(LIB).version:"
-	@lein exec -ep "(require '[$(LIB).version]) (print (str \"\t\" $(LIB).version/version-str))"
+	@lein -o exec -ep "(require '[$(LIB).version]) (print (str \"\t\" $(LIB).version/version-str))"
 
 check: kibit-only test-only coverage-only check-versions
 
