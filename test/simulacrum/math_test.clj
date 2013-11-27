@@ -60,6 +60,19 @@
           [0.65 0.47 0.84 0.74 0.09]]
          (math/round-matrix (math/vmult alice dave) 2))))
 
+(deftest test-int-matrix
+  (is (= [10 6 8 10 9] (math/int-matrix
+                                      (matrix/mult 10
+                                        (math/round-matrix alice 1)))))
+  (is (= [[7 5 9 8 1]
+          [4 3 6 5 1]
+          [5 4 7 6 1]
+          [7 5 9 8 1]
+          [7 5 8 7 1]]
+         (math/int-matrix
+           (matrix/mult 10
+             (math/round-matrix (math/vmult alice dave) 1))))))
+
 (deftest test-vmult
   (is (= [[ 3.0  4.0]
           [12.0 16.0]]

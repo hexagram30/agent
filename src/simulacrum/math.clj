@@ -20,6 +20,11 @@
       #(round % precision)
       (matrix/to-vect matrix-data))))
 
+(defn int-matrix [matrix-data]
+  (matrix/matrix-map
+    int
+    (matrix/to-vect matrix-data)))
+
 (defn vmult [vector-1 vector-2]
   (matrix/mmult (matrix/trans vector-1) vector-2))
 
