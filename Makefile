@@ -1,6 +1,9 @@
 VERSION=$(shell (head -1 project.clj |awk '{print $$3}'|sed -e 's/"//g'))
 LIB=simulacrum
 PROJECT=clj-$(LIB)
+CHECKOUTS=checkouts
+INCANTER=incanter
+INCANTER_REPO=git://github.com/liebke/$(INCANTER).git
 JAR=target/$(PROJECT)-$(VERSION).jar
 STANDALONE_JAR=target/$(PROJECT)-$(VERSION)-standalone.jar
 BIN_DIR=/usr/local/bin
@@ -26,7 +29,14 @@ $(BIN_DIR)/lein-exec-p:
 
 script-setup: $(BIN_DIR)/lein-exec $(BIN_DIR)/lein-exec-p
 
-deps:
+$(CHECKOUTS):
+	mkdir $(CHECKOUTS)
+
+$(CHECKOUTS)/$(INCANTER): $(CHECKOUTS)
+	cd $(CHECKOUTS) && git clone $(INCANTER_REPO)
+	cd $(CHECKOUTS)/$(INCANTER) && ./script/install
+
+deps: $(CHECKOUTS)/incanter
 	@lein deps
 
 build: clean

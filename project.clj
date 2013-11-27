@@ -10,6 +10,7 @@
                  [org.clojure/math.numeric-tower "0.0.2"]
                  [co.paralleluniverse/pulsar "0.3.0"]
                  [net.mikera/core.matrix "0.15.0"]
+                 [incanter/incanter-core "1.5.5-SNAPSHOT"]
                  [clj-http "0.7.7"]
                  [enlive "1.1.4"]]
   ;:java-agents [[co.paralleluniverse/quasar-core "0.3.0"]]

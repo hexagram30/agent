@@ -9,6 +9,23 @@ A Clojure library for exploring perosnality and emotional modeling via software
 agents in simulated populations.
 
 
+Dependencies
+============
+
+`clj-simulacrum` depends upon `incanter`_, which has a non-standard source
+build. As such, you will need to build `incanter` in order to use
+`clj-simulacrum`. Fortunately, we've made that easy for you :-)
+
+Here's all you need to do:
+
+.. code:: bash
+
+    $ make deps
+
+This will download `incanter` and then build it into your `~/.m2` directory.
+After that, you will be able to run `clj-simulacrum`.
+
+
 Installation
 ============
 
@@ -145,6 +162,7 @@ language.
 .. Links
 .. =====
 
+.. _incanter: https://github.com/liebke/incanter
 .. _Clojars: https://clojars.org/clj-simulacrum
 .. _Parallel Universe: http://paralleluniverse.co/
 .. _Pulsar open source project: https://github.com/puniverse/pulsar
