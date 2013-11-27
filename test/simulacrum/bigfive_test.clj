@@ -14,7 +14,8 @@
   (is (= "Conscientiousness" (bigfive/domains :C)))
   (is (= "Extraversion" (bigfive/domains :E)))
   (is (= "Agreeableness" (bigfive/domains :A)))
-  (is (= "Neuroticism" (bigfive/domains :N))))
+  (is (= "Neuroticism" (bigfive/domains :N)))
+  (is (= "Stability" (bigfive/domains :S))))
 
 (deftest test-five-point-compatibility-matrix-model-1
   (is (= [[5 3 4 4 2]

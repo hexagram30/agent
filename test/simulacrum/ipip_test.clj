@@ -11,4 +11,5 @@
   (is (= "Assertiveness" (ipip/facets :E3)))
   (is (= "Cooperation" (ipip/facets :A4)))
   (is (= "Immoderation" (ipip/facets :N5)))
-  (is (= 30 (count ipip/facets))))
+  (is (= "Indefatigability" (ipip/facets :S6)))
+  (is (= 36 (count ipip/facets))))

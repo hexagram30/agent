@@ -33,7 +33,13 @@
    :N3 "Depression"
    :N4 "Self-Consciousness"
    :N5 "Immoderation"
-   :N6 "Vulnerability"})
+   :N6 "Vulnerability"
+   :S1 "Serenity"
+   :S2 "Good-Will"
+   :S3 "Contentment"
+   :S4 "Confidence"
+   :S5 "Moderation"
+   :S6 "Indefatigability"})
 
 (def thirty-point-compatibility-matrix-model-1
   "The problems observed with this model were:

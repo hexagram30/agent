@@ -9,7 +9,8 @@
    :C "Conscientiousness"
    :E "Extraversion"
    :A "Agreeableness"
-   :N "Neuroticism"})
+   :N "Neuroticism"
+   :S "Stability"})
 
 (def five-point-compatibility-matrix-model-1
   "An exploratory model using OCEAN."
@@ -36,14 +37,15 @@
                   [3 4 3 4 5]]))
 
 (def five-point-compatibility-matrix
-  "The columns of the compatibilty matrices follow the order of the OCEAN
+  "The columns of the compatibilty matrices follow the order of the OCEAS
   acronym:
     1) Openness, 2) Conscientiousness, 3) Extraversion, 4) Agreeableness,
-    5) Neuroticism.
+    5) Stability.
   Similarly, the rows number in the same order.
 
   This function simply points to the matrix that provides the best default
   model for compatibilty.
+  
   For more informtaion, see docs/compat.rst."
   five-point-compatibility-matrix-model-3)
 
