@@ -1,23 +1,35 @@
 (ns simulacrum.math
-  (:require [clojure.core.matrix :as matrix]
-            [clojure.core.matrix.operators]
-            [clojure.math.numeric-tower :refer [abs]])
-  (:refer clojure.core.matrix.operators :rename
-          {/ div
-           * mult
-           ** pow
-           + add
-           - sub
-           == eql}))
+  (:require [incanter.core :as matrix]
+            [incanter.stats :as stats]
+            [clojure.math.numeric-tower :as tower]))
 
+
+(defn round
+  ([n]
+   (round n 3))
+  ([n precision]
+   (let [prec-mult (tower/expt 10 precision)]
+     (/ (tower/round (* n prec-mult))
+        (float prec-mult)))))
+
+(defn round-matrix
+  ([matrix-data]
+   (round-matrix matrix-data 3))
+  ([matrix-data precision]
+    (matrix/matrix-map
+      #(round % precision)
+      (matrix/to-vect matrix-data))))
+
+(defn vmult [vector-1 vector-2]
+  (matrix/mmult (matrix/trans vector-1) vector-2))
 
 (defn get-scalar-distance
   [pers-matrix-1 pers-matrix-2]
-  "Get the scalar value for the distance between the two personality matrices.
+  "Get the scalar value for the Euclidian distance between the two personality
+  matrices.
 
   Note that the personality matrices are 1x5."
-  (apply matrix/distance
-         (map first [pers-matrix-1 pers-matrix-2])))
+  (stats/euclidean-distance pers-matrix-1 pers-matrix-2))
 
 (defn get-matrix-difference
   [pers-matrix-1 pers-matrix-2]
@@ -25,9 +37,9 @@
 
   Note that the personality matrices are 1x5 matrices and the resultant matrix
   is the same shape (1x5)."
-  (matrix/emap abs
-               (sub pers-matrix-1
-                    pers-matrix-2)))
+  (matrix/matrix-map tower/abs
+               (matrix/minus pers-matrix-1
+                             pers-matrix-2)))
 
 (defn get-inverted-matrix-difference
   [pers-matrix-1 pers-matrix-2]
@@ -35,10 +47,9 @@
 
   Note that the personality matrices are 1x5 matrices and the resultant matrix
   is the same shape (1x5)."
-  (sub 1
-       (get-matrix-difference
-         pers-matrix-1
-         pers-matrix-2)))
+  (matrix/minus 1
+                (get-matrix-difference pers-matrix-1
+                                       pers-matrix-2)))
 
 (defn normalize-matrix
   "Given a matrix, normalize it either by the largest value in the shape vector
@@ -53,9 +64,9 @@
   ([matrix-data normal-mode]
     (cond
       (= normal-mode :maxsize)
-        (div matrix-data (last (matrix/shape matrix-data)))
+        (matrix/div matrix-data (last (matrix/dim matrix-data)))
       (= normal-mode :largest)
-        (div matrix-data (apply max (flatten matrix-data))))))
+        (matrix/div matrix-data (apply max (flatten matrix-data))))))
 
 (defn get-normalized-matrix
   "Given two matrices, multiply them and normaize the result.
@@ -67,7 +78,7 @@
   ([matrix-1 matrix-2]
    (get-normalized-matrix matrix-1 matrix-2 :maxsize))
   ([matrix-1 matrix-2 normal-mode]
-    (let [matrix (matrix/mmul matrix-1 matrix-2)]
+    (let [matrix (matrix/mmult matrix-1 matrix-2)]
       (normalize-matrix matrix normal-mode))))
 
 (defn compute-compatibility-matrix
@@ -82,8 +93,8 @@
    (compute-compatibility-matrix
      pers-matrix-1 pers-matrix-2 model :maxsize))
   ([pers-matrix-1 pers-matrix-2 model normal-mode]
-    (let [pers-combo (matrix/mmul (matrix/transpose pers-matrix-1) pers-matrix-2)
-          compat-combo (matrix/mmul pers-combo model)]
+    (let [pers-combo (matrix/mmult (matrix/trans pers-matrix-1) pers-matrix-2)
+          compat-combo (matrix/mmult pers-combo model)]
       (normalize-matrix compat-combo normal-mode))))
 
 (defn get-transpose-average
@@ -92,11 +103,10 @@
 
   This is useful for forming diagonal matrices from personality matrix
   multiplication results."
-  (div (add
-         (matrix/transpose matrix-data)
-         matrix-data)
-       2))
-
+  (matrix/div (matrix/plus
+                (matrix/trans matrix-data)
+                matrix-data)
+              2))
 
 
 
