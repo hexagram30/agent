@@ -12,9 +12,9 @@ agents in simulated populations.
 Dependencies
 ============
 
-`clj-simulacrum` depends upon `incanter`_, which has a non-standard source
-build. As such, you will need to build `incanter` in order to use
-`clj-simulacrum`. Fortunately, we've made that easy for you :-)
+``clj-simulacrum`` depends upon `incanter`_, which has a non-standard source
+build. As such, you will need to build ``incanter`` in order to use
+``clj-simulacrum``. Fortunately, we've made that easy for you :-)
 
 Here's all you need to do:
 
@@ -22,14 +22,14 @@ Here's all you need to do:
 
     $ make deps
 
-This will download `incanter` and then build it into your `~/.m2` directory.
-After that, you will be able to run `clj-simulacrum`.
+This will download ``incanter`` and then build it into your ``~/.m2`` directory.
+After that, you will be able to run ``clj-simulacrum``.
 
 
 Installation
 ============
 
-`clj-simulacrum` is up on `Clojars`_. You can add it to your ``project.clj`` for
+``clj-simulacrum`` is up on `Clojars`_. You can add it to your ``project.clj`` for
 automatic download with the following:
 
 .. code:: clojure
