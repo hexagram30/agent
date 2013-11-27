@@ -9,28 +9,34 @@ A Clojure library for exploring perosnality and emotional modeling via software
 agents in simulated populations.
 
 
-Dependencies
+Installation
 ============
 
 ``clj-simulacrum`` depends upon `incanter`_, which has a non-standard source
-build. As such, you will need to build ``incanter`` in order to use
-``clj-simulacrum``. Fortunately, we've made that easy for you :-)
+build. If you don't have ``incanter`` already installed, you will need to
+install it. We provide a conveient means of doing this with a ``make`` target
+in our ``Makefile``.
 
-Here's all you need to do:
+If you do have ``incanter`` installed, you can skip this "Installation" step
+and move right to the "Project Inclusion" step below. You project will download
+``clj-simulacrum`` from `Clojars`_ when you run ``lein deps`` on your project.
+
+For those that don't have ``incanter`` installed:
 
 .. code:: bash
 
+    $ git clone git@github.com:oubiwann/clj-simulacrum.github
+    $ cd clj-simulacrum
     $ make deps
 
 This will download ``incanter`` and then build it into your ``~/.m2`` directory.
 After that, you will be able to run ``clj-simulacrum``.
 
 
-Installation
-============
+Project Inclusion
+=================
 
-``clj-simulacrum`` is up on `Clojars`_. You can add it to your ``project.clj`` for
-automatic download with the following:
+You can add ``clj-simulacrum`` to your ``project.clj`` with the following:
 
 .. code:: clojure
 
@@ -162,7 +168,7 @@ language.
 .. Links
 .. =====
 
-.. _incanter: https://github.com/liebke/incanter
 .. _Clojars: https://clojars.org/clj-simulacrum
+.. _incanter: https://github.com/liebke/incanter
 .. _Parallel Universe: http://paralleluniverse.co/
 .. _Pulsar open source project: https://github.com/puniverse/pulsar
