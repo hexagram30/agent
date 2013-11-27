@@ -1,6 +1,6 @@
 (ns simulacrum.bigfive-test
   (:require [clojure.test :refer :all]
-            [clojure.core.matrix :as matrix]
+            [incanter.core :as matrix]
             [simulacrum.bigfive :as bigfive]
             [simulacrum.math :as math]))
 
@@ -21,21 +21,24 @@
           [3 5 2 4 3]
           [4 2 5 3 2]
           [3 4 4 5 3]
-          [3 2 1 3 5]] bigfive/five-point-compatibility-matrix-model-1)))
+          [3 2 1 3 5]] (math/int-matrix
+                         bigfive/five-point-compatibility-matrix-model-1))))
 
 (deftest test-five-point-compatibility-matrix-model-2
   (is (= [[5 3 4 4 2]
           [2 5 3 4 1]
           [4 2 5 3 2]
           [3 4 4 5 3]
-          [3 2 1 3 5]] bigfive/five-point-compatibility-matrix-model-2)))
+          [3 2 1 3 5]] (math/int-matrix
+                         bigfive/five-point-compatibility-matrix-model-2))))
 
 (deftest test-five-point-compatibility-matrix-model-3
   (is (= [[5 3 4 4 4]
           [2 5 3 4 4]
           [4 2 5 3 3]
           [3 4 4 5 4]
-          [3 4 3 4 5]] bigfive/five-point-compatibility-matrix-model-3)))
+          [3 4 3 4 5]] (math/int-matrix
+                         bigfive/five-point-compatibility-matrix-model-3))))
 
 (deftest test-five-point-compatibility-matrix
   (is (= bigfive/five-point-compatibility-matrix-model-3
@@ -46,15 +49,17 @@
           [-1   2   0   1   1]
           [ 1  -1   2   0   0]
           [ 0   1   1   2   1]
-          [ 0   1   0   1   2]] bigfive/signed-compatibility-matrix)))
+          [ 0   1   0   1   2]] (math/int-matrix
+                                  bigfive/signed-compatibility-matrix))))
 
 (deftest test-normalized-compatibility-matrix
-  (is (= [[  1M 0.6M 0.8M 0.8M 0.8M]
-          [0.4M   1M 0.6M 0.8M 0.8M]
-          [0.8M 0.4M   1M 0.6M 0.6M]
-          [0.6M 0.8M 0.8M   1M 0.8M]
-          [0.6M 0.8M 0.6M 0.8M   1M]]
-    bigfive/normalized-compatibility-matrix)))
+  (is (= [[1.0M 0.6M 0.8M 0.8M 0.8M]
+          [0.4M 1.0M 0.6M 0.8M 0.8M]
+          [0.8M 0.4M 1.0M 0.6M 0.6M]
+          [0.6M 0.8M 0.8M 1.0M 0.8M]
+          [0.6M 0.8M 0.6M 0.8M 1.0M]]
+    (matrix/to-vect
+      bigfive/normalized-compatibility-matrix))))
 
 (deftest test-questions-base
   (is (= [:instructions :prefix]

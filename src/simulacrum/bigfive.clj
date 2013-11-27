@@ -1,15 +1,7 @@
 (ns simulacrum.bigfive
-  (:require [clojure.core.matrix :as matrix]
-            [clojure.core.matrix.operators]
+  (:require [incanter.core :as matrix]
             [simulacrum.const :as const]
-            [simulacrum.math :as math])
-  (:refer clojure.core.matrix.operators :rename
-          {/ div
-           * mult
-           ** pow
-           + add
-           - sub
-           == eql}))
+            [simulacrum.math :as math]))
 
 
 (def domains
@@ -58,13 +50,14 @@
 (def signed-compatibility-matrix
   "Convert the compatibilty matrix to one whose values range from -2 to 2, with
   the neurtal value being 0."
-  (sub five-point-compatibility-matrix const/mid-value))
+  (matrix/minus five-point-compatibility-matrix const/mid-value))
 
 (def normalized-compatibility-matrix
   "Convert the compatibilty matrix to one whose values have been normalized."
-  (matrix/emap
+  (matrix/matrix-map
     bigdec
-    (div five-point-compatibility-matrix const/max-value)))
+    (matrix/div five-point-compatibility-matrix
+                const/max-value)))
 
 (def questions-base
   {:instructions (str "Answer each question below by providing a number "
