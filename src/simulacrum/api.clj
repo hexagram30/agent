@@ -4,6 +4,7 @@
             [clojure.string :as string]
             [clj-http.client :as client]
             [net.cgrand.enlive-html :as html]
+            [incanter.core :as incanter]
             [simulacrum.bigfive :as bigfive]
             [simulacrum.const :as const]
             [simulacrum.ipip :as ipip]
