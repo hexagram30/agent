@@ -29,6 +29,7 @@ Extraversion, and Agreeableness into one: Engagement. The other axis is
 Stability.
 
 Our model for the interactions of these components is as follows:
+
 ```
          Engag  Stabi
          -----  -----
