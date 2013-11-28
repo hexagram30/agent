@@ -5,13 +5,16 @@ Compatibility Models
 .. contents:: Table of Contents
 
 The following are based upon related models for personality coponent
-compatibility: the Big Five (FFM) and the IPIP (which extends the Big Five to
-including 30 facets).
+compatibility: the Big Five (FFM; 5-dimentional model) and the IPIP (which
+extends the Big Five to including 30 facets, and thus a 30-dimensional model).
+We've also proposed a simplified one for reasoning about the basics of
+personality interactions.
 
-We make a departure from both of these models, however: Neuroticism and its
-six facets (in IPIP) have been replaced with their opposites. This was done to
-simplify the numeric models; with a positive category used instead, the fifth
-personality component can be treated just like the other four.
+Do note, however, that we make a departure from the norm for all of these
+models: Neuroticism (and its six facets in IPIP) has been replaced with its
+opposite, Stability. This was done to simplify the numeric models; with a
+ositive category used instead, the fifth personality component can be treated
+just like the other four, with no special numerical considerations.
 
 For all models below, a compatibility level of 5 is the highest, and a level of
 1 is the lowest.
@@ -22,7 +25,7 @@ Simplified Personality Model
 
 To explore the interactions between personalities and the dynamics that arise
 between individuals and groups -- and to be able to visualize these interactions
-easily -- a simplified 2-dimennsional model is provided.
+easily -- a simplified 2-dimensional model is provided.
 
 Based on the Big Five, this model combines Openness, Conscientiousness,
 Extraversion, and Agreeableness into one: Engagement. The other axis is
@@ -38,6 +41,17 @@ Our model for the interactions of these components is as follows:
   Stabi  |   3      5   |
            ------------
 
+In words, our model states that for a two-personality interaction:
+
+#. The Engagement component in personality 1 has a high affinity for the
+   Engagement component in personality 2;
+#. The Engagement component in personality 1 has a medium affinity for the
+   Stability component in personality 2;
+#. The Stability component in personality 1 has a medium affinity for the
+   Engagement component in personality 2;
+#. The Stability component in personality 1 has a high affinity for the
+   Stability component in personality 2;
+
 
 Personal Interactions in the Simple Model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,6 +59,12 @@ Personal Interactions in the Simple Model
 Given a simple model of 2-dimensional vectors representing simplified
 personalities, let's look at ways in which we might interpret these vectors
 and their interactions with each other.
+
+For the examples below, let's define some personalities:
+
+* ``alice = [1 1]`` - High engagenement, high stability
+* ``bob = [-1 -1]`` - Low engagement, low stability
+* ``carol = [0.5 0]`` - Medium-high engagement, medium stability
 
 
 Component Interactions
@@ -152,7 +172,7 @@ domain in a different personality.
 
 
 ::
-  
+
    [OO OC OE OA ON]   [O]   [OO*O + OC*C + OE*E + OA*A + ON*N]
    [CO CC CE CA CN]   [C]   [CO*O + CC*C + CE*E + CA*A + CN*N]
    [EO EC EE EA EN] * [E] = [EO*O + EC*C + EE*E + EA*A + EN*N]
