@@ -6,9 +6,9 @@
             [net.cgrand.enlive-html :as html]
             [incanter.core :as matrix]
             [incanter.stats :as stats]
-            [simulacrum.bigfive :as bigfive]
             [simulacrum.const :as const]
-            [simulacrum.ipip :as ipip]
             [simulacrum.math :as math]
+            [simulacrum.model.bigfive :as bigfive]
+            [simulacrum.model.ipip :as ipip]
             [simulacrum.util :as util]
             [simulacrum.version :as version]))
