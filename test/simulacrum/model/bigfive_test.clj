@@ -1,8 +1,8 @@
-(ns simulacrum.bigfive-test
+(ns simulacrum.model.bigfive-test
   (:require [clojure.test :refer :all]
             [incanter.core :as matrix]
-            [simulacrum.bigfive :as bigfive]
-            [simulacrum.math :as math]))
+            [simulacrum.math :as math]
+            [simulacrum.model.bigfive :as bigfive]))
 
 
 (def person-1 [[]])

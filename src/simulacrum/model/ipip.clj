@@ -1,6 +1,6 @@
-(ns simulacrum.ipip
+(ns simulacrum.model.ipip
   (:require [incanter.core :as matrix]
-            [simulacrum.bigfive :refer [domains questions-base]]
+            [simulacrum.model.bigfive :refer [domains questions-base]]
             [simulacrum.const :as const]))
 
 (def facets

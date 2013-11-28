@@ -1,8 +1,8 @@
-(ns simulacrum.ipip-test
+(ns simulacrum.model.ipip-test
   (:require [clojure.test :refer :all]
             [incanter.core :as matrix]
-            [simulacrum.ipip :as ipip]
-            [simulacrum.math :as math]))
+            [simulacrum.math :as math]
+            [simulacrum.model.ipip :as ipip]))
 
 
 (deftest test-facets

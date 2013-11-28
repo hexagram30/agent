@@ -1,6 +1,5 @@
 (ns simulacrum.inventory-test
   (:require [clojure.test :refer :all]
-            [simulacrum.bigfive :as bigfive]
             [simulacrum.inventory :as inventory]))
 
 
@@ -13,7 +12,7 @@
 (deftest test-get-groups
   (let [data [[:E 5] [:A 2] [:C 3] [:N 2] [:O 1]
               [:E 1] [:A 4] [:C 1] [:N 1] [:O 4]]]
-    (is (= {:E [[:E 5] [:E 1]], :A [[:A 2] [:A 4]], :C [[:C 3] [:C 1]], 
+    (is (= {:E [[:E 5] [:E 1]], :A [[:A 2] [:A 4]], :C [[:C 3] [:C 1]],
             :N [[:N 2] [:N 1]], :O [[:O 1] [:O 4]]}
            (inventory/get-groups data)))))
 

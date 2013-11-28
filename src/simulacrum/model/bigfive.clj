@@ -1,4 +1,4 @@
-(ns simulacrum.bigfive
+(ns simulacrum.model.bigfive
   (:require [incanter.core :as matrix]
             [simulacrum.const :as const]
             [simulacrum.math :as math]))

@@ -1,5 +1,5 @@
 (ns simulacrum.inventory
-  (:require [simulacrum.bigfive :as bigfive]
+  (:require [simulacrum.model.bigfive :refer [domains]]
             [simulacrum.exceptions :as exceptions]
             [simulacrum.util :as util]))
 
@@ -60,7 +60,7 @@
     (util/display (str heading \newline \newline))
     (doseq [[key value] averages]
       (util/display
-        (str \tab (bigfive/domains key) ": " value \newline)))))
+        (str \tab (domains key) ": " value \newline)))))
 
 (defn -run-inventory [questions]
   (let [prefix (questions :prefix)]
