@@ -70,6 +70,12 @@ TBD
 
     TBD
 
+Interpretation
+==============
+
+The various operations defined by the library (some of which are presented
+above) are explored in more detail in the :docs/resrouces/compat.rst document.
+
 
 Running the Scripts
 ===================

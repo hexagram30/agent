@@ -1,6 +1,6 @@
-~~~~~~~~~~~~~~~~~~~~
+####################
 Compatibility Models
-~~~~~~~~~~~~~~~~~~~~
+####################
 
 The following are based upon related models for personality coponent
 compatibility: the Big Five (FFM) and the IPIP (which extends the Big Five to
@@ -13,6 +13,106 @@ personality component can be treated just like the other four.
 
 For all models below, a compatibility level of 5 is the highest, and a level of
 1 is the lowest.
+
+Simplified Personality Model
+============================
+
+To explore the interactions between personalities and the dynamics that arise
+between individuals and groups -- and to be able to visualize these interactions
+easily -- a simplified 2-dimennsional model is provided.
+
+Based on the Big Five, this model combines Openness, Conscientiousness,
+Extraversion, and Agreeableness into one: Engagement. The other axis is
+Stability.
+
+Our model for the interactions of these components is as follows:
+
+         Engag  Stabi
+         -----  -----
+Engag  |   5      3   |
+Stabi  |   3      5   |
+         ------------
+
+
+Personal Interactions in the Simple Model
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Given a simple model of 2-dimensional vectors representing simplified
+personalities, let's look at ways in which we might interpret these vectors
+and their interactions with each other.
+
+Component Interactions
+----------------------
+
+Let's define "interaction" as the numerical results obtiained by performing
+various operations on any given vector or vectors. This section will strive to
+identify what these operations may represent in the context of personality
+component interactions.
+
+Projection
+----------
+
+(dot product)
+
+Angular Momentum
+----------------
+
+(cross product)
+(volume of parallelogram)
+
+XXX?
+----
+
+(distance)
+
+XXX?
+----
+
+(scalar multiplication)
+
+XXX?
+----
+
+(scalar triple product)
+
+XXX?
+----
+
+(vector triple product)
+
+XXX?
+----
+
+(vector fields)
+
+XXX?
+----
+
+(gradient)
+
+XXX?
+----
+
+(curl)
+
+XXX?
+----
+
+(divergence)
+
+
+XXX?
+----
+
+(vector laplacian)
+
+XXX?
+----
+
+(laplacian)
+
+
+
 
 Big Five Compatibility Matrix
 =============================
