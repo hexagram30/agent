@@ -4,7 +4,7 @@ Big Five Personality Traits
 
 The Big Five personality dimensions and facets:
 
-Openness to experience
+* Openness to experience
     Fantasy
     Aesthetics
     Feelings
@@ -12,7 +12,7 @@ Openness to experience
     Ideas
     Values
 
-Conscientiousness
+* Conscientiousness
     Competence
     Order
     Dutifulness
@@ -20,7 +20,7 @@ Conscientiousness
     Self-Discipline
     Deliberation
 
-Extraversion
+* Extraversion
     Warmth
     Gregariousness
     Assertiveness
@@ -28,7 +28,7 @@ Extraversion
     Excitement Seeking
     Positive Emotion
 
-Agreeableness
+* Agreeableness
     Trust
     Straightforwardness
     Altruism
@@ -36,7 +36,7 @@ Agreeableness
     Modesty
     Tendermindedness
 
-Neuroticism
+* Neuroticism
     Anxiety
     Hostility
     Depression
