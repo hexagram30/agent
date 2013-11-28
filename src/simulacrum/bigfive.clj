@@ -45,7 +45,7 @@
 
   This function simply points to the matrix that provides the best default
   model for compatibilty.
-  
+
   For more informtaion, see docs/compat.rst."
   five-point-compatibility-matrix-model-3)
 
