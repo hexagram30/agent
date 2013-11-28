@@ -1,5 +1,6 @@
+~~~~~~~~~~~~~~~~~~~~
 Compatibility Models
-####################
+~~~~~~~~~~~~~~~~~~~~
 
 .. contents:: Table of Contents
 
