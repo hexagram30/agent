@@ -22,13 +22,13 @@
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [
     [clj-http "0.7.7"]
-    [enlive "1.1.4"]
+    [enlive "1.1.6"]
     [incanter/incanter-core "1.9.3"]
     [org.clojure/clojure "1.9.0"]
-    [org.clojure/data.csv "0.1.2"]
-    [org.clojure/data.json "0.2.3"]
-    [org.clojure/math.numeric-tower "0.0.2"]]
-  :plugins [[lein-exec "0.3.1"]]
+    [org.clojure/data.csv "0.1.4"]
+    [org.clojure/data.json "0.2.6"]
+    [org.clojure/math.numeric-tower "0.0.4"]]
+  :plugins [[lein-exec "0.3.7"]]
   :profiles {
     :ubercompile {
       :aot :all}
@@ -58,7 +58,7 @@
         [lein-kibit "0.1.6"]
         [venantius/yagni "0.1.4"]]}
     :test {
-      :plugins [[lein-ltest "0.3.0-SNAPSHOT"]]}}
+      :plugins [[lein-ltest "0.3.0"]]}}
   :aliases {
     "repl" ["do"
       ["clean"]
