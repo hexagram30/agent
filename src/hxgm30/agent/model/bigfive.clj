@@ -1,8 +1,7 @@
-(ns simulacrum.model.bigfive
+(ns hxgm30.agent.model.bigfive
   (:require [incanter.core :as matrix]
-            [simulacrum.const :as const]
-            [simulacrum.math :as math]))
-
+            [hxgm30.agent.const :as const]
+            [hxgm30.agent.math :as math]))
 
 (def domains
   {:O "Openness"

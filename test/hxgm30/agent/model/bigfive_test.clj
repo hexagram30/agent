@@ -1,9 +1,8 @@
-(ns simulacrum.model.bigfive-test
+(ns hxgm30.agent.model.bigfive-test
   (:require [clojure.test :refer :all]
             [incanter.core :as matrix]
-            [simulacrum.math :as math]
-            [simulacrum.model.bigfive :as bigfive]))
-
+            [hxgm30.agent.math :as math]
+            [hxgm30.agent.model.bigfive :as bigfive]))
 
 (def person-1 [[]])
 
@@ -73,6 +72,3 @@
 
 (deftest test-questions-long
   )
-
-
-

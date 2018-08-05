@@ -1,8 +1,7 @@
-(ns simulacrum.math-test
+(ns hxgm30.agent.math-test
   (:require [clojure.test :refer :all]
             [incanter.core :as matrix]
-            [simulacrum.math :as math]))
-
+            [hxgm30.agent.math :as math]))
 
 (def alice
   (matrix/matrix [[0.98M 0.64M 0.76M 0.98M 0.93M]]))

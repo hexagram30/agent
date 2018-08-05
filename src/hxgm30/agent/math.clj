@@ -1,8 +1,7 @@
-(ns simulacrum.math
+(ns hxgm30.agent.math
   (:require [incanter.core :as matrix]
             [incanter.stats :as stats]
             [clojure.math.numeric-tower :as tower]))
-
 
 (defn round
   ([n]

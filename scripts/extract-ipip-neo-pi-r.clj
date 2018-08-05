@@ -1,10 +1,11 @@
 #!/bin/bash lein-exec-p
+
 (ns scripts.extract-ipip-neo-pi-r
   (:require [clojure.data.json :as json]
             [clojure.string :as string]
             [net.cgrand.enlive-html :as html]
-            [simulacrum.bigfive :as bigfive]
-            [simulacrum.util :as util]))
+            [hxgm30.agent.bigfive :as bigfive]
+            [hxgm30.agent.util :as util]))
 
 
 (def url "http://ipip.ori.org/newNEOFacetsKey.htm")
@@ -112,7 +113,7 @@
     (flatten (map #(get-facet-questions % tables-data) facet-names))))
 
 (defn get-facets-map [url]
-  "This returns a data structure like what is in simulacrum.ipip/facets."
+  "This returns a data structure like what is in hxgm30.agent.ipip/facets."
   (let [tables-data (get-tables-data (util/fetch-url url))]
     (into
       (sorted-map)

@@ -1,12 +1,10 @@
-(ns simulacrum.util
+(ns hxgm30.agent.util
   (:require [clojure.java.io :as io]
             [clojure.data.json :as json]
             [clojure.string :as string]
             [clj-http.client :as client]
             [net.cgrand.enlive-html :as html]
-            [simulacrum.exceptions :as exceptions]
-            [simulacrum.version :as version]))
-
+            [hxgm30.agent.exceptions :as exceptions]))
 
 (defn display [data]
   (.print (System/out) data))
@@ -65,9 +63,9 @@
 
 (def user-agent
   (str
-    "clj-simulacrum "
-    version/version-str
-    " (https://github.com/oubiwann/clj-simulacrum)"))
+    "hexagram30/agent "
+    "0.6.0-SNAPSHOT "
+    "(https://github.com/hexagram30/agent)"))
 
 (def ua-headers {:headers {"User-Agent" user-agent}})
 

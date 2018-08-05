@@ -1,7 +1,7 @@
-(ns simulacrum.model.ipip
+(ns hxgm30.agent.model.ipip
   (:require [incanter.core :as matrix]
-            [simulacrum.model.bigfive :refer [domains questions-base]]
-            [simulacrum.const :as const]))
+            [hxgm30.agent.model.bigfive :refer [domains questions-base]]
+            [hxgm30.agent.const :as const]))
 
 (def facets
   {:O1 "Imagination"

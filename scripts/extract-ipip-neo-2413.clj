@@ -1,8 +1,9 @@
 #!/bin/bash lein-exec-p
+
 (ns scripts.extract-ipip-neo-2413
   (:require [clojure.data.json :as json]
             [net.cgrand.enlive-html :as html]
-            [simulacrum.util :as util]))
+            [hxgm30.agent.util :as util]))
 
 
 (def url "http://ipip.ori.org/new2413Items.htm")

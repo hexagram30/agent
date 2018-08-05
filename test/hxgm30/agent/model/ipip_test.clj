@@ -1,9 +1,8 @@
-(ns simulacrum.model.ipip-test
+(ns hxgm30.agent.model.ipip-test
   (:require [clojure.test :refer :all]
             [incanter.core :as matrix]
-            [simulacrum.math :as math]
-            [simulacrum.model.ipip :as ipip]))
-
+            [hxgm30.agent.math :as math]
+            [hxgm30.agent.model.ipip :as ipip]))
 
 (deftest test-facets
   (is (= "Imagination" (ipip/facets :O1)))

@@ -1,7 +1,6 @@
-(ns simulacrum.util-test
+(ns hxgm30.agent.util-test
   (:require [clojure.test :refer :all]
-            [simulacrum.util :as util]))
-
+            [hxgm30.agent.util :as util]))
 
 (deftest test-mult-str
   (is (= "ab-ab-ab-ab-" (util/mult-str "ab-" 4))))
@@ -34,13 +33,13 @@
     (is (= "Enjoy!" (util/get-last-line test-data)))))
 
 (deftest test-user-agent
-  (is (= "clj-simulacrum v0.2-dev (https://github.com/oubiwann/clj-simulacrum)"
+  (is (= "hexagram30/agent 0.6.0-SNAPSHOT (https://github.com/hexagram30/agent)"
          util/user-agent)))
 
 (deftest test-ua-headers
   (is (= {:headers
           {"User-Agent"
-           "clj-simulacrum v0.2-dev (https://github.com/oubiwann/clj-simulacrum)"}}
+           "hexagram30/agent 0.6.0-SNAPSHOT (https://github.com/hexagram30/agent)"}}
          util/ua-headers)))
 
 (deftest test-remove-spaces-and-newlines

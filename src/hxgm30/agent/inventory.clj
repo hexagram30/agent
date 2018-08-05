@@ -1,8 +1,7 @@
-(ns simulacrum.inventory
-  (:require [simulacrum.model.bigfive :refer [domains]]
-            [simulacrum.exceptions :as exceptions]
-            [simulacrum.util :as util]))
-
+(ns hxgm30.agent.inventory
+  (:require [hxgm30.agent.model.bigfive :refer [domains]]
+            [hxgm30.agent.exceptions :as exceptions]
+            [hxgm30.agent.util :as util]))
 
 (defn display-title [questions]
   (let [title (questions :title)
@@ -74,7 +73,7 @@
 (defn run
   "The required positional parameter (not one of the named parameters) needs to
   be a keyword that maps to a defined module for personality traits. For
-  instance, if simulacrum.bigfive is defined (and it is) and you wanted to run
+  instance, if hxgm30.agent.bigfive is defined (and it is) and you wanted to run
   the inventory for it, you'd pass :bigfive.
 
   Right now, the list of supported personality trait frameworks are the

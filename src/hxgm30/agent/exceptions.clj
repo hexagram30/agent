@@ -1,5 +1,4 @@
-(ns simulacrum.exceptions)
-
+(ns hxgm30.agent.exceptions)
 
 (defn exception [message & {:keys [type]}]
   (ex-info message

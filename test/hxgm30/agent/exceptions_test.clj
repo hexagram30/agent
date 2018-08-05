@@ -1,7 +1,6 @@
-(ns simulacrum.exceptions-test
+(ns hxgm30.agent.exceptions-test
   (:require [clojure.test :refer :all]
-            [simulacrum.exceptions :as exceptions]))
-
+            [hxgm30.agent.exceptions :as exceptions]))
 
 (deftest test-exception
   (is (thrown-with-msg?
