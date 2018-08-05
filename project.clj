@@ -22,14 +22,12 @@
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [
     [clj-http "0.7.7"]
-    [co.paralleluniverse/pulsar "0.3.0"]
     [enlive "1.1.4"]
-    [incanter/incanter-core "1.5.5"]
-    [org.clojure/clojure "1.7.0"]
+    [incanter/incanter-core "1.9.3"]
+    [org.clojure/clojure "1.9.0"]
     [org.clojure/data.csv "0.1.2"]
     [org.clojure/data.json "0.2.3"]
     [org.clojure/math.numeric-tower "0.0.2"]]
-  ;:java-agents [[co.paralleluniverse/quasar-core "0.3.0"]]
   :plugins [[lein-exec "0.3.1"]]
   :profiles {
     :ubercompile {

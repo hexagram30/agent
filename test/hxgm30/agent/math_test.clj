@@ -1,7 +1,8 @@
 (ns hxgm30.agent.math-test
-  (:require [clojure.test :refer :all]
-            [incanter.core :as matrix]
-            [hxgm30.agent.math :as math]))
+  (:require
+    [clojure.test :refer :all]
+    [hxgm30.agent.math :as math]
+    [incanter.core :as matrix]))
 
 (def alice
   (matrix/matrix [[0.98M 0.64M 0.76M 0.98M 0.93M]]))
@@ -45,7 +46,7 @@
   (is (= 0.12346 (math/round 0.123456 5))))
 
 (deftest test-round-matrix
-  (is (= [0.98 0.64 0.76 0.98 0.93] (math/round-matrix alice)))
+  (is (= [[0.98 0.64 0.76 0.98 0.93]] (math/round-matrix alice)))
   (is (= [[0.686 0.49  0.882 0.784 0.098]
           [0.448 0.32  0.576 0.512 0.064]
           [0.532 0.38  0.684 0.608 0.076]
@@ -60,9 +61,9 @@
          (math/round-matrix (math/vmult alice dave) 2))))
 
 (deftest test-int-matrix
-  (is (= [10 6 8 10 9] (math/int-matrix
-                                      (matrix/mult 10
-                                        (math/round-matrix alice 1)))))
+  (is (= [[10 6 8 10 9]] (math/int-matrix
+                          (matrix/mult
+                           10 (math/round-matrix alice 1)))))
   (is (= [[7 5 9 8 1]
           [4 3 6 5 1]
           [5 4 7 6 1]
@@ -90,15 +91,15 @@
          (math/get-scalar-distance alice eve))))
 
 (deftest test-get-matrix-difference
-  (is (= [0.0 0.0 0.0 0.0 0.0]
+  (is (= [[0.0 0.0 0.0 0.0 0.0]]
          (math/round-matrix (math/get-matrix-difference dave dave))))
-  (is (= [0.6 0.4 0.8 0.1 0.7]
+  (is (= [[0.6 0.4 0.8 0.1 0.7]]
          (math/round-matrix (math/get-matrix-difference dave eve)))))
 
 (deftest test-get-inverted-matrix-difference
-  (is (= [1.0 1.0 1.0 1.0 1.0]
+  (is (= [[1.0 1.0 1.0 1.0 1.0]]
          (math/round-matrix (math/get-inverted-matrix-difference eve eve))))
-  (is (= [0.4 0.6 0.2 0.9 0.3]
+  (is (= [[0.4 0.6 0.2 0.9 0.3]]
          (math/round-matrix (math/get-inverted-matrix-difference dave eve)))))
 
 (deftest test-normalize-matrix
@@ -157,6 +158,6 @@
                   [0.833 0.665 0.658 0.686 0.5215]
                   [0.661 0.5465 0.524 0.5215 0.372]]
         result (math/get-transpose-average couple)]
-    (is (= (matrix/matrix 0 5 5)
-           (matrix/minus result expected)))))
+    (is (= (matrix/to-vect (matrix/matrix 0 5 5))
+           (math/round-matrix (matrix/minus result expected))))))
 

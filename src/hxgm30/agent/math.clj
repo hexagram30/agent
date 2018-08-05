@@ -1,14 +1,15 @@
 (ns hxgm30.agent.math
-  (:require [incanter.core :as matrix]
-            [incanter.stats :as stats]
-            [clojure.math.numeric-tower :as tower]))
+  (:require
+    [clojure.math.numeric-tower :as math]
+    [incanter.core :as matrix]
+    [incanter.stats :as stats]))
 
 (defn round
   ([n]
    (round n 3))
   ([n precision]
-   (let [prec-mult (tower/expt 10 precision)]
-     (/ (tower/round (* n prec-mult))
+   (let [prec-mult (math/expt 10 precision)]
+     (/ (math/round (* n prec-mult))
         (float prec-mult)))))
 
 (defn round-matrix
@@ -24,6 +25,10 @@
     int
     (matrix/to-vect matrix-data)))
 
+(defn ->vec
+  [matrix-data]
+  (flatten (mapv vec matrix-data)))
+
 (defn vmult [vector-1 vector-2]
   (matrix/mmult (matrix/trans vector-1) vector-2))
 
@@ -33,7 +38,8 @@
   matrices.
 
   Note that the personality matrices are 1x5."
-  (stats/euclidean-distance pers-matrix-1 pers-matrix-2))
+  (stats/euclidean-distance (->vec pers-matrix-1)
+                            (->vec pers-matrix-2)))
 
 (defn get-matrix-difference
   [pers-matrix-1 pers-matrix-2]
@@ -41,7 +47,7 @@
 
   Note that the personality matrices are 1x5 matrices and the resultant matrix
   is the same shape (1x5)."
-  (matrix/matrix-map tower/abs
+  (matrix/matrix-map math/abs
                (matrix/minus pers-matrix-1
                              pers-matrix-2)))
 
@@ -70,7 +76,7 @@
       (= normal-mode :maxsize)
         (matrix/div matrix-data (last (matrix/dim matrix-data)))
       (= normal-mode :largest)
-        (matrix/div matrix-data (apply max (flatten matrix-data))))))
+        (matrix/div matrix-data (apply max (->vec matrix-data))))))
 
 (defn get-normalized-matrix
   "Given two matrices, multiply them and normaize the result.

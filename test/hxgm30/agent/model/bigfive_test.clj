@@ -1,8 +1,9 @@
 (ns hxgm30.agent.model.bigfive-test
-  (:require [clojure.test :refer :all]
-            [incanter.core :as matrix]
-            [hxgm30.agent.math :as math]
-            [hxgm30.agent.model.bigfive :as bigfive]))
+  (:require
+    [clojure.test :refer :all]
+    [incanter.core :as matrix]
+    [hxgm30.agent.math :as math]
+    [hxgm30.agent.model.bigfive :as bigfive]))
 
 (def person-1 [[]])
 
@@ -53,11 +54,11 @@
                                   bigfive/signed-compatibility-matrix))))
 
 (deftest test-normalized-compatibility-matrix
-  (is (= [[1.0M 0.6M 0.8M 0.8M 0.8M]
-          [0.4M 1.0M 0.6M 0.8M 0.8M]
-          [0.8M 0.4M 1.0M 0.6M 0.6M]
-          [0.6M 0.8M 0.8M 1.0M 0.8M]
-          [0.6M 0.8M 0.6M 0.8M 1.0M]]
+  (is (= [[1.0 0.6 0.8 0.8 0.8]
+          [0.4 1.0 0.6 0.8 0.8]
+          [0.8 0.4 1.0 0.6 0.6]
+          [0.6 0.8 0.8 1.0 0.8]
+          [0.6 0.8 0.6 0.8 1.0]]
     (matrix/to-vect
       bigfive/normalized-compatibility-matrix))))
 
