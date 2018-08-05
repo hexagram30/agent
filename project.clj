@@ -1,8 +1,9 @@
 (defproject hexagram30/agent "0.6.0-SNAPSHOT"
   :description "Software agent emotional modeling, behavioural simulation, and AI for hexagramMUSH sentients (players, NPCs, animals, monsters, etc.)"
   :url "https://github.com/hexagram/agent"
-  :license {:name "The BSD 3-Clause License"
-            :url "http://opensource.org/licenses/BSD-3-Clause"}
+  :license {
+    :name "Apache License, Version 2.0"
+    :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/data.csv "0.1.2"]
                  [org.clojure/data.json "0.2.3"]

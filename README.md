@@ -90,6 +90,15 @@ the sandbox directory, and a fresh start was made in the Clojure programming
 language.
 
 
+## License
+
+Copyright © 2018, Hexagram30
+
+Copyright © 2004-2013, Duncan McGreggor
+
+Apache License, Version 2.0
+
+
 <!-- Named page links below: /-->
 
 [logo]: https://raw.githubusercontent.com/hexagram30/resources/master/branding/logo/h30-logo-2-long-with-text-x695.png
