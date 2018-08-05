@@ -2,7 +2,7 @@
 
 
 (def version {:major 0
-              :minor 5
+              :minor 6
               :patch 0
               :snapshot true})
 

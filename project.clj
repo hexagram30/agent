@@ -1,7 +1,6 @@
-(defproject clj-simulacrum "0.5.1-SNAPSHOT"
-  :description "A Clojure library for exploring personality modeling in
-                simulated populations"
-  :url "https://github.com/oubiwann/clj-simulacrum"
+(defproject hexagram30/agent "0.6.0-SNAPSHOT"
+  :description "Software agent emotional modeling, behavioural simulation, and AI for hexagramMUSH sentients (players, NPCs, animals, monsters, etc.)"
+  :url "https://github.com/hexagram/agent"
   :license {:name "The BSD 3-Clause License"
             :url "http://opensource.org/licenses/BSD-3-Clause"}
   :dependencies [[org.clojure/clojure "1.5.1"]

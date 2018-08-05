@@ -10,4 +10,4 @@
   (is (= true (version/version :snapshot))))
 
 (deftest test-version-str
-  (is (= "v0.5.0-dev" version/version-str)))
+  (is (= "v0.6.0-dev" version/version-str)))
