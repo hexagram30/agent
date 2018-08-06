@@ -1,4 +1,4 @@
-(ns hxgm30.agent.util
+(ns hxgm30.agent.script.util
   (:require
     [clj-http.client :as client]
     [clojure.data.json :as json]
@@ -7,20 +7,17 @@
     [hxgm30.agent.exceptions :as exceptions]
     [net.cgrand.enlive-html :as html]))
 
-(defn display [data]
-  (.print (System/out) data))
-
 (defn exit []
-  (display (str \newline "Exiting ... " \newline))
+  (println (str \newline "Exiting ... "))
   (System/exit 0))
 
 (defn clear-screen []
-  (display "\u001b[2J")
-  (display "\u001B[0;0f"))
+  (print "\u001b[2J")
+  (print "\u001B[0;0f"))
 
 (defn beep []
   (clear-screen)
-  (display (char 7))
+  (print (char 7))
   (clear-screen))
 
 (defn mult-str [string amount]
@@ -46,7 +43,7 @@
                      (last valid-range)))))))
 
 (defn input [prompt]
-  (display prompt)
+  (print prompt)
   (check-input (read-line)))
 
 (defn get-last-line [text]

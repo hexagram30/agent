@@ -1,13 +1,13 @@
-(ns hxgm30.agent.inventory-test
+(ns hxgm30.agent.script.inventory-test
   (:require
     [clojure.test :refer :all]
-    [hxgm30.agent.inventory :as inventory]))
+    [hxgm30.agent.script.inventory :as inventory]))
 
 (deftest test-run-no-short-no-long
   (is (thrown-with-msg?
-        clojure.lang.ExceptionInfo
-        #"One of ':short true' or ':long true' must be passed to this function"
-        (inventory/run :bigfive))))
+        clojure.lang.ArityException
+        #"Wrong number of args.*"
+        (inventory/run "bigfive"))))
 
 (deftest test-get-groups
   (let [data [[:E 5] [:A 2] [:C 3] [:N 2] [:O 1]
@@ -35,3 +35,7 @@
               [:E 1] [:A 4] [:C 1] [:N 1] [:O 4]]]
     (is (= {:E 3.0, :A 3.0, :C 2.0, :N 1.5, :O 2.5}
            (inventory/process-results data)))))
+
+(deftest test-questions-base
+  (is (= [:instructions :prefix]
+         (sort (keys inventory/questions-base)))))

@@ -21,12 +21,8 @@
     :name "Apache License, Version 2.0"
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [
-    [clj-http "0.7.7"]
-    [enlive "1.1.6"]
     [net.mikera/core.matrix "0.62.0"]
     [org.clojure/clojure "1.9.0"]
-    [org.clojure/data.csv "0.1.4"]
-    [org.clojure/data.json "0.2.6"]
     [org.clojure/math.numeric-tower "0.0.4"]]
   :plugins [[lein-exec "0.3.7"]]
   :profiles {
@@ -38,7 +34,8 @@
         [org.clojure/tools.namespace "0.2.11"]]
       :plugins [
         [venantius/ultra "0.5.2"]]
-      :source-paths ["dev-resources/src"]
+      :source-paths [
+        "dev-resources/src"]
       :repl-options {
         :init-ns hxgm30.agent.repl
         :prompt ~get-prompt
@@ -59,9 +56,19 @@
         [lein-kibit "0.1.6"]
         [venantius/yagni "0.1.4"]]}
     :test {
-      :plugins [[lein-ltest "0.3.0"]]}}
+      :plugins [[lein-ltest "0.3.0"]]}
+    :script {
+      :dependencies [
+        [clj-http "0.7.7"]
+        [enlive "1.1.6"]
+        [org.clojure/data.csv "0.1.4"]
+        [org.clojure/data.json "0.2.6"]]
+      :source-paths [
+        "scripts/src"]
+      :test-paths [
+        "scripts/test"]}}
   :aliases {
-    "repl" ["do"
+    "repl" ["with-profile" "+script" "do"
       ["clean"]
       ["repl"]]
     "ubercompile" ["do"
@@ -81,7 +88,7 @@
       ;["eastwood"]
       ]
     "ltest"
-      ["with-profile" "+test" "ltest"]
+      ["with-profile" "+test,+script" "ltest"]
     "ltest-clean" ["do"
       ["clean"]
       ["ltest"]]
@@ -90,4 +97,9 @@
       ["check-vers"]
       ["lint"]
       ["ltest" ":all"]
-      ["uberjar"]]})
+      ["uberjar"]]
+    ;; Scripts
+    "big-five-short" ["with-profile" "+script"
+      "run" "-m" "hxgm30.agent.script.inventory" "bigfive" "short"]
+    "big-five-long" ["with-profile" "+script"
+      "run" "-m" "hxgm30.agent.script.inventory" "bigfive" "long"]})

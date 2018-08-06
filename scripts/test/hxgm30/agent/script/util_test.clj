@@ -1,7 +1,7 @@
-(ns hxgm30.agent.util-test
+(ns hxgm30.agent.script.util-test
   (:require
     [clojure.test :refer :all]
-    [hxgm30.agent.util :as util]))
+    [hxgm30.agent.script.util :as util]))
 
 (deftest test-mult-str
   (is (= "ab-ab-ab-ab-" (util/mult-str "ab-" 4))))
