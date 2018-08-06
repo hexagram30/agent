@@ -70,6 +70,9 @@
 (defn remove-spaces-and-newlines [text]
   (string/replace text #"\s+\n\s+" " "))
 
+(defn remove-spaces-and-newlines [text]
+  (string/replace text #"\s+\n\s+" " "))
+
 (defn remove-trailing-non-ascii [text]
   (string/replace
     (string/replace
@@ -80,8 +83,9 @@
     (str (char 65533)) ""))
 
 (defn clean-string [text]
-  (remove-trailing-non-ascii
-    (remove-spaces-and-newlines text)))
+  (string/trim
+    (remove-trailing-non-ascii
+      (remove-spaces-and-newlines text))))
 
 (defn import-lite []
   (map (fn[x] {:question (x :question)
