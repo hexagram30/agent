@@ -11,18 +11,14 @@ The Big Five short inventory test displays 10 questions for the user to answer
 and then tallies the results, displaying the five-trait break-down at the end.
 
 ```
-$ ./scripts/bigfive-short.clj
+$ lein big-five-short
 ```
 
 
-## Big Five Long Inventory
+## Other Inventories
 
-The Big Five long inventory test displays 44 questions for the user to answer
-and then tallies the results, displaying the five-trait break-down at the end.
-
-```
-$ ./scripts/bigfive-long.clj
-```
+A long version of the big five inventory is in the works, as well as both long
+and short of the IPIP inventory.
 
 
 ## History
