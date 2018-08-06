@@ -6,7 +6,7 @@
 
 (defn get-output-file
   [s1 s2]
-  (format "downloads/edn/%s-%s.edn" s1 s2))
+  (format "dev-resources/downloads/edn/%s-%s.edn" s1 s2))
 
 (defn get-task-fn
   [items-type items-action]

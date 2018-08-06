@@ -6,9 +6,9 @@
     [clojure.string :as string])
   (:gen-class))
 
-(def export-json-dir "downloads/json/")
+(def export-json-dir "dev-resources/downloads/json/")
 (def export-json-file (str export-json-dir "ipip-items.json"))
-(def export-edn-dir "downloads/edn/")
+(def export-edn-dir "dev-resources/downloads/edn/")
 (def export-edn-file (str export-edn-dir "ipip-items.edn"))
 
 (defn bigfive?

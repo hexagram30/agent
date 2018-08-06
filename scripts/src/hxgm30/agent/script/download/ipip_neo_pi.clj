@@ -9,9 +9,9 @@
   (:gen-class))
 
 (def url "https://ipip.ori.org/newNEOFacetsKey.htm")
-(def export-json-dir "downloads/json/")
+(def export-json-dir "dev-resources/downloads/json/")
 (def export-json-file (str export-json-dir "ipip-newo-pi-r.json"))
-(def export-edn-dir "downloads/edn/")
+(def export-edn-dir "dev-resources/downloads/edn/")
 (def export-edn-file (str export-edn-dir "ipip-newo-pi-r.edn"))
 (def minus (char 8211))
 
