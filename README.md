@@ -5,7 +5,25 @@
 [![][logo]][logo-large]
 
 
-## Big Five Short Inventory
+## About
+
+The agent library aims to provide everything needed in-game to:
+
+* describe the personal attributes (strengths and weaknesses) of sentients
+* determine the natural compatibilities of sentients (attraction/aversion)
+* peovide a means of determining (re)action gradients
+* creating and using decision trees
+* creating and using problem solvers
+
+The functionality inherited from earlier versions of this library has focused on
+personality traits and interactions between personalities. As such, significant
+progress has been made in that direction; the remaining features have yet to be
+addressed and will require a fair chunk of work.
+
+
+## Bonus Materials
+
+### Big Five Short Inventory
 
 The Big Five short inventory test displays 10 questions for the user to answer
 and then tallies the results, displaying the five-trait break-down at the end.
