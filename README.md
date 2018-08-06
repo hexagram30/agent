@@ -23,6 +23,7 @@ and short of the IPIP inventory.
 
 ## Release Notes
 
+* v0.6.1, 2018-08 - Removed old Python code
 * v0.6.0, 2018-08 - Brought project into hexagram30 org, renamed project to agent
 * v0.5.0, 2013-11 - Migrated to Clojure, renamed project to clj-simulacrum
 * v0.4.0, 2012-06 - Renamed project to innoth, code restructuring, added research papers
