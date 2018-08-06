@@ -1,9 +1,11 @@
 (ns hxgm30.agent.repl
   (:require
     [clojure.core.matrix :as matrix]
+    [clojure.data.json :as json]
+    [clojure.edn :as edn]
     [hxgm30.agent.math :as math]
-    [hxgm30.agent.model.bigfive :as bigfive]
-    [hxgm30.agent.model.ipip :as ipip]))
+    [hxgm30.agent.model.bigfive.core :as bigfive]
+    [hxgm30.agent.model.ipip.core :as ipip]))
 
 (def alice
   (matrix/matrix [[0.98M 0.64M 0.76M 0.98M 0.93M]]))

@@ -106,4 +106,8 @@
     "ipip-short" ["with-profile" "+script"
       "run" "-m" "hxgm30.agent.script.inventory" "ipip" "short"]
     "ipip-long" ["with-profile" "+script"
-      "run" "-m" "hxgm30.agent.script.inventory" "ipip" "long"]})
+      "run" "-m" "hxgm30.agent.script.inventory" "ipip" "long"]
+    "download-ipip-neo" ["with-profile" "+script"
+      "run" "-m" "hxgm30.agent.script.download.ipip-neo-pi" "ipip" "long"]})
+
+

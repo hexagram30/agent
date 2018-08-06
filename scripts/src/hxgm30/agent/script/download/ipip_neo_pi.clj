@@ -1,19 +1,19 @@
-#!/bin/bash lein-exec-p
+(ns hxgm30.agent.script.download.ipip-neo-pi
+  (:require
+    [clojure.data.json :as json]
+    [clojure.edn :as edn]
+    [clojure.string :as string]
+    [hxgm30.agent.model.bigfive.core :as bigfive]
+    [hxgm30.agent.script.util :as util]
+    [net.cgrand.enlive-html :as html])
+  (:gen-class))
 
-(ns scripts.extract-ipip-neo-pi-r
-  (:require [clojure.data.json :as json]
-            [clojure.string :as string]
-            [net.cgrand.enlive-html :as html]
-            [hxgm30.agent.bigfive :as bigfive]
-            [hxgm30.agent.util :as util]))
-
-
-(def url "http://ipip.ori.org/newNEOFacetsKey.htm")
-(def export-dir "target/json/")
-(def export-file (str export-dir "ipip-newo-pi-r.json"))
+(def url "https://ipip.ori.org/newNEOFacetsKey.htm")
+(def export-json-dir "downloads/json/")
+(def export-json-file (str export-json-dir "ipip-newo-pi-r.json"))
+(def export-edn-dir "downloads/edn/")
+(def export-edn-file (str export-edn-dir "ipip-newo-pi-r.edn"))
 (def minus (char 8211))
-
-(util/make-dirs export-dir)
 
 (defn get-tables-data [raw-data]
   (html/select raw-data [:body :table]))
@@ -122,9 +122,16 @@
                 (map #(get-table % tables-data)
                      (get-facet-names tables-data)))))))
 
-(spit export-file
-      (json/write-str
-        (get-data url)))
-
-(println (str "Wrote data to '" export-file "'."))
-(util/exit)
+(defn -main
+  [& args]
+  (util/make-dirs export-json-dir)
+  (util/make-dirs export-edn-dir)
+  (spit export-json-file
+        (json/write-str
+          (get-data url)))
+  (println (str "Wrote data to '" export-json-file "'."))
+  (spit export-edn-file
+        (json/read-str (slurp export-json-file)
+                       :key-fn keyword))
+  (println (str "Wrote data to '" export-edn-file "'."))
+  (util/exit))
