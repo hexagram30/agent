@@ -102,4 +102,8 @@
     "big-five-short" ["with-profile" "+script"
       "run" "-m" "hxgm30.agent.script.inventory" "bigfive" "short"]
     "big-five-long" ["with-profile" "+script"
-      "run" "-m" "hxgm30.agent.script.inventory" "bigfive" "long"]})
+      "run" "-m" "hxgm30.agent.script.inventory" "bigfive" "long"]
+    "ipip-short" ["with-profile" "+script"
+      "run" "-m" "hxgm30.agent.script.inventory" "ipip" "short"]
+    "ipip-long" ["with-profile" "+script"
+      "run" "-m" "hxgm30.agent.script.inventory" "ipip" "long"]})
