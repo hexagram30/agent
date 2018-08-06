@@ -1,6 +1,7 @@
 (ns hxgm30.agent.exceptions-test
-  (:require [clojure.test :refer :all]
-            [hxgm30.agent.exceptions :as exceptions]))
+  (:require
+    [clojure.test :refer :all]
+    [hxgm30.agent.exceptions :as exceptions]))
 
 (deftest test-exception
   (is (thrown-with-msg?

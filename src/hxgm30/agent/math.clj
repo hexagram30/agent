@@ -1,8 +1,7 @@
 (ns hxgm30.agent.math
   (:require
-    [clojure.math.numeric-tower :as math]
-    [incanter.core :as matrix]
-    [incanter.stats :as stats]))
+    [clojure.core.matrix :as matrix]
+    [clojure.math.numeric-tower :as math]))
 
 (defn round
   ([n]
@@ -16,50 +15,54 @@
   ([matrix-data]
    (round-matrix matrix-data 3))
   ([matrix-data precision]
-    (matrix/matrix-map
+    (matrix/emap
       #(round % precision)
-      (matrix/to-vect matrix-data))))
+      matrix-data)))
 
 (defn int-matrix [matrix-data]
-  (matrix/matrix-map
+  (matrix/emap
     int
-    (matrix/to-vect matrix-data)))
+    matrix-data))
 
-(defn ->vec
+(defn transpose-vector
   [matrix-data]
-  (flatten (mapv vec matrix-data)))
+  (matrix/matrix (partition 1 (matrix/as-vector matrix-data))))
 
-(defn vmult [vector-1 vector-2]
-  (matrix/mmult (matrix/trans vector-1) vector-2))
+(defn vector-mul
+  [v1 v2]
+  (matrix/mmul (transpose-vector v1) v2))
 
-(defn get-scalar-distance
-  [pers-matrix-1 pers-matrix-2]
+(defn scalar-distance
   "Get the scalar value for the Euclidian distance between the two personality
   matrices.
 
   Note that the personality matrices are 1x5."
-  (stats/euclidean-distance (->vec pers-matrix-1)
-                            (->vec pers-matrix-2)))
-
-(defn get-matrix-difference
   [pers-matrix-1 pers-matrix-2]
-  "Get the matrix for the difference between the two given matrices.
+  (matrix/distance (matrix/as-vector pers-matrix-1)
+                   (matrix/as-vector pers-matrix-2)))
+
+(defn matrix-distance
+  "Get the matrix for the element-wise distance between corresponding elements
+  of the two given matrices.
 
   Note that the personality matrices are 1x5 matrices and the resultant matrix
-  is the same shape (1x5)."
-  (matrix/matrix-map math/abs
-               (matrix/minus pers-matrix-1
-                             pers-matrix-2)))
+  is the same shape (1x5).
 
-(defn get-inverted-matrix-difference
+  Assumes normalized matrices."
   [pers-matrix-1 pers-matrix-2]
-  "Get the matrix for the difference between the two given matrices.
+  (matrix/emap math/abs
+               (matrix/sub pers-matrix-1
+                           pers-matrix-2)))
 
-  Note that the personality matrices are 1x5 matrices and the resultant matrix
-  is the same shape (1x5)."
-  (matrix/minus 1
-                (get-matrix-difference pers-matrix-1
-                                       pers-matrix-2)))
+(defn matrix-closeness
+  "Get the matrix for the element-wise 'closeness' between corresponding elements
+  of the two given matrices. This is the arithmatic inverse of matrix-distance.
+
+  Assumes normalized matrices."
+  [pers-matrix-1 pers-matrix-2]
+  (matrix/sub 1
+              (matrix-distance pers-matrix-1
+                               pers-matrix-2)))
 
 (defn normalize-matrix
   "Given a matrix, normalize it either by the largest value in the shape vector
@@ -70,15 +73,16 @@
   values in the matrix. If it is :largest, the largest value of the matrix is
   given as the rank."
   ([matrix-data]
-   (normalize-matrix matrix-data :maxsize))
+   (normalize-matrix matrix-data :max-val))
   ([matrix-data normal-mode]
     (cond
-      (= normal-mode :maxsize)
-        (matrix/div matrix-data (last (matrix/dim matrix-data)))
-      (= normal-mode :largest)
-        (matrix/div matrix-data (apply max (->vec matrix-data))))))
+      (= normal-mode :max-val)
+      (matrix/div matrix-data (matrix/maximum matrix-data))
 
-(defn get-normalized-matrix
+      (= normal-mode :max-shape)
+      (matrix/div matrix-data (apply max (matrix/shape matrix-data))))))
+
+(defn normalize-matrices
   "Given two matrices, multiply them and normaize the result.
 
   'normal-mode' is the method used to select the normalization value. If the
@@ -86,9 +90,9 @@
   values in the matrix. If it is :largest, the largest value of the matrix is
   given as the rank."
   ([matrix-1 matrix-2]
-   (get-normalized-matrix matrix-1 matrix-2 :maxsize))
+   (normalize-matrices matrix-1 matrix-2 :max-val))
   ([matrix-1 matrix-2 normal-mode]
-    (let [matrix (matrix/mmult matrix-1 matrix-2)]
+    (let [matrix (matrix/mul matrix-1 matrix-2)]
       (normalize-matrix matrix normal-mode))))
 
 (defn compute-compatibility-matrix
@@ -101,22 +105,19 @@
   given as the rank."
   ([pers-matrix-1 pers-matrix-2 model]
    (compute-compatibility-matrix
-     pers-matrix-1 pers-matrix-2 model :maxsize))
+     pers-matrix-1 pers-matrix-2 model :max-val))
   ([pers-matrix-1 pers-matrix-2 model normal-mode]
-    (let [pers-combo (matrix/mmult (matrix/trans pers-matrix-1) pers-matrix-2)
-          compat-combo (matrix/mmult pers-combo model)]
+    (let [pers-combo (vector-mul pers-matrix-1 pers-matrix-2)
+          compat-combo (matrix/mul pers-combo model)]
       (normalize-matrix compat-combo normal-mode))))
 
 (defn get-transpose-average
-  [matrix-data]
   "Add the given matrix to its transpose and then divide by two.
 
   This is useful for forming diagonal matrices from personality matrix
   multiplication results."
-  (matrix/div (matrix/plus
-                (matrix/trans matrix-data)
+  [matrix-data]
+  (matrix/div (matrix/add
+                (matrix/transpose matrix-data)
                 matrix-data)
               2))
-
-
-

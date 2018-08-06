@@ -1,6 +1,7 @@
 (ns hxgm30.agent.inventory-test
-  (:require [clojure.test :refer :all]
-            [hxgm30.agent.inventory :as inventory]))
+  (:require
+    [clojure.test :refer :all]
+    [hxgm30.agent.inventory :as inventory]))
 
 (deftest test-run-no-short-no-long
   (is (thrown-with-msg?

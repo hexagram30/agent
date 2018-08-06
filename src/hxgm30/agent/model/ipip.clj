@@ -1,7 +1,8 @@
 (ns hxgm30.agent.model.ipip
-  (:require [incanter.core :as matrix]
-            [hxgm30.agent.model.bigfive :refer [domains questions-base]]
-            [hxgm30.agent.const :as const]))
+  (:require
+    [clojure.core.matrix :as matrix]
+    [hxgm30.agent.const :as const]
+    [hxgm30.agent.model.bigfive :refer [domains questions-base]]))
 
 (def facets
   {:O1 "Imagination"
@@ -68,11 +69,11 @@
 (def signed-compatibility-matrix
   "Convert the compatibilty matrix to one whose values range from -2 to 2, with
   the neurtal value being 0."
-  (matrix/minus thirty-point-compatibility-matrix const/mid-value))
+  (matrix/sub thirty-point-compatibility-matrix const/mid-value))
 
 (def normalized-compatibility-matrix
   "Convert the compatibilty matrix to one whose values have been normalized."
-  (matrix/matrix-map
+  (matrix/emap
     float
     (matrix/div thirty-point-compatibility-matrix const/max-value)))
 

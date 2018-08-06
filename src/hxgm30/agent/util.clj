@@ -1,10 +1,11 @@
 (ns hxgm30.agent.util
-  (:require [clojure.java.io :as io]
-            [clojure.data.json :as json]
-            [clojure.string :as string]
-            [clj-http.client :as client]
-            [net.cgrand.enlive-html :as html]
-            [hxgm30.agent.exceptions :as exceptions]))
+  (:require
+    [clj-http.client :as client]
+    [clojure.data.json :as json]
+    [clojure.java.io :as io]
+    [clojure.string :as string]
+    [hxgm30.agent.exceptions :as exceptions]
+    [net.cgrand.enlive-html :as html]))
 
 (defn display [data]
   (.print (System/out) data))
@@ -31,11 +32,7 @@
   [sequence item]
   (if (empty? sequence)
     false
-    (reduce
-      #(or %1 %2)
-      (map
-        #(= %1 item)
-        sequence))))
+    (contains? (set sequence) item)))
 
 (defn check-input [input]
   (let [valid-range (range 1 6)

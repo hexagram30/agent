@@ -1,7 +1,8 @@
 (ns hxgm30.agent.model.bigfive
-  (:require [incanter.core :as matrix]
-            [hxgm30.agent.const :as const]
-            [hxgm30.agent.math :as math]))
+  (:require
+    [clojure.core.matrix :as matrix]
+    [hxgm30.agent.const :as const]
+    [hxgm30.agent.math :as math]))
 
 (def domains
   {:O "Openness"
@@ -51,14 +52,13 @@
 (def signed-compatibility-matrix
   "Convert the compatibilty matrix to one whose values range from -2 to 2, with
   the neurtal value being 0."
-  (matrix/minus five-point-compatibility-matrix const/mid-value))
+  (matrix/sub five-point-compatibility-matrix
+              const/mid-value))
 
 (def normalized-compatibility-matrix
   "Convert the compatibilty matrix to one whose values have been normalized."
-  (matrix/matrix-map
-    bigdec
-    (matrix/div five-point-compatibility-matrix
-                const/max-value)))
+  (matrix/div five-point-compatibility-matrix
+              (float const/max-value)))
 
 (def questions-base
   {:instructions (str "Answer each question below by providing a number "

@@ -23,7 +23,7 @@
   :dependencies [
     [clj-http "0.7.7"]
     [enlive "1.1.6"]
-    [incanter/incanter-core "1.9.3"]
+    [net.mikera/core.matrix "0.62.0"]
     [org.clojure/clojure "1.9.0"]
     [org.clojure/data.csv "0.1.4"]
     [org.clojure/data.json "0.2.6"]
@@ -35,7 +35,8 @@
     :dev {
       :dependencies [
         [clojusc/trifl "0.3.0"]
-        [org.clojure/tools.namespace "0.2.11"]
+        [org.clojure/tools.namespace "0.2.11"]]
+      :plugins [
         [venantius/ultra "0.5.2"]]
       :source-paths ["dev-resources/src"]
       :repl-options {

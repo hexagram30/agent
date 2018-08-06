@@ -1,7 +1,8 @@
 (ns hxgm30.agent.inventory
-  (:require [hxgm30.agent.model.bigfive :refer [domains]]
-            [hxgm30.agent.exceptions :as exceptions]
-            [hxgm30.agent.util :as util]))
+  (:require
+    [hxgm30.agent.exceptions :as exceptions]
+    [hxgm30.agent.model.bigfive :refer [domains]]
+    [hxgm30.agent.util :as util]))
 
 (defn display-title [questions]
   (let [title (questions :title)
@@ -17,7 +18,7 @@
 
 (defn get-answer [prefix question]
   (util/display (str "\"" prefix (question :question) ".\"" \newline))
-  (let [answer (util/input (str "Enter one of " (into [] (range 1 6)) " "))]
+  (let [answer (util/input (str "Enter one of " (vec (range 1 6)) " "))]
     (util/display \newline)
     (cond
       (question :reversed?)
