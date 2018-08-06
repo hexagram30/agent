@@ -14,7 +14,7 @@
        ns
        "\u001B[35m]\u001B[33m λ\u001B[m=> "))
 
-(defproject hexagram30/agent "0.6.0-SNAPSHOT"
+(defproject hexagram30/agent "0.6.1-SNAPSHOT"
   :description "Software agent emotional modeling, behavioural simulation, and AI for hexagramMUSH sentients (players, NPCs, animals, monsters, etc.)"
   :url "https://github.com/hexagram/agent"
   :license {
