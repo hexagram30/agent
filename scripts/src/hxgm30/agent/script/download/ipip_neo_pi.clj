@@ -9,10 +9,9 @@
   (:gen-class))
 
 (def url "https://ipip.ori.org/newNEOFacetsKey.htm")
-(def export-json-dir "dev-resources/downloads/json/")
-(def export-json-file (str export-json-dir "ipip-newo-pi-r.json"))
-(def export-edn-dir "dev-resources/downloads/edn/")
-(def export-edn-file (str export-edn-dir "ipip-newo-pi-r.edn"))
+
+(def export-json-file (str util/export-json-dir "ipip-newo-pi-r.json"))
+(def export-edn-file (str util/export-edn-dir "ipip-newo-pi-r.edn"))
 (def minus (char 8211))
 
 (defn get-tables-data [raw-data]
@@ -124,14 +123,13 @@
 
 (defn -main
   [& args]
-  (util/make-dirs export-json-dir)
-  (util/make-dirs export-edn-dir)
+  (let [data (get-data url)]
+  (util/make-dirs util/export-json-dir)
+  (util/make-dirs util/export-edn-dir)
   (spit export-json-file
-        (json/write-str
-          (get-data url)))
+        (json/write-str data))
   (println (str "Wrote data to '" export-json-file "'."))
   (spit export-edn-file
-        (json/read-str (slurp export-json-file)
-                       :key-fn keyword))
+        (json/read-str data :key-fn keyword))
   (println (str "Wrote data to '" export-edn-file "'."))
   (util/exit))

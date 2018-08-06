@@ -9,10 +9,8 @@
   (:gen-class))
 
 (def url "https://ipip.ori.org/AlphabeticalItemList.htm")
-(def export-json-dir "dev-resources/downloads/json/")
-(def export-json-file (str export-json-dir "ipip-items.json"))
-(def export-edn-dir "dev-resources/downloads/edn/")
-(def export-edn-file (str export-edn-dir "ipip-items.edn"))
+(def export-json-file (str util/export-json-dir "ipip-items.json"))
+(def export-edn-file (str util/export-edn-dir "ipip-items.edn"))
 
 (defn extract-cell-data
   [data]
@@ -53,7 +51,7 @@
 (defn -main
   [& args]
   (let [data (get-data url)]
-    (util/make-dirs export-json-dir)
+    (util/make-dirs util/export-json-dir)
     (spit export-json-file
           (json/write-str data))
     (println (str "Wrote data to '" export-json-file "'."))

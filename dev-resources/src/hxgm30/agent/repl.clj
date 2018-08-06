@@ -5,7 +5,8 @@
     [clojure.edn :as edn]
     [hxgm30.agent.math :as math]
     [hxgm30.agent.model.bigfive.core :as bigfive]
-    [hxgm30.agent.model.ipip.core :as ipip]))
+    [hxgm30.agent.model.ipip.core :as ipip]
+    [hxgm30.agent.script.util :refer [load-json load-edn]]))
 
 (def alice
   (matrix/matrix [[0.98M 0.64M 0.76M 0.98M 0.93M]]))
