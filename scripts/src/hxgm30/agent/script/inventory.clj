@@ -4,6 +4,7 @@
     [hxgm30.agent.exceptions :as exceptions]
     [hxgm30.agent.model.bigfive.core :refer [domains]]
     [hxgm30.agent.model.bigfive.inventory]
+    [hxgm30.agent.model.ipip.inventory]
     [hxgm30.agent.script.util :as util])
   (:gen-class))
 

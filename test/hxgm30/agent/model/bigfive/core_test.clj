@@ -1,9 +1,9 @@
-(ns hxgm30.agent.model.bigfive-test
+(ns hxgm30.agent.model.bigfive.core-test
   (:require
     [clojure.core.matrix :as matrix]
     [clojure.test :refer :all]
     [hxgm30.agent.math :as math]
-    [hxgm30.agent.model.bigfive :as bigfive]))
+    [hxgm30.agent.model.bigfive.core :as bigfive]))
 
 (def person-1 [[]])
 
@@ -71,12 +71,3 @@
     (math/round-matrix
      bigfive/normalized-compatibility-matrix
      1))))
-
-(deftest test-questions-base
-  (is (= [:instructions :prefix]
-         (sort (keys bigfive/questions-base)))))
-
-(deftest test-questions-short
-  (is (= [:instructions :prefix :questions :title]
-         (sort (keys bigfive/questions-short))))
-  (is (= 10 (count (bigfive/questions-short :questions)))))

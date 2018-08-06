@@ -1,8 +1,8 @@
-(ns hxgm30.agent.model.ipip
+(ns hxgm30.agent.model.ipip.core
   (:require
     [clojure.core.matrix :as matrix]
     [hxgm30.agent.const :as const]
-    [hxgm30.agent.model.bigfive :refer [domains questions-base]]))
+    [hxgm30.agent.model.bigfive.core :refer [domains]]))
 
 (def facets
   {:O1 "Imagination"
@@ -76,18 +76,3 @@
   (matrix/emap
     float
     (matrix/div thirty-point-compatibility-matrix const/max-value)))
-
-(def questions-short
-  (conj
-    questions-base
-    {:title "IPIP NEO-PI-R Facet Scales Short Inventory"
-     :questions
-      [
-
-       ]}))
-
-(def questions-long
-  )
-
-
-
