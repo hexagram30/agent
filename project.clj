@@ -110,6 +110,8 @@
     "download-ipip-items" ["with-profile" "+script"
       "run" "-m" "hxgm30.agent.script.download.ipip-items"]
     "download-ipip-neo" ["with-profile" "+script"
-      "run" "-m" "hxgm30.agent.script.download.ipip-neo-pi"]})
+      "run" "-m" "hxgm30.agent.script.download.ipip-neo-pi"]
+    "restructure-ipip-items" ["with-profile" "+script"
+      "run" "-m" "hxgm30.agent.script.items" "ipip" "restructure"]})
 
 
