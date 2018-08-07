@@ -59,7 +59,7 @@
       :plugins [[lein-ltest "0.3.0"]]}
     :script {
       :dependencies [
-        [clj-http "0.7.7"]
+        [clj-http "3.9.1"]
         [enlive "1.1.6"]
         [org.clojure/data.csv "0.1.4"]
         [org.clojure/data.json "0.2.6"]]

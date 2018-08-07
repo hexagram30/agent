@@ -85,7 +85,7 @@
 (defn fetch-url
   [url & {:keys [headers]}]
   (html/html-snippet
-    ((client/get url (conj ua-headers headers)) :body)))
+    (:body (client/get url (merge ua-headers headers)))))
 
 (defn remove-spaces-and-newlines
   [text]
