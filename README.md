@@ -33,10 +33,22 @@ $ lein big-five-short
 ```
 
 
+### International Personality Item Pool Inventory
+
+Known more by its short name, the IPIP-NEO, this test also measures facets of
+each Big Five personality component. There are several versions you can take:
+
+* Short (10 questions), takes about a minute: `lein ipip-short`
+* Long (50 questions), takes about 5 minutes: `lein ipip-long`
+* Full (390 questions), takes about 40 minutes: `lein ipip-full`
+
+Like the Big Five inventory, the "OCEAN" results are also displayed. In
+addition, this test provides a breakdown on the facets.
+
+
 ## Other Inventories
 
-A long version of the big five inventory is in the works, as well as both long
-and short of the IPIP inventory.
+A long version of the Big Five inventory is in the works.
 
 
 ## Release Notes

@@ -12,6 +12,7 @@
   (->> "ipip-newo-pi-r.edn"
        (util/load-edn)
        (map #(update % :domain-key keyword))
+       (map #(update % :facet-id keyword))
        (map #(update % :question string/trim))
        (filter #(not
                  (contains? bad-questions (:question %))))))

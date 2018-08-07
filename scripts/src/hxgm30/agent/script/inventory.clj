@@ -3,8 +3,10 @@
     [clojure.string :as string]
     [hxgm30.agent.const :as const]
     [hxgm30.agent.exceptions :as exceptions]
+    [hxgm30.agent.math :as math]
     [hxgm30.agent.model.bigfive.core :refer [domains]]
     [hxgm30.agent.model.bigfive.inventory]
+    [hxgm30.agent.model.ipip.core :refer [facets]]
     [hxgm30.agent.model.ipip.inventory]
     [hxgm30.agent.script.inventory.ipip :as ipip-generator]
     [hxgm30.agent.script.util :as util])
@@ -18,6 +20,14 @@
   (println (str title))
   (println (str heading))
   (println)))
+
+(defn display-subheading
+  [title]
+  (let [subheading (util/mult-str "-" (count title))]
+    (println (str subheading))
+    (println (str title))
+    (println (str subheading))
+    (println)))
 
 (defn display-instructions
   [questions]
@@ -35,12 +45,11 @@
         mini-instruction (str "(Enter one of "
                               (vec (range 1 6))
                               "; 1=disagree, 5=agree) ")]
-    (let [answer (util/input (str str-question mini-instruction))]
-      (cond
-        (:reversed? question)
-          [(:domain-key question) (- 6 answer)]
-        :else
-          [(:domain-key question) answer]))))
+    (let [regular-answer (util/input (str str-question mini-instruction))
+          reversed-answer (- 6 regular-answer)
+          answer (if (:reversed? question) reversed-answer regular-answer)]
+      {(:domain-key question) answer
+       (:facet-id question) answer})))
 
 (defn get-groups
   "This is used when processing the results."
@@ -55,7 +64,7 @@
 (defn average-tuple
   "This is used when processing the results."
   [tuple]
-  (/ (reduce + tuple) (float (count tuple))))
+  (math/round (/ (reduce + tuple) (float (count tuple))) 1))
 
 (defn group-average
   "Given a group, determine the average and associate it with its domain."
@@ -69,16 +78,38 @@
           group-average
           (get-groups results))))
 
+(defn facets-results?
+  [results]
+  (some #(not (nil? %))  (map #(% results) (keys facets))))
+
+(defn domains-results
+  [results]
+  (remove nil? (map #(vector % (% results)) (keys domains))))
+
+(defn facets-results
+  [results]
+  (remove nil? (map #(vector % (% results)) (keys facets))))
+
 (defn display-score
   [averages]
   (let [title "Inventory Results"
-        heading (util/mult-str "=" (count title))]
+        heading (util/mult-str "=" (count title))
+        facets? (facets-results? averages)]
     (println (str \newline heading))
     (println (str title))
     (println (str heading \newline))
-    (doseq [[key value] averages]
-      (println
-        (str \tab (domains key) ": " value)))))
+    (when facets?
+      (display-subheading "Domains"))
+    (doseq [[k v] (domains-results averages)]
+      (when v
+        (println
+          (str \tab (k domains) ": " v))))
+    (when facets?
+      (display-subheading "Facets")
+      (doseq [[k v] (facets-results averages)]
+        (when v
+          (println
+            (str \tab (k facets) ": " v)))))))
 
 (def questions-base
   {:instructions (str "Answer each question below by providing a number "
@@ -101,8 +132,8 @@
   (println)
   (display-score
     (process-results
-      (map #(get-answer (:prefix questions) %)
-           (questions :questions)))))
+      (mapcat #(get-answer (:prefix questions) %)
+              (questions :questions)))))
 
 (defn run-inventory
   ([questions-model]
@@ -119,11 +150,11 @@
 
 (defn get-inventory-fn
   [test-type test-variant]
-  (case
-    :bigfive run-inventory
+  (case test-type
     :ipip #(run-inventory % {:generate? true
                              :type test-type
-                             :variant test-variant})))
+                             :variant test-variant})
+    run-inventory))
 
 (defn run
   "The required positional parameter (not one of the named parameters) needs to
