@@ -10,8 +10,11 @@
 The agent library aims to provide everything needed in-game to:
 
 * describe the personal attributes (strengths and weaknesses) of sentients
-* determine the natural compatibilities of sentients (attraction/aversion)
-* peovide a means of determining (re)action gradients
+* describe the beliefs and desires of sentients
+* determine the natural compatibilities of sentients (attraction/aversion
+  based upon personality, beliefs, and desires)
+* peovide a means of determining (re)action gradients (depends upon the others
+  as well as intentions)
 * creating and using decision trees
 * creating and using problem solvers
 
@@ -19,6 +22,13 @@ The functionality inherited from earlier versions of this library has focused on
 personality traits and interactions between personalities. As such, significant
 progress has been made in that direction; the remaining features have yet to be
 addressed and will require a fair chunk of work.
+
+The reason that personality simulation was worked on first (and for so long) is
+that we view this as the critical foundation for properly simulating future
+features. For instance, core apsects of a personailty will often come into place
+if a sentient is to re-attempt a previously failed path in a decision tree. The
+more meaning the path holds. Beliefs, desires, and intetions also play a cricital
+role, but similaly, these are deply influenced by the core personality traights.
 
 
 ## Bonus Materials

@@ -35,4 +35,4 @@
   {:questions (case variant
                 :short (select-questions short-count)
                 :long (select-questions long-count)
-                :full (vec data))})
+                :full (vec (shuffle data)))})

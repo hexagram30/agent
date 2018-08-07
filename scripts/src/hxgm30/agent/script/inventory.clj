@@ -103,13 +103,13 @@
     (doseq [[k v] (domains-results averages)]
       (when v
         (println
-          (str \tab (k domains) ": " v))))
+          (str " * " (k domains) ": " v))))
     (when facets?
       (display-subheading "Facets")
       (doseq [[k v] (facets-results averages)]
         (when v
           (println
-            (str \tab (k facets) ": " v)))))))
+            (str " * " (k facets) ": " v)))))))
 
 (def questions-base
   {:instructions (str "Answer each question below by providing a number "
