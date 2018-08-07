@@ -34,13 +34,13 @@
     (is (= "Enjoy!" (util/get-last-line test-data)))))
 
 (deftest test-user-agent
-  (is (= "hexagram30/agent 0.6.0-SNAPSHOT (https://github.com/hexagram30/agent)"
+  (is (= "hexagram30/agent 0.6.1-SNAPSHOT (https://github.com/hexagram30/agent)"
          util/user-agent)))
 
 (deftest test-ua-headers
   (is (= {:headers
           {"User-Agent"
-           "hexagram30/agent 0.6.0-SNAPSHOT (https://github.com/hexagram30/agent)"}}
+           "hexagram30/agent 0.6.1-SNAPSHOT (https://github.com/hexagram30/agent)"}}
          util/ua-headers)))
 
 (deftest test-remove-spaces-and-newlines
