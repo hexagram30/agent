@@ -77,11 +77,13 @@ A long version of the Big Five inventory is in the works.
 
 ## License
 
-Copyright © 2018, Hexagram30
+```
+Copyright © 2018, Hexagram30 <hexagram30@cnbb.games>
 
-Copyright © 2004-2013, Duncan McGreggor
+Copyright © 2004-2013, Duncan McGreggor <oubiwann@gmail.com>
 
 Apache License, Version 2.0
+```
 
 
 <!-- Named page links below: /-->
