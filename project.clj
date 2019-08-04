@@ -20,7 +20,13 @@
   :license {
     :name "Apache License, Version 2.0"
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
+  :exclusions [
+    ;; JDK version issues overrides
+    fipp]
   :dependencies [
+    ;; JDK version issues overrides
+    [fipp "0.6.18"]
+    ;; Regular dependencies
     [net.mikera/core.matrix "0.62.0"]
     [org.clojure/clojure "1.10.1"]
     [org.clojure/math.numeric-tower "0.0.4"]]
