@@ -39,14 +39,17 @@
 (def five-point-compatibility-matrix
   "The columns of the compatibilty matrices follow the order of the OCEAS
   acronym:
-    1) Openness, 2) Conscientiousness, 3) Extraversion, 4) Agreeableness,
-    5) Stability.
+    1. Openness
+    2. Conscientiousness
+    3. Extraversion
+    4. Agreeableness
+    5. Stability
   Similarly, the rows number in the same order.
 
   This function simply points to the matrix that provides the best default
-  model for compatibilty.
+  model for compatibility.
 
-  For more informtaion, see docs/compat.rst."
+  For more information, see docs/compat.rst."
   five-point-compatibility-matrix-model-3)
 
 (def signed-compatibility-matrix

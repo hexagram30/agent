@@ -22,18 +22,17 @@
     :url "http://www.apache.org/licenses/LICENSE-2.0"}
   :dependencies [
     [net.mikera/core.matrix "0.62.0"]
-    [org.clojure/clojure "1.9.0"]
+    [org.clojure/clojure "1.10.1"]
     [org.clojure/math.numeric-tower "0.0.4"]]
-  :plugins [[lein-exec "0.3.7"]]
   :profiles {
     :ubercompile {
       :aot :all}
     :dev {
       :dependencies [
-        [clojusc/trifl "0.3.0"]
-        [org.clojure/tools.namespace "0.2.11"]]
+        [clojusc/trifl "0.4.2"]
+        [org.clojure/tools.namespace "0.3.1"]]
       :plugins [
-        [venantius/ultra "0.5.2"]]
+        [venantius/ultra "0.6.0"]]
       :source-paths [
         "dev-resources/src"]
       :repl-options {
@@ -50,16 +49,16 @@
       :source-paths ^:replace ["src"]
       :test-paths ^:replace []
       :plugins [
-        [jonase/eastwood "0.2.9"]
+        [jonase/eastwood "0.3.6"]
         [lein-ancient "0.6.15"]
-        [lein-bikeshed "0.5.1"]
-        [lein-kibit "0.1.6"]
-        [venantius/yagni "0.1.4"]]}
+        [lein-bikeshed "0.5.2"]
+        [lein-kibit "0.1.7"]
+        [venantius/yagni "0.1.7"]]}
     :test {
       :plugins [[lein-ltest "0.3.0"]]}
     :script {
       :dependencies [
-        [clj-http "3.9.1"]
+        [clj-http "3.10.0"]
         [enlive "1.1.6"]
         [org.clojure/data.csv "0.1.4"]
         [org.clojure/data.json "0.2.6"]]
